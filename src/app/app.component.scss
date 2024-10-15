@@ -7,8 +7,8 @@
 }
 
 .main {
-  @apply flex flex-col justify-between h-full max-w-[784px] m-auto;
-  @apply desktop:justify-center;
+  @apply flex overflow-auto flex-col h-[calc(100%-87px)] max-w-[784px] justify-between m-auto;
+  @apply desktop:justify-center desktop:h-full;
 
   &__heading {
     @apply mb-[62px];
@@ -53,7 +53,9 @@
       @apply flex flex-col items-center gap-[14px] text-[24px] font-semibold mb-[40px];
     }
   }
+}
 
+.footer {
   &__navigation {
     @apply flex justify-center gap-[14px] mb-[24px];
 
