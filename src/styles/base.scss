@@ -3,5 +3,6 @@ html {
 }
 
 body {
-  @apply font-display text-[15px] p-[20px] text-center;
+  @apply block h-[100svh] leading-none font-display pt-[40px] pb-[60px] px-[22px] text-center text-black;
+  @apply desktop:p-[20px]
 }

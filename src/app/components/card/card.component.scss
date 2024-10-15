@@ -1,0 +1,11 @@
+.card {
+  @apply bg-light-grey rounded-[20px] px-[40px] py-[20px];
+
+  &__title {
+    @apply text-[18px] font-semibold;
+  }
+
+  &__text {
+    @apply font-medium leading-[18px] text-grey mt-[6px];
+  }
+}
