@@ -1,4 +1,9 @@
 <div class="card">
-  <h4 class="card__title">{{ title }}</h4>
-  <p class="card__text">{{ text }}</p>
+  @if (image()) {
+    <div class="card__image">
+      <img [ngSrc]="'icons/' + image() + '.svg'" [alt]="image()" width="24" height="24">
+    </div>
+  }
+  <h4 class="card__title">{{ title() }}</h4>
+  <p class="card__text">{{ text() }}</p>
 </div>

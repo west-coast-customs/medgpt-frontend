@@ -20,8 +20,7 @@
 
       <div class="main__footing">
         <app-button (click)="onButtonClick()" customClass="button--big">
-          <span @fade>{{ 'Let’s Chat' }}</span>
-          <img @fade ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
+          <ng-container [ngTemplateOutlet]="letsChatButton"/>
         </app-button>
       </div>
     </main>
@@ -31,29 +30,22 @@
 @defer (when mobileView()) {
   @if (mobileView()) {
     <main class="main">
-      @if (!secondStep()) {
-        <ng-container *ngTemplateOutlet="mainHeading"/>
-      }
+      <ng-container *ngTemplateOutlet="mainHeading"/>
 
       <div class="main__info">
-        <h3 class="main__info__title">
-          @if (firstStep()) {
+        @if (firstStep() || lastStep()) {
+          <h3 class="main__info__title">
             <img @fade ngSrc="icons/sun-high.svg" width="24" height="24" alt="sun-high">
-            <span @fade>What is MedGPT?</span>
-          }
-          @defer (when secondStep()) {
-            @if (secondStep()) {
-              <img @fade ngSrc="icons/bolt.svg" width="24" height="24" alt="bolt">
-              <h3 @fade class="font-semibold">Med<span class="text-blue">GPT</span>&nbsp;Benefits</h3>
+            @if (firstStep()) {
+              <span @fade>What is MedGPT?</span>
             }
-          }
-          @defer (when lastStep()) {
-            @if (lastStep()) {
-              <img @fade ngSrc="icons/sun-high.svg" width="24" height="24" alt="sun-high">
-              <span @fade>Increase your productivity and discover new horizons in science with MedGPT!</span>
+            @defer (when lastStep()) {
+              @if (lastStep()) {
+                <span @fade>Increase your productivity and discover new horizons in science with MedGPT!</span>
+              }
             }
-          }
-        </h3>
+          </h3>
+        }
 
         @if (firstStep()) {
           <ng-container *ngTemplateOutlet="mainDescription"/>
@@ -91,8 +83,7 @@
       <app-button (click)="onButtonClick()" customClass="button--big">
         @defer (when lastStep()) {
           @if (lastStep()) {
-            <span @fade>{{ 'Let’s Chat' }}</span>
-            <img @fade ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
+            <ng-container [ngTemplateOutlet]="letsChatButton"/>
           }
         }
 
@@ -123,13 +114,17 @@
 
 <ng-template #mainCards>
   <div @fade class="main__cards">
-    <app-card title="Smart Search"
+    <app-card [image]="mobileView() ? 'brain' : undefined"
+              title="Smart Search"
               text="Access a database of relevant articles using a powerful search algorithm that understands context"/>
-    <app-card title="Automated Analysis"
+    <app-card [image]="mobileView() ? 'clock-search' : undefined"
+              title="Automated Analysis"
               text="MedGPT automatically highlights key points and conclusions, helping you save time on reading"/>
-    <app-card title="Quick Literature Review Writing"
+    <app-card [image]="mobileView() ? 'vocabulary' : undefined"
+              title="Quick Literature Review Writing"
               text="Create concise and informative reviews on topics you are interested in in just a few minutes"/>
-    <app-card title="Quickly Find Relevant Information"
+    <app-card [image]="mobileView() ? 'search' : undefined"
+              title="Quickly Find Relevant Information"
               text="Find the latest and most relevant information for your query without any extra effort"/>
   </div>
 </ng-template>
@@ -138,4 +133,9 @@
   <p @fade class="main__text">
     Start your free trial today and discover new research opportunities!
   </p>
+</ng-template>
+
+<ng-template #letsChatButton>
+  <span @fade>{{ 'Let’s Chat' }}</span>
+  <img @fade ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
 </ng-template>

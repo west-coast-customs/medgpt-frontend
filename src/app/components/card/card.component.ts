@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent {
-  @Input() title!: string;
-  @Input() text!: string;
+  image: InputSignal<string | undefined> = input<string>()
+  title: InputSignal<string> = input.required<string>()
+  text: InputSignal<string> = input.required<string>()
 }

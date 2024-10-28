@@ -38,7 +38,7 @@
     @apply desktop:grow-0;
 
     &__title {
-      @apply flex flex-col gap-[12px] items-center mb-[32px] text-[24px] font-medium leading-[30px];
+      @apply flex flex-col gap-[12px] items-center mb-[32px] text-[24px] font-bold leading-[30px];
     }
   }
 
@@ -46,7 +46,7 @@
     @apply flex flex-wrap gap-[12px] mb-[32px];
 
     * {
-      @apply desktop:basis-[calc(50%-6px)];
+      @apply basis-[calc(50%-6px)];
     }
 
     &__heading {
