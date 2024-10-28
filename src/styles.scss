@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@use "./styles/base";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap');
 
+@import "./styles/base";

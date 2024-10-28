@@ -1,0 +1,71 @@
+.header {
+  @apply fixed left-[20px] right-[20px] flex items-center justify-between;
+
+  &__logo {
+    @apply text-[24px] font-bold;
+  }
+}
+
+.main {
+  @apply flex overflow-auto flex-col h-[calc(100%-87px)] max-w-[784px] justify-between m-auto;
+  @apply desktop:justify-center desktop:h-full;
+
+  &__heading {
+    @apply mb-[62px];
+    @apply desktop:mb-[16px];
+  }
+
+  &__title {
+    @apply text-[36px] mb-[24px] font-bold leading-[44px];
+
+    > span {
+      @apply block;
+      @apply desktop:inline;
+    }
+  }
+
+  &__subtitle {
+    @apply text-[18px] font-semibold;
+    @apply desktop:text-[24px];
+  }
+
+  &__text {
+    @apply mb-[48px] text-[18px] font-medium leading-[22px];
+  }
+
+  &__info {
+    @apply grow;
+    @apply desktop:grow-0;
+
+    &__title {
+      @apply flex flex-col gap-[12px] items-center mb-[32px] text-[24px] font-bold leading-[30px];
+    }
+  }
+
+  &__cards {
+    @apply flex flex-wrap gap-[12px] mb-[32px];
+
+    * {
+      @apply basis-[calc(50%-6px)];
+    }
+
+    &__heading {
+      @apply flex flex-col items-center gap-[14px] text-[24px] font-semibold mb-[40px];
+    }
+  }
+}
+
+.footer {
+  &__navigation {
+    @apply flex justify-center gap-[14px] mb-[24px];
+
+    span {
+      @apply block h-[3px] w-[32px] rounded-full bg-black/20;
+      transition: background-color 250ms;
+
+      &.active {
+        @apply bg-blue;
+      }
+    }
+  }
+}

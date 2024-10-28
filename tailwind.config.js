@@ -6,12 +6,15 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'mobile': '430px'
+        'desktop': '1024px'
       }
     },
     colors: {
       'blue': '#2196F3',
       'black': '#1C1C1C',
+      'white': '#FFFFFF',
+      'light-grey': '#F7F9FB',
+      'grey': '#7D7D7D',
     },
     fontFamily: {
       display: 'Inter, sans-serif'

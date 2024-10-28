@@ -1,0 +1,141 @@
+@defer (when !mobileView()) {
+  @if (!mobileView()) {
+    <header class="header">
+      <p class="header__logo">Med<span class="text-blue">GPT</span></p>
+      <app-button customClass="button--small">
+        {{ 'Log In' }}
+      </app-button>
+    </header>
+
+    <main class="main">
+      <ng-container *ngTemplateOutlet="mainHeading"/>
+
+      <div class="main__info">
+        <ng-container *ngTemplateOutlet="mainDescription"/>
+
+        <ng-container *ngTemplateOutlet="mainCards"/>
+
+        <ng-container *ngTemplateOutlet="mainSubDescription"/>
+      </div>
+
+      <div class="main__footing">
+        <app-button (click)="onButtonClick()" customClass="button--big">
+          <ng-container [ngTemplateOutlet]="letsChatButton"/>
+        </app-button>
+      </div>
+    </main>
+  }
+}
+
+@defer (when mobileView()) {
+  @if (mobileView()) {
+    <main class="main">
+      <ng-container *ngTemplateOutlet="mainHeading"/>
+
+      <div class="main__info">
+        @if (firstStep() || lastStep()) {
+          <h3 class="main__info__title">
+            <img @fade ngSrc="icons/sun-high.svg" width="24" height="24" alt="sun-high">
+            @if (firstStep()) {
+              <span @fade>What is MedGPT?</span>
+            }
+            @defer (when lastStep()) {
+              @if (lastStep()) {
+                <span @fade>Increase your productivity and discover new horizons in science with MedGPT!</span>
+              }
+            }
+          </h3>
+        }
+
+        @if (firstStep()) {
+          <ng-container *ngTemplateOutlet="mainDescription"/>
+        }
+
+        @defer (when lastStep()) {
+          @if (lastStep()) {
+            <p @fade class="main__text">
+              Join the community of professionals using MedGPT to reach new heights in medicine and biology
+            </p>
+          }
+        }
+
+        @defer (when secondStep()) {
+          @if (secondStep()) {
+            <ng-container *ngTemplateOutlet="mainCards"/>
+          }
+        }
+
+        @defer (when lastStep()) {
+          @if (lastStep()) {
+            <ng-container *ngTemplateOutlet="mainSubDescription"/>
+          }
+        }
+      </div>
+    </main>
+
+    <div class="footer">
+      <div class="footer__navigation">
+        @for (step of STEPS; track $index) {
+          <span [class.active]="currentStep() === step"></span>
+        }
+      </div>
+
+      <app-button (click)="onButtonClick()" customClass="button--big">
+        @defer (when lastStep()) {
+          @if (lastStep()) {
+            <ng-container [ngTemplateOutlet]="letsChatButton"/>
+          }
+        }
+
+        @if (!lastStep()) {
+          <span @fade>{{ 'Next' }}</span>
+        }
+      </app-button>
+    </div>
+  }
+}
+
+<ng-template #mainHeading>
+  <div @fade class="main__heading">
+    <h1 class="main__title">
+      Welcome to <span>Med<span class="text-blue">GPT</span></span>
+    </h1>
+    <h2 class="main__subtitle">Your personal assistant in the world of medicine and biology</h2>
+  </div>
+</ng-template>
+
+<ng-template #mainDescription>
+  <p @fade class="main__text">
+    MedGPT is an AI-powered web application designed to make your work with scientific articles easier. Whether you
+    are a scientist, a doctor or a student, MedGPT will help you effectively research, analyze and apply scientific
+    information
+  </p>
+</ng-template>
+
+<ng-template #mainCards>
+  <div @fade class="main__cards">
+    <app-card [image]="mobileView() ? 'brain' : undefined"
+              title="Smart Search"
+              text="Access a database of relevant articles using a powerful search algorithm that understands context"/>
+    <app-card [image]="mobileView() ? 'clock-search' : undefined"
+              title="Automated Analysis"
+              text="MedGPT automatically highlights key points and conclusions, helping you save time on reading"/>
+    <app-card [image]="mobileView() ? 'vocabulary' : undefined"
+              title="Quick Literature Review Writing"
+              text="Create concise and informative reviews on topics you are interested in in just a few minutes"/>
+    <app-card [image]="mobileView() ? 'search' : undefined"
+              title="Quickly Find Relevant Information"
+              text="Find the latest and most relevant information for your query without any extra effort"/>
+  </div>
+</ng-template>
+
+<ng-template #mainSubDescription>
+  <p @fade class="main__text">
+    Start your free trial today and discover new research opportunities!
+  </p>
+</ng-template>
+
+<ng-template #letsChatButton>
+  <span @fade>{{ 'Let’s Chat' }}</span>
+  <img @fade ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
+</ng-template>
