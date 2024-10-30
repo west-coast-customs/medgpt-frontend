@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="ru" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="first_step_title" datatype="html">
+        <source>What is MedGPT?</source>
+        <target state="new">Что такое MedGPT?</target>
+      </trans-unit>
+      <trans-unit id="last_step_title" datatype="html">
+        <source>Increase your productivity and discover new horizons in science with MedGPT!</source>
+        <target state="new">Increase your productivity and discover new horizons in science with MedGPT!</target>
+      </trans-unit>
+      <trans-unit id="greeting_title" datatype="html">
+        <source> Welcome to <x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Med<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-blue&quot;&gt;"/>GPT<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target state="new"> Добро пожаловать в <x id="START_TAG_SPAN_1" ctype="x-span_1" equiv-text="&lt;span&gt;"/>Med<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-blue&quot;&gt;"/>GPT<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="medgpt_short_description" datatype="html">
+        <source>Your personal assistant in the world of medicine and biology</source>
+        <target state="new">Ваш личный помощник в мире медицины и биологии!</target>
+      </trans-unit>
+      <trans-unit id="medgpt_description" datatype="html">
+        <source> MedGPT is an AI-powered web application designed to make your work with scientific articles easier. Whether you are a scientist, a doctor or a student, MedGPT will help you effectively research, analyze and apply scientific information </source>
+        <target state="new"> MedGPT – это веб-приложение на основе искусственного интеллекта, созданное для облегчения вашей работы с научными статьями. Независимо от того, являетесь ли вы ученым, врачом или студентом, MedGPT поможет вам эффективно исследовать, анализировать и применять научную информацию. </target>
+      </trans-unit>
+      <trans-unit id="smart_search_card_text" datatype="html">
+        <source>Access a database of relevant articles using a powerful search algorithm that understands context</source>
+        <target state="new">Получите доступ к базе данных актуальных статей с помощью мощного алгоритма поиска, который понимает контекст</target>
+      </trans-unit>
+      <trans-unit id="smart_search_card_title" datatype="html">
+        <source>Smart Search</source>
+        <target state="new">Умный поиск</target>
+      </trans-unit>
+      <trans-unit id="automated_analysis_card_title" datatype="html">
+        <source>Automated Analysis</source>
+        <target state="new">Автоматизированный анализ</target>
+      </trans-unit>
+      <trans-unit id="automated_analysis_card_text" datatype="html">
+        <source>MedGPT automatically highlights key points and conclusions, helping you save time on reading</source>
+        <target state="new">MedGPT автоматически выделяет ключевые моменты и выводы, помогая вам сэкономить время на чтении</target>
+      </trans-unit>
+      <trans-unit id="review_writing_card_title" datatype="html">
+        <source>Quick Literature Review Writing</source>
+        <target state="new">Написание экспресс литературных обзоров</target>
+      </trans-unit>
+      <trans-unit id="review_writing_card_text" datatype="html">
+        <source>Create concise and informative reviews on topics you are interested in in just a few minutes</source>
+        <target state="new">Создавайте краткие и информативные обзоры по интересующим вас темам всего за несколько минут</target>
+      </trans-unit>
+      <trans-unit id="relevant_information_card_title" datatype="html">
+        <source>Quickly Find Relevant Information</source>
+        <target state="new">Быстрый поиск актуальной информации</target>
+      </trans-unit>
+      <trans-unit id="relevant_information_card_text" datatype="html">
+        <source>Find the latest and most relevant information for your query without any extra effort</source>
+        <target state="new">Находите самую свежую и значимую информацию по вашему запросу без лишних усилий</target>
+      </trans-unit>
+      <trans-unit id="start_trial_text" datatype="html">
+        <source> Start your free trial today and discover new research opportunities! </source>
+        <target state="new"> Начните бесплатный пробный период сегодня и откройте для себя новые возможности исследования! </target>
+      </trans-unit>
+      <trans-unit id="login_button_text" datatype="html">
+        <source> Log In </source>
+        <target state="new"> Войти </target>
+      </trans-unit>
+      <trans-unit id="lets_chat_button_text" datatype="html">
+        <source>Let’s Chat</source>
+        <target state="new">Начать чат</target>
+      </trans-unit>
+      <trans-unit id="last_step_text" datatype="html">
+        <source> Join the community of professionals using MedGPT to reach new heights in medicine and biology </source>
+        <target state="new"> С помощью MedGPT вы повысите свою продуктивность и откроете новые горизонты в науке! </target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
