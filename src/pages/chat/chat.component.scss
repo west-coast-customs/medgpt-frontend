@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 784px;
+  justify-content: space-between;
+}
+
+.chat {
+  @apply flex overflow-auto flex-col h-[calc(100%-87px)] max-w-[784px] justify-between m-auto;
+  @apply desktop:justify-center desktop:h-full;
+
+  &__placeholder {
+    @apply my-auto;
+  }
+
+  &__heading {
+    @apply mb-[62px];
+    @apply desktop:mb-[16px];
+  }
+
+  &__title {
+    @apply text-[36px] mb-[24px] font-bold leading-[44px];
+
+    > span {
+      @apply block;
+      @apply desktop:inline;
+    }
+  }
+}

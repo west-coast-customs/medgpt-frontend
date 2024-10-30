@@ -1,0 +1,10 @@
+<img ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
+<div class="input__wrapper">
+  <input [disabled]="disabled()"
+         [(ngModel)]="inputText"
+         [placeholder]="placeholder()"/>
+
+  <div class="input__image" [class.input__image--disabled]="inputTextEmpty()">
+    <img ngSrc="icons/arrow-up.svg" width="24" height="24" alt="arrow-up">
+  </div>
+</div>

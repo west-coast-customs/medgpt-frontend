@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MediaService } from '../../services/media.service';
+import { MediaService } from '../../shared/services/media.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { CardComponent } from '../../components/card/card.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { CardComponent } from '../../shared/components/card/card.component';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
+import { Router } from '@angular/router';
+import { DescriptionCardsComponent } from '../../shared/components/description-cards/description-cards.component';
 
 const STEPS: number = 3
 
@@ -17,7 +19,7 @@ const STEPS: number = 3
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CardComponent, ButtonComponent,
-    NgTemplateOutlet, NgOptimizedImage
+    NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent
   ],
   animations: [
     trigger('fade', [
@@ -41,7 +43,7 @@ export default class MainComponent {
   secondStep: Signal<boolean> = computed(() => this.currentStep() === 1)
   lastStep: Signal<boolean> = computed(() => this.currentStep() === STEPS - 1)
 
-  constructor() {
+  constructor(private router: Router) {
     this.mobileViewObs
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.currentStep.set(0))
@@ -50,6 +52,8 @@ export default class MainComponent {
   onButtonClick(): void {
     if (this.mobileView() && this.currentStep() < STEPS - 1) {
       this.currentStep.update((value: number) => value + 1)
+    } else {
+      void this.router.navigate(['chats', 'new'])
     }
   }
 }
