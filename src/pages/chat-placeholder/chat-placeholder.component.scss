@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat {
+  @apply flex justify-between m-auto;
+  @apply desktop:justify-center desktop:h-full;
+
+  &__placeholder {
+    width: 784px;
+    @apply my-auto;
+  }
+
+  &__heading {
+    @apply mb-[62px];
+    @apply desktop:mb-[16px];
+  }
+
+  &__title {
+    @apply text-[36px] mb-[24px] font-bold leading-[44px];
+
+    > span {
+      @apply block;
+      @apply desktop:inline;
+    }
+  }
+
+  &__input {
+    width: 784px;
+  }
+}

@@ -1,6 +1,10 @@
 <aside>
-  <app-create-chat/>
-  <app-navigation/>
+  <app-create-chat (onChatCreated)="onChatCreated($event)" class="mb-[16px]"/>
+  <app-chat-list/>
+  <div class="chats__navigation mt-auto">
+    <hr>
+    <app-navigation class="block mt-[20%]"/>
+  </div>
 </aside>
 
 <main>

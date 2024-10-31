@@ -1,6 +1,7 @@
 :host {
   display: flex;
   gap: 12px;
+  margin-top: auto;
 }
 
 .input{
@@ -20,7 +21,9 @@
     place-content: center;
     place-items: center;
     border-radius: 50%;
+    cursor: pointer;
     @apply bg-blue;
+    transition: background-color 250ms ease-in-out;
 
     &--disabled {
       @apply bg-disabled-grey;

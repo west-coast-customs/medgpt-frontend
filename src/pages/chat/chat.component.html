@@ -1,12 +1,8 @@
-@if (newChat()) {
-  <div class="chat__placeholder">
-    <div class="chat__heading">
-      <h1 class="chat__title">
-        <span>Med<span class="text-blue">GPT</span></span>
-      </h1>
-    </div>
+<div class="chat__wrapper">
+  <app-chat-window/>
+</div>
 
-    <app-description-cards/>
-  </div>
-}
-<app-input [disabled]="newChat()" class="chat__input" placeholder="Message MedGPT"/>
+<app-input [disabled]="waitingBotResponse()"
+           (onInput)="chatService.send($event)"
+           class="chat__input"
+           placeholder="Message MedGPT"/>

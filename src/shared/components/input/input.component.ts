@@ -3,10 +3,12 @@ import {
   Component,
   computed,
   input,
-  Input,
   InputSignal,
   model,
-  ModelSignal, Signal
+  ModelSignal,
+  output,
+  OutputEmitterRef,
+  Signal
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -28,4 +30,11 @@ export class InputComponent {
 
   inputText: ModelSignal<string> = model<string>('')
   inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
+
+  onInput: OutputEmitterRef<string> = output<string>()
+
+  onInputClick(): void {
+    this.onInput.emit(this.inputText())
+    this.inputText.set('')
+  }
 }

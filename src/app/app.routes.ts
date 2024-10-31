@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('../pages/chats/chats.component'),
     children: [
       {
+        path: 'new',
+        loadComponent: () => import('../pages/chat-placeholder/chat-placeholder.component')
+      },
+      {
         path: ':id',
         loadComponent: () => import('../pages/chat/chat.component')
       }

@@ -1,0 +1,10 @@
+@for (message of activeChatMessages(); track $index) {
+  <p @fade class="chat__message"
+     [class.chat__message--user]="message.author === MessageAuthors.USER"
+     [class.chat__message--bot]="message.author === MessageAuthors.BOT">
+    {{ message.content }}
+  </p>
+}
+@if (waitingBotResponse()) {
+  <app-loader @fade/>
+}

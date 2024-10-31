@@ -11,5 +11,5 @@ import { NgClass } from '@angular/common';
 })
 export class ButtonComponent {
   disabled: InputSignal<boolean> = input<boolean>(false)
-  customClass: InputSignal<string> = input.required<string>()
+  customClass: InputSignal<string> = input<string>('')
 }

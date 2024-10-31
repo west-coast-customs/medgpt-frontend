@@ -1,9 +1,10 @@
 :host {
-  @apply block;
+  @apply block cursor-pointer;
 }
 
 .button {
   @apply flex gap-[6px] items-center justify-center bg-blue text-white rounded-[12px] w-full;
+  transition: background-color 250ms ease-in-out;
 
   &[disabled] {
     @apply bg-disabled-grey;
@@ -14,14 +15,14 @@
   }
 
   &--big {
-    @apply text-[20px] font-bold h-[60px];
+    @apply text-[20px] font-bold h-[60px] w-full;
   }
 
   &--transparent {
-    @apply bg-white text-black;
-  }
+    @apply bg-white text-black p-[12px] justify-start;
 
-  &--justify-start {
-    @apply justify-start;
+    &:hover {
+      @apply bg-mid-grey;
+    }
   }
 }

@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, Signal } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { map, Observable } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { map, Observable, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { DescriptionCardsComponent } from '../../shared/components/description-cards/description-cards.component';
-
-const NEW_CHAT_ID: string = 'new'
+import { ChatWindowComponent } from '../../entities/chat/window/chat-window.component';
+import { ChatService } from '../../shared/services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -18,14 +18,27 @@ const NEW_CHAT_ID: string = 'new'
     NgOptimizedImage,
     InputComponent,
     CardComponent,
-    DescriptionCardsComponent
+    DescriptionCardsComponent,
+    ChatWindowComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class ChatComponent {
+export default class ChatComponent implements OnDestroy {
   #chatIdObs: Observable<string> = inject(ActivatedRoute).params
     .pipe(map((params: Params) => params['id']))
 
-  #chatId: Signal<string | undefined> = toSignal(this.#chatIdObs)
-  newChat: Signal<boolean> = computed(() => this.#chatId() === NEW_CHAT_ID)
+  waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
+
+  constructor(protected chatService: ChatService) {
+    this.#chatIdObs
+      .pipe(
+        tap((id: string) => this.chatService.connect(id)),
+        takeUntilDestroyed()
+      )
+      .subscribe()
+  }
+
+  ngOnDestroy(): void {
+    this.chatService.disconnect()
+  }
 }
