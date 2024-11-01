@@ -1,10 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  OnDestroy,
+  Signal,
+  untracked,
+  viewChild
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { DescriptionCardsComponent } from '../../shared/components/description-cards/description-cards.component';
 import { ChatWindowComponent } from '../../entities/chat/window/chat-window.component';
 import { ChatService } from '../../shared/services/chat.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-chat',
@@ -23,7 +33,22 @@ import { ChatService } from '../../shared/services/chat.service';
 export default class ChatComponent implements OnDestroy {
   waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
 
-  constructor(protected chatService: ChatService) {}
+  inputElement = viewChild<InputComponent>(InputComponent)
+
+  constructor(protected chatService: ChatService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.inputElement()?.focusInput()
+      })
+
+    effect(() => {
+      if (!this.waitingBotResponse())  {
+        untracked(this.inputElement)?.focusInput()
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     this.chatService.disconnect()

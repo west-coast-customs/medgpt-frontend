@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CreateChatComponent } from '../../features/chat/create/create-chat.component';
 import { NavigationComponent } from '../../features/navigation/navigation.component';
 import { ChatListComponent } from '../../entities/chat/list/chat-list.component';
@@ -15,19 +15,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ChatsComponent {
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private chatService: ChatsService,
+  constructor(private chatService: ChatsService,
               private destroyRef: DestroyRef) {
-    this.loadChats()
-  }
-
-  onChatCreated(id: string): void {
-    this.loadChats()
-    void this.router.navigate([id], { relativeTo: this.activatedRoute })
-  }
-
-  private loadChats(): void {
     this.chatService.loadAll()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe()

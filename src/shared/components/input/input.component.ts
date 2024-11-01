@@ -2,13 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
   input,
   InputSignal,
   model,
   ModelSignal,
   output,
   OutputEmitterRef,
-  Signal
+  Signal,
+  viewChild
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -31,10 +33,18 @@ export class InputComponent {
   inputText: ModelSignal<string> = model<string>('')
   inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
 
+  private inputElement = viewChild<ElementRef<HTMLInputElement>>('input')
+
   onInput: OutputEmitterRef<string> = output<string>()
 
   onInputClick(): void {
     this.onInput.emit(this.inputText())
     this.inputText.set('')
+  }
+
+  focusInput(): void {
+    setTimeout(() => {
+      this.inputElement()?.nativeElement.focus()
+    })
   }
 }

@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 
 export const chatGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const chatId: string = route.params['id']
-  const newChatUrl = inject(Router).parseUrl('/chats/new')
+  const newChatUrl = inject(Router).parseUrl('/chats')
 
   return inject(ChatsService)
     .get(chatId)

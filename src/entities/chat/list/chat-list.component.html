@@ -1,13 +1,18 @@
 @for (chat of chats(); track chat.id) {
   <app-button (click)="onChatClick(chat.id)"
-              (mouseenter)="chat.hovered = true"
-              (mouseleave)="chat.hovered = false"
               [customClass]="'button--transparent ' + (chat.id === activeChatId() ? 'button--selected' : '')">
     <img ngSrc="icons/message-plus.svg" width="24" height="24" alt="message-plus">
-    <span>{{ chat.name }}</span>
-    @if (chat.hovered) {
+    @if (!chat.editing) {
+      <span>{{ chat.name }}</span>
+    } @else {
+      <input #input class="bg-grey bg-opacity-0 w-full outline-0"
+             (clickOutside)="onChatEdit(chat, input.value)"
+             (keyup.enter)="onChatEdit(chat, input.value)"
+             [value]="chat.name">
+    }
+    @if (chat.id === activeChatId() && !chat.editing) {
       <div @fadeOnEnter class="flex ml-auto cursor-pointer">
-<!--        <img ngSrc="icons/pencil.svg" width="24" height="24" alt="pencil">-->
+        <img (click)="chat.editing = true" ngSrc="icons/pencil.svg" width="24" height="24" alt="pencil">
         <img (click)="onChatDeleteClick(chat.id)" ngSrc="icons/trash.svg" width="24" height="24" alt="trash">
       </div>
     }

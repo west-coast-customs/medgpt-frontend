@@ -1,6 +1,7 @@
-<img ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
+<img class="self-center h-fit" ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
 <div class="input__wrapper">
-  <input (keyup.enter)="onInputClick()"
+  <input #input
+         (keyup.enter)="onInputClick()"
          [disabled]="disabled()"
          [(ngModel)]="inputText"
          [placeholder]="placeholder()"/>

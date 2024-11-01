@@ -6,9 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from '../../../shared/services/chat.service';
 import { fadeOnEnter } from '../../../shared/animations';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
+import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
 
 export interface ChatItem extends Chat {
-  hovered?: boolean
+  editing?: boolean
 }
 
 @Component({
@@ -16,7 +18,8 @@ export interface ChatItem extends Chat {
   standalone: true,
   imports: [
     NgOptimizedImage,
-    ButtonComponent
+    ButtonComponent,
+    ClickOutsideDirective
   ],
   templateUrl: './chat-list.component.html',
   styleUrl: './chat-list.component.scss',
@@ -40,7 +43,27 @@ export class ChatListComponent {
 
   onChatDeleteClick(id: string) {
     this.chatsService.delete(id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        switchMap(() => this.chatsService.loadAll()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((chats: Chat[]) => {
+        const lastChat = chats.at(-1)
+        void this.router.navigate(lastChat ? ['chats', lastChat.id] : ['chats'], {  })
+      })
+  }
+
+  onChatEdit(chat: ChatItem, newName: string) {
+    if (chat.name === newName) {
+      chat.editing = false
+      return
+    }
+
+    this.chatsService.update(chat.id, newName)
+      .pipe(
+        switchMap(() => this.chatsService.loadAll()),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe()
   }
 }

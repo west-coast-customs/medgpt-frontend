@@ -1,11 +1,5 @@
-<app-button [disabled]="showChatNameInput()"
-            (click)="onNewChatClick()"
+<app-button (click)="onNewChatClick()"
             customClass="button--small">
   <img ngSrc="icons/plus.svg" width="24" height="24" alt="plus">
   <span>New chat</span>
 </app-button>
-
-@if (showChatNameInput()) {
-  <input [(ngModel)]="chatName" type="text" placeholder="Chat name">
-  <button (click)="onCreateChatClick()">Создать</button>
-}

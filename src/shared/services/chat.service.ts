@@ -25,13 +25,12 @@ export class ChatService {
   gotNewMessage: Signal<boolean> = computed<boolean>(() => !!this.activeChatNewMessages().length)
   waitingBotResponse: Signal<boolean> = computed(() => this.activeChatMessages().at(-1)?.role === MessageAuthors.USER)
 
-  constructor(private router: Router,
-              private chatsService: ChatsService) {
+  constructor(private router: Router, private chatsService: ChatsService) {
     this.router.events
       .pipe(
         filter((event: unknown) => event instanceof NavigationEnd),
-        map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop()),
-        filter(Boolean),
+        map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop() as string),
+        filter((chatId: string) => !!chatId && chatId !== 'chats'),
         switchMap((chatId: string) => this.chatsService.get(chatId)),
         distinctUntilChanged()
       )

@@ -46,7 +46,7 @@ export default class MainComponent {
     if (this.mobileView() && this.currentStep() < STEPS - 1) {
       this.currentStep.update((value: number) => value + 1)
     } else {
-      void this.router.navigate(['chats', 'new'])
+      void this.router.navigate(['chats'])
     }
   }
 }

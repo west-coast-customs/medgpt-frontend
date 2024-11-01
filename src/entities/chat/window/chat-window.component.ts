@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { ChatService, MessageAuthors } from '../../../shared/services/chat.service';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { ChatMessage } from '../../../shared/services/chats.service';
-import { fadeInUpOnEnter } from '../../../shared/animations';
+import { fadeInUpOnEnter, fadeOnEnter } from '../../../shared/animations';
 
 @Component({
   selector: 'app-chat-window',
@@ -13,7 +13,7 @@ import { fadeInUpOnEnter } from '../../../shared/animations';
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [fadeInUpOnEnter(250)]
+  animations: [fadeInUpOnEnter(250), fadeOnEnter(250)]
 })
 export class ChatWindowComponent {
   MessageAuthors = MessageAuthors

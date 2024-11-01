@@ -1,19 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  model,
-  ModelSignal,
-  output,
-  OutputEmitterRef,
-  signal,
-  WritableSignal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, output, OutputEmitterRef } from '@angular/core';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { NgOptimizedImage } from '@angular/common';
 import { Chat, ChatsService } from '../../../shared/services/chats.service';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map, switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-chat',
@@ -24,26 +16,24 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateChatComponent {
-  showChatNameInput: WritableSignal<boolean> = signal(false)
-  chatName: ModelSignal<string> = model('')
-
   onChatCreated: OutputEmitterRef<string> = output<string>()
 
-  constructor(private chatService: ChatsService,
-              private destroyRef: DestroyRef) {
+  constructor(private chatsService: ChatsService,
+              private destroyRef: DestroyRef,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   onNewChatClick(): void {
-    this.showChatNameInput.set(true)
-  }
-
-  onCreateChatClick(): void {
-    this.showChatNameInput.set(false)
-
-    this.chatService.create(this.chatName())
-      .pipe(takeUntilDestroyed(this.destroyRef))
+    this.chatsService.create(`Chat #${ this.chatsService.chats().length + 1 }`)
+      .pipe(
+        switchMap((chat: Chat) =>
+          this.chatsService.loadAll().pipe(map(() => chat))
+        ),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe((chat: Chat) => {
-        this.onChatCreated.emit(chat.id)
+        void this.router.navigate([chat.id], { relativeTo: this.activatedRoute })
       })
   }
 }
