@@ -1,11 +1,16 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 
 export interface Chat {
   id: string;
   name: string;
-  messages: string[];
+  messages: ChatMessage[];
+}
+
+export interface ChatMessage {
+  content: string;
+  references: string[];
 }
 
 @Injectable({
@@ -23,5 +28,10 @@ export class ChatsService {
 
   createChat(name: string): Observable<Chat> {
     return this.httpService.post<Chat>('/api/chat/', { name })
+  }
+
+  getChat(id: string): Observable<Chat | null> {
+    return this.httpService.get<Chat | null>(`/api/chat/${id}`)
+      .pipe(catchError(() => of(null)))
   }
 }

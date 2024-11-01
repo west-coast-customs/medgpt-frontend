@@ -1,7 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, Signal } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { map, Observable, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, OnDestroy, Signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { CardComponent } from "../../shared/components/card/card.component";
@@ -24,19 +21,9 @@ import { ChatService } from '../../shared/services/chat.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ChatComponent implements OnDestroy {
-  #chatIdObs: Observable<string> = inject(ActivatedRoute).params
-    .pipe(map((params: Params) => params['id']))
-
   waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
 
-  constructor(protected chatService: ChatService) {
-    this.#chatIdObs
-      .pipe(
-        tap((id: string) => this.chatService.connect(id)),
-        takeUntilDestroyed()
-      )
-      .subscribe()
-  }
+  constructor(protected chatService: ChatService) {}
 
   ngOnDestroy(): void {
     this.chatService.disconnect()

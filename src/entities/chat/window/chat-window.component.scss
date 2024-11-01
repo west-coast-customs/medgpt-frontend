@@ -1,12 +1,12 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: auto;
-  flex-grow: 1;
-}
-
 .chat {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    flex-grow: 1;
+  }
+
   &__message {
     @apply px-[12px] py-[10px] rounded-[20px] w-fit max-w-[85%] leading-[20px] text-left;
 

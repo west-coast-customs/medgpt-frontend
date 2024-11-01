@@ -21,8 +21,12 @@
   &--transparent {
     @apply bg-white text-black p-[12px] justify-start;
 
-    &:hover {
+    &:hover:not(.button--selected) {
       @apply bg-mid-grey;
     }
+  }
+
+  &--selected {
+    @apply bg-grey bg-opacity-20;
   }
 }

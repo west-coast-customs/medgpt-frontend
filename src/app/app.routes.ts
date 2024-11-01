@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { chatGuard } from '../pages/chat/chat.guard';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,8 @@ export const routes: Routes = [
       },
       {
         path: ':id',
-        loadComponent: () => import('../pages/chat/chat.component')
+        loadComponent: () => import('../pages/chat/chat.component'),
+        canActivate: [chatGuard]
       }
     ]
   },

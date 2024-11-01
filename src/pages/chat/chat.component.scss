@@ -14,8 +14,10 @@
   &__wrapper {
     max-width: 784px;
     display: flex;
+    flex-direction: column-reverse;
     height: 100%;
     width: 100%;
     margin-bottom: 20px;
+    overflow: auto;
   }
 }

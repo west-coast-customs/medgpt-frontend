@@ -6,3 +6,19 @@ body {
   @apply block h-[100svh] leading-none font-display pt-[40px] pb-[60px] px-[22px] text-center text-black;
   @apply desktop:p-[20px]
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 20px 20px #F7F9FB;
+  border: solid 3px transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px 10px rgba(33, 150, 243, 0.2);
+  border: solid 3px transparent;
+  border-radius: 10px;
+}

@@ -1,7 +1,9 @@
 import { computed, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
-import { map } from 'rxjs';
+import { distinctUntilChanged, filter, map, switchMap } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { Chat, ChatsService } from './chats.service';
 
 export enum MessageAuthors {
   USER,
@@ -19,11 +21,36 @@ export interface ActiveChatMessage {
 export class ChatService {
   #activeChatWebsocket$: WebSocketSubject<string> | undefined;
 
+  activeChatId: WritableSignal<string> = signal<string>('')
   activeChatMessages: WritableSignal<ActiveChatMessage[]> = signal<ActiveChatMessage[]>([])
-
   lastActiveChatMessage: Signal<ActiveChatMessage | undefined> = computed(() => this.activeChatMessages().at(-1))
-
   waitingBotResponse: Signal<boolean> = computed(() => this.lastActiveChatMessage()?.author === MessageAuthors.USER)
+
+  constructor(private router: Router,
+              private chatsService: ChatsService) {
+    this.router.events
+      .pipe(
+        filter((event: unknown) => event instanceof NavigationEnd),
+        map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop()),
+        filter(Boolean),
+        switchMap((chatId: string) => this.chatsService.getChat(chatId)),
+        distinctUntilChanged()
+      )
+      .subscribe((chat: Chat | null) => {
+        this.disconnect()
+
+        if (chat) {
+          this.connect(chat.id)
+
+          if (chat.messages) {
+            const activeChatMessages: ActiveChatMessage[] = chat.messages.map(({ content }, index) => {
+              return { content, author: index % 2 !== 0 ? MessageAuthors.BOT : MessageAuthors.USER }
+            })
+            this.activeChatMessages.set(activeChatMessages)
+          }
+        }
+      })
+  }
 
   #config: WebSocketSubjectConfig<string> = {
     url: `${ environment.wsApiUrl }/chat/ws`,
@@ -42,7 +69,7 @@ export class ChatService {
   })
 
   connect(id: string): void {
-    this.disconnect()
+    this.activeChatId.set(id)
 
     const config: WebSocketSubjectConfig<string> = {
       ...this.#config,
@@ -60,9 +87,8 @@ export class ChatService {
     if (this.#activeChatWebsocket$) {
       this.#activeChatWebsocket$.unsubscribe()
       this.#activeChatWebsocket$.complete()
-    }
 
-    if (this.activeChatMessages()) {
+      this.activeChatId.set('')
       this.activeChatMessages.set([])
     }
   }
