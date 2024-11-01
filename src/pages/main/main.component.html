@@ -13,7 +13,7 @@
       <div class="main__info">
         <ng-container *ngTemplateOutlet="mainDescription"/>
 
-        <app-description-cards @fade/>
+        <app-description-cards @fadeOnEnter/>
 
         <ng-container *ngTemplateOutlet="mainSubDescription"/>
       </div>
@@ -35,13 +35,13 @@
       <div class="main__info">
         @if (firstStep() || lastStep()) {
           <h3 class="main__info__title">
-            <img @fade ngSrc="icons/sun-high.svg" width="24" height="24" alt="sun-high">
+            <img @fadeOnEnter ngSrc="icons/sun-high.svg" width="24" height="24" alt="sun-high">
             @if (firstStep()) {
-              <span @fade i18n="@@first_step_title">What is MedGPT?</span>
+              <span @fadeOnEnter i18n="@@first_step_title">What is MedGPT?</span>
             }
             @defer (when lastStep()) {
               @if (lastStep()) {
-                <span @fade i18n="@@last_step_title">Increase your productivity and discover new horizons in science with MedGPT!</span>
+                <span @fadeOnEnter i18n="@@last_step_title">Increase your productivity and discover new horizons in science with MedGPT!</span>
               }
             }
           </h3>
@@ -53,7 +53,7 @@
 
         @defer (when lastStep()) {
           @if (lastStep()) {
-            <p @fade class="main__text" i18n="@@last_step_text">
+            <p @fadeOnEnter class="main__text" i18n="@@last_step_text">
               Join the community of professionals using MedGPT to reach new heights in medicine and biology
             </p>
           }
@@ -61,7 +61,7 @@
 
         @defer (when secondStep()) {
           @if (secondStep()) {
-            <app-description-cards @fade/>
+            <app-description-cards @fadeOnEnter/>
           }
         }
 
@@ -88,7 +88,7 @@
         }
 
         @if (!lastStep()) {
-          <span @fade>{{ 'Next' }}</span>
+          <span @fadeOnEnter>{{ 'Next' }}</span>
         }
       </app-button>
     </div>
@@ -96,7 +96,7 @@
 }
 
 <ng-template #mainHeading>
-  <div @fade class="main__heading">
+  <div @fadeOnEnter class="main__heading">
     <h1 class="main__title" i18n="@@greeting_title">
       Welcome to <span>Med<span class="text-blue">GPT</span></span>
     </h1>
@@ -105,7 +105,7 @@
 </ng-template>
 
 <ng-template #mainDescription>
-  <p @fade class="main__text" i18n="@@medgpt_description">
+  <p @fadeOnEnter class="main__text" i18n="@@medgpt_description">
     MedGPT is an AI-powered web application designed to make your work with scientific articles easier. Whether you
     are a scientist, a doctor or a student, MedGPT will help you effectively research, analyze and apply scientific
     information
@@ -113,12 +113,12 @@
 </ng-template>
 
 <ng-template #mainSubDescription>
-  <p @fade class="main__text" i18n="@@start_trial_text">
+  <p @fadeOnEnter class="main__text" i18n="@@start_trial_text">
     Start your free trial today and discover new research opportunities!
   </p>
 </ng-template>
 
 <ng-template #letsChatButton>
-  <span @fade i18n="@@lets_chat_button_text">Let’s Chat</span>
-  <img @fade ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
+  <span @fadeOnEnter i18n="@@lets_chat_button_text">Let’s Chat</span>
+  <img @fadeOnEnter ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
 </ng-template>

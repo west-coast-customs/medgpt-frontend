@@ -32,7 +32,7 @@ export class ChatService {
         filter((event: unknown) => event instanceof NavigationEnd),
         map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop()),
         filter(Boolean),
-        switchMap((chatId: string) => this.chatsService.getChat(chatId)),
+        switchMap((chatId: string) => this.chatsService.get(chatId)),
         distinctUntilChanged()
       )
       .subscribe((chat: Chat | null) => {

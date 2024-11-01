@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal, Signal, W
 import { Observable } from 'rxjs';
 import { MediaService } from '../../shared/services/media.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Router } from '@angular/router';
 import { DescriptionCardsComponent } from '../../shared/components/description-cards/description-cards.component';
+import { fadeOnEnter } from '../../shared/animations';
 
 const STEPS: number = 3
 
@@ -21,14 +21,7 @@ const STEPS: number = 3
     CardComponent, ButtonComponent,
     NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent
   ],
-  animations: [
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1000ms', style({ opacity: 1 }))
-      ]),
-    ])
-  ]
+  animations: [fadeOnEnter(1000)]
 })
 export default class MainComponent {
   STEPS: number[] = [...Array(STEPS).keys()]

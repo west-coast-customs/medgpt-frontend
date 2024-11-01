@@ -8,7 +8,7 @@ export const chatGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const newChatUrl = inject(Router).parseUrl('/chats/new')
 
   return inject(ChatsService)
-    .getChat(chatId)
+    .get(chatId)
     .pipe(map((chat: Chat | null) => {
       if (chat) {
         return true

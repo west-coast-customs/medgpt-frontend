@@ -28,7 +28,7 @@ export default class ChatsComponent {
   }
 
   private loadChats(): void {
-    this.chatService.loadChats()
+    this.chatService.loadAll()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe()
   }

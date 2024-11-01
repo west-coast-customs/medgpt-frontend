@@ -40,7 +40,7 @@ export class CreateChatComponent {
   onCreateChatClick(): void {
     this.showChatNameInput.set(false)
 
-    this.chatService.createChat(this.chatName())
+    this.chatService.create(this.chatName())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((chat: Chat) => {
         this.onChatCreated.emit(chat.id)
