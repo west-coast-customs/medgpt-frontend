@@ -4,13 +4,20 @@
   margin-top: auto;
 }
 
-.input{
+.input {
   &__wrapper {
     width: 100%;
     border-radius: 30px;
     @apply bg-mid-grey;
+    @apply border-[2px] border-solid;
+    border-color: transparent;
+    transition: border-color 250ms ease-in-out;
     display: flex;
     gap: 12px;
+
+    &:focus-within {
+      @apply border-blue;
+    }
   }
 
   &__image {
@@ -36,5 +43,6 @@ input {
   height: 52px;
   padding: 24px 16px;
   border-radius: 30px;
+  outline: none;
   @apply bg-mid-grey;
 }
