@@ -1,6 +1,7 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
+import { MessageAuthors } from './chat.service';
 
 export interface Chat {
   id: string;
@@ -9,6 +10,7 @@ export interface Chat {
 }
 
 export interface ChatMessage {
+  role: MessageAuthors
   content: string;
   references: string[];
 }

@@ -3,16 +3,11 @@ import { environment } from '../../environments/environment';
 import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
-import { Chat, ChatsService } from './chats.service';
+import { Chat, ChatMessage, ChatsService } from './chats.service';
 
 export enum MessageAuthors {
-  USER,
-  BOT
-}
-
-export interface ActiveChatMessage {
-  author: MessageAuthors,
-  content: string
+  USER = 'user',
+  AGENT = 'agent'
 }
 
 @Injectable({
@@ -22,9 +17,13 @@ export class ChatService {
   #activeChatWebsocket$: WebSocketSubject<string> | undefined;
 
   activeChatId: WritableSignal<string> = signal<string>('')
-  activeChatMessages: WritableSignal<ActiveChatMessage[]> = signal<ActiveChatMessage[]>([])
-  lastActiveChatMessage: Signal<ActiveChatMessage | undefined> = computed(() => this.activeChatMessages().at(-1))
-  waitingBotResponse: Signal<boolean> = computed(() => this.lastActiveChatMessage()?.author === MessageAuthors.USER)
+
+  activeChatOldMessages: WritableSignal<ChatMessage[]> = signal<ChatMessage[]>([])
+  activeChatNewMessages: WritableSignal<ChatMessage[]> = signal<ChatMessage[]>([])
+  activeChatMessages: Signal<ChatMessage[]> = computed<ChatMessage[]>(() => [...this.activeChatOldMessages(), ...this.activeChatNewMessages()])
+
+  gotNewMessage: Signal<boolean> = computed<boolean>(() => !!this.activeChatNewMessages().length)
+  waitingBotResponse: Signal<boolean> = computed(() => this.activeChatMessages().at(-1)?.role === MessageAuthors.USER)
 
   constructor(private router: Router,
               private chatsService: ChatsService) {
@@ -43,10 +42,7 @@ export class ChatService {
           this.connect(chat.id)
 
           if (chat.messages) {
-            const activeChatMessages: ActiveChatMessage[] = chat.messages.map(({ content }, index) => {
-              return { content, author: index % 2 !== 0 ? MessageAuthors.BOT : MessageAuthors.USER }
-            })
-            this.activeChatMessages.set(activeChatMessages)
+            this.activeChatOldMessages.set(chat.messages)
           }
         }
       })
@@ -89,18 +85,15 @@ export class ChatService {
       this.#activeChatWebsocket$.complete()
 
       this.activeChatId.set('')
-      this.activeChatMessages.set([])
+      this.activeChatOldMessages.set([])
+      this.activeChatNewMessages.set([])
     }
   }
 
   send(message: string): void {
     if (!this.#activeChatWebsocket$) return
 
-    this.activeChatMessages.update((messages: ActiveChatMessage[]) => [
-      ...messages, { content: message, author: MessageAuthors.USER }
-    ])
-
-    this.#activeChatWebsocket$.next({ content: 'so what?' } as unknown as string)
+    this.#activeChatWebsocket$.next({ content: message } as unknown as string)
   }
 
   initWebsocketMessageHandler(): void {
@@ -108,10 +101,8 @@ export class ChatService {
 
     this.#activeChatWebsocket$
       .pipe(map((message: string) => JSON.parse(message)))
-      .subscribe((message: ActiveChatMessage) => {
-        this.activeChatMessages.update((messages: ActiveChatMessage[]) => [
-          ...messages, { content: message.content, author: MessageAuthors.BOT }
-        ])
+      .subscribe((message: ChatMessage) => {
+        this.activeChatNewMessages.update((messages: ChatMessage[]) => [...messages, message])
       })
   }
 }

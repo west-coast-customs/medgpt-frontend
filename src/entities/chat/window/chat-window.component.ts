@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
-import { ActiveChatMessage, ChatService, MessageAuthors } from '../../../shared/services/chat.service';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { ChatService, MessageAuthors } from '../../../shared/services/chat.service';
+import { animate, animation, keyframes, style, transition, trigger } from '@angular/animations';
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
+import { ChatMessage } from '../../../shared/services/chats.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -13,11 +14,24 @@ import { LoaderComponent } from '../../../shared/components/loader/loader.compon
   styleUrl: './chat-window.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
-    trigger('fade', [
+    trigger('fadeInUpOnEnter', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('250ms', style({ opacity: 1 }))
-      ]),
+        style({ visibility: 'hidden' }),
+        animation([
+          animate('250ms',
+            keyframes([
+              style({
+                visibility: 'visible',
+                opacity: 0,
+                transform: 'translate3d(0, 100%, 0)',
+                easing: 'ease',
+                offset: 0
+              }),
+              style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 })
+            ])
+          )
+        ])
+      ])
     ])
   ]
 })
@@ -26,7 +40,8 @@ export class ChatWindowComponent {
 
   constructor(private chatService: ChatService) {}
 
-  activeChatMessages: Signal<ActiveChatMessage[]> = this.chatService.activeChatMessages.asReadonly()
+  activeChatMessages: Signal<ChatMessage[]> = this.chatService.activeChatMessages
+  gotNewMessage: Signal<boolean> = this.chatService.gotNewMessage
 
   waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
 }

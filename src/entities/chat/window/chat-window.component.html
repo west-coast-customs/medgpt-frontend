@@ -1,8 +1,8 @@
 <div class="chat__wrapper">
   @for (message of activeChatMessages(); track $index) {
-    <p @fade class="chat__message"
-       [class.chat__message--user]="message.author === MessageAuthors.USER"
-       [class.chat__message--bot]="message.author === MessageAuthors.BOT">
+    <p @fadeInUpOnEnter [@.disabled]="!$last || !gotNewMessage()" class="chat__message"
+       [class.chat__message--user]="message.role === MessageAuthors.USER"
+       [class.chat__message--bot]="message.role === MessageAuthors.AGENT">
       {{ message.content }}
     </p>
   }
