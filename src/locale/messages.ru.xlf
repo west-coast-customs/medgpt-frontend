@@ -70,6 +70,10 @@
         <source> Join the community of professionals using MedGPT to reach new heights in medicine and biology </source>
         <target state="new"> С помощью MedGPT вы повысите свою продуктивность и откроете новые горизонты в науке! </target>
       </trans-unit>
+      <trans-unit id="input_placeholder" datatype="html">
+        <source>Message MedGPT</source>
+        <target state="new">Написать MedGPT</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

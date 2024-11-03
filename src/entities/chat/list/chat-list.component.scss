@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+}
+
+span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}

@@ -1,0 +1,12 @@
+<div class="chat__wrapper">
+  @for (message of activeChatMessages(); track $index) {
+    <p @fadeInUpOnEnter [@.disabled]="!$last || !gotNewMessage()" class="chat__message"
+       [class.chat__message--user]="message.role === MessageAuthors.USER"
+       [class.chat__message--bot]="message.role === MessageAuthors.AGENT">
+      {{ message.content }}
+    </p>
+  }
+  @if (waitingBotResponse()) {
+    <app-loader @fadeOnEnter/>
+  }
+</div>

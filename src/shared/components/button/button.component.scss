@@ -1,0 +1,32 @@
+:host {
+  @apply block cursor-pointer;
+}
+
+.button {
+  @apply flex gap-[6px] items-center justify-center bg-blue text-white rounded-[12px] w-full;
+  transition: background-color 250ms ease-in-out;
+
+  &[disabled] {
+    @apply bg-disabled-grey;
+  }
+
+  &--small {
+    @apply w-[250px] h-[40px];
+  }
+
+  &--big {
+    @apply text-[20px] font-bold h-[60px] w-full;
+  }
+
+  &--transparent {
+    @apply bg-white text-black p-[12px] justify-start;
+
+    &:hover:not(.button--selected) {
+      @apply bg-mid-grey;
+    }
+  }
+
+  &--selected {
+    @apply bg-grey bg-opacity-20;
+  }
+}

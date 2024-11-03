@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [
-    NgClass
-  ],
+  imports: [NgClass],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input() customClass!: string;
+  disabled: InputSignal<boolean> = input<boolean>(false)
+  customClass: InputSignal<string> = input<string>('')
 }

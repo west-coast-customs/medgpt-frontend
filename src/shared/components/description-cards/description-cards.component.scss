@@ -1,0 +1,7 @@
+:host {
+  @apply flex flex-wrap gap-[12px] mb-[32px];
+
+  * {
+    @apply basis-[calc(50%-6px)];
+  }
+}
