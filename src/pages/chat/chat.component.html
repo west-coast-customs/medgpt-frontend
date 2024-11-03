@@ -5,4 +5,5 @@
 <app-input [disabled]="waitingBotResponse()"
            (onInput)="chatService.send($event)"
            class="chat__input"
+           i18n-placeholder="@@input_placeholder"
            placeholder="Message MedGPT"/>
