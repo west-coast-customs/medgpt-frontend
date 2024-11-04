@@ -15,9 +15,7 @@ export interface ChatMessage {
   references: string[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatsService {
   chats: WritableSignal<Chat[]> = signal<Chat[]>([])
 

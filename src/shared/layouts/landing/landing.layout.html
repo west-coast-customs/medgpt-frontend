@@ -1,0 +1,13 @@
+<div class="page page--spaced">
+  @if (!mobileView()) {
+    <app-header @fadeOnEnter>
+      <app-button [routerLink]="['auth', 'login']" customClass="button--small" i18n="@@login_button_text">
+        Log In
+      </app-button>
+    </app-header>
+  }
+
+  <main @fadeOnEnter class="page__content" [class.h-full]="mobileView()">
+    <router-outlet/>
+  </main>
+</div>

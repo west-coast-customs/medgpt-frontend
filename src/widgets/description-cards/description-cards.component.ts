@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
-import { CardComponent } from "../card/card.component";
+import { CardComponent } from "../../shared/components/card/card.component";
 import { Observable } from 'rxjs';
-import { MediaService } from '../../services/media.service';
+import { MediaService } from '../../shared/services/media.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

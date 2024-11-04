@@ -1,19 +1,12 @@
 @defer (when !mobileView()) {
   @if (!mobileView()) {
-    <header class="header">
-      <p class="header__logo">Med<span class="text-blue">GPT</span></p>
-      <app-button customClass="button--small" i18n="@@login_button_text">
-        Log In
-      </app-button>
-    </header>
-
-    <main class="main">
+    <div class="main">
       <ng-container *ngTemplateOutlet="mainHeading"/>
 
       <div class="main__info">
         <ng-container *ngTemplateOutlet="mainDescription"/>
 
-        <app-description-cards @fadeOnEnter/>
+        <app-description-cards/>
 
         <ng-container *ngTemplateOutlet="mainSubDescription"/>
       </div>
@@ -23,13 +16,13 @@
           <ng-container [ngTemplateOutlet]="letsChatButton"/>
         </app-button>
       </div>
-    </main>
+    </div>
   }
 }
 
 @defer (when mobileView()) {
   @if (mobileView()) {
-    <main class="main">
+    <div class="main">
       <ng-container *ngTemplateOutlet="mainHeading"/>
 
       <div class="main__info">
@@ -48,7 +41,7 @@
         }
 
         @if (firstStep()) {
-          <ng-container *ngTemplateOutlet="mainDescription"/>
+          <ng-container @fadeOnEnter *ngTemplateOutlet="mainDescription"/>
         }
 
         @defer (when lastStep()) {
@@ -67,45 +60,46 @@
 
         @defer (when lastStep()) {
           @if (lastStep()) {
-            <ng-container *ngTemplateOutlet="mainSubDescription"/>
+            <ng-container @fadeOnEnter *ngTemplateOutlet="mainSubDescription"/>
           }
         }
       </div>
-    </main>
 
-    <div class="footer">
-      <div class="footer__navigation">
-        @for (step of STEPS; track $index) {
-          <span [class.active]="currentStep() === step"></span>
-        }
-      </div>
-
-      <app-button (click)="onButtonClick()" customClass="button--big">
-        @defer (when lastStep()) {
-          @if (lastStep()) {
-            <ng-container [ngTemplateOutlet]="letsChatButton"/>
+      <div class="main__footing">
+        <div class="main__navigation">
+          @for (step of STEPS; track $index) {
+            <span [class.active]="currentStep() === step"></span>
           }
-        }
+        </div>
 
-        @if (!lastStep()) {
-          <span @fadeOnEnter>{{ 'Next' }}</span>
-        }
-      </app-button>
+        <app-button (click)="onButtonClick()" customClass="button--big">
+          @defer (when lastStep()) {
+            @if (lastStep()) {
+              <ng-container [ngTemplateOutlet]="letsChatButton"/>
+            }
+          }
+
+          @if (!lastStep()) {
+            <span @fadeOnEnter i18n="@@next">Next</span>
+          }
+        </app-button>
+      </div>
     </div>
   }
 }
 
 <ng-template #mainHeading>
-  <div @fadeOnEnter class="main__heading">
+  <div class="main__heading">
     <h1 class="main__title" i18n="@@greeting_title">
       Welcome to <span>Med<span class="text-blue">GPT</span></span>
     </h1>
-    <h2 class="main__subtitle" i18n="@@medgpt_short_description">Your personal assistant in the world of medicine and biology</h2>
+    <h2 class="main__subtitle" i18n="@@medgpt_short_description">Your personal assistant in the world of medicine and
+      biology</h2>
   </div>
 </ng-template>
 
 <ng-template #mainDescription>
-  <p @fadeOnEnter class="main__text" i18n="@@medgpt_description">
+  <p class="main__text" i18n="@@medgpt_description">
     MedGPT is an AI-powered web application designed to make your work with scientific articles easier. Whether you
     are a scientist, a doctor or a student, MedGPT will help you effectively research, analyze and apply scientific
     information
@@ -113,12 +107,12 @@
 </ng-template>
 
 <ng-template #mainSubDescription>
-  <p @fadeOnEnter class="main__text" i18n="@@start_trial_text">
+  <p class="main__text" i18n="@@start_trial_text">
     Start your free trial today and discover new research opportunities!
   </p>
 </ng-template>
 
 <ng-template #letsChatButton>
-  <span @fadeOnEnter i18n="@@lets_chat_button_text">Let’s Chat</span>
-  <img @fadeOnEnter ngSrc="icons/arrow-right.svg" width="24" height="24" alt="arrow-right">
+  <span i18n="@@lets_chat_button_text">Let’s Chat</span>
+  <img ngSrc="icons/arrow-right.svg" width="20" height="20" alt="arrow-right">
 </ng-template>

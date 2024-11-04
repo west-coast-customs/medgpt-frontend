@@ -1,9 +1,18 @@
-import { animate, animation, keyframes, style, transition, trigger } from '@angular/animations';
+import { animate, animation, keyframes, query, style, transition, trigger } from '@angular/animations';
 
 export const fadeOnEnter = (time: number) => trigger('fadeOnEnter', [
   transition(':enter', [
     style({ opacity: 0 }),
     animate(`${ time }ms`, style({ opacity: 1 }))
+  ]),
+])
+
+export const fadeOnTrigger = (time: number) => trigger('fadeOnTrigger', [
+  transition('* => *', [
+    query(':enter', [
+      style({ opacity: 0 }),
+      animate(`${ time }ms`, style({ opacity: 1 }))
+    ], { optional: true })
   ]),
 ])
 

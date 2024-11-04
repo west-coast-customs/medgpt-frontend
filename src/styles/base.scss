@@ -3,8 +3,20 @@ html {
 }
 
 body {
-  @apply block h-[100svh] leading-none font-display pt-[40px] pb-[60px] px-[22px] text-center text-black;
-  @apply desktop:p-[20px]
+  @apply block h-[100svh] leading-none font-display text-center text-black;
+}
+
+.page {
+  @apply flex flex-col h-full;
+
+  &--spaced {
+    @apply pt-[40px] pb-[60px] px-[22px];
+    @apply desktop:p-[20px];
+  }
+
+  &__content {
+    @apply m-auto w-full max-w-[784px];
+  }
 }
 
 ::-webkit-scrollbar {

@@ -1,50 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  ElementRef,
-  input,
-  InputSignal,
-  model,
-  ModelSignal,
-  output,
-  OutputEmitterRef,
-  Signal,
-  viewChild
-} from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, InputSignal, model, ModelSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-    FormsModule
-  ],
+  imports: [FormsModule, NgClass],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent {
   disabled: InputSignal<boolean> = input<boolean>(false)
-  placeholder: InputSignal<string | undefined> = input<string>()
+  placeholder: InputSignal<string> = input<string>('')
+  customClass: InputSignal<string> = input<string>('')
 
   inputText: ModelSignal<string> = model<string>('')
-  inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
-
-  private inputElement = viewChild<ElementRef<HTMLInputElement>>('input')
-
-  onInput: OutputEmitterRef<string> = output<string>()
-
-  onInputClick(): void {
-    this.onInput.emit(this.inputText())
-    this.inputText.set('')
-  }
-
-  focusInput(): void {
-    setTimeout(() => {
-      this.inputElement()?.nativeElement.focus()
-    })
-  }
 }

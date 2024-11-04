@@ -5,25 +5,25 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { Router } from '@angular/router';
-import { DescriptionCardsComponent } from '../../shared/components/description-cards/description-cards.component';
+import { Router, RouterLink } from '@angular/router';
+import { DescriptionCardsComponent } from '../../widgets/description-cards/description-cards.component';
 import { fadeOnEnter } from '../../shared/animations';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 const STEPS: number = 3
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
+  templateUrl: './landing.component.html',
+  styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CardComponent, ButtonComponent,
-    NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent
+    CardComponent, ButtonComponent, NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent
   ],
   animations: [fadeOnEnter(1000)]
 })
-export default class MainComponent {
+export default class LandingComponent {
   STEPS: number[] = [...Array(STEPS).keys()]
 
   private mobileViewObs: Observable<boolean> = inject(MediaService).mobileViewObs

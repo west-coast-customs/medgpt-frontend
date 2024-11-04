@@ -1,0 +1,15 @@
+<h1 class="signup__title" i18n="@@signup_title">Create account</h1>
+<form class="signup__form">
+  <app-input placeholder="Enter your email" i18n-placeholder="@@enter_email"/>
+  <app-input placeholder="Enter your password" i18n-placeholder="@@enter_password"/>
+  <app-input placeholder="Confirm your password" i18n-placeholder="@@confirm_password"/>
+  <app-button i18n="@@sign_up">Sign up</app-button>
+</form>
+<p class="signup__hint" i18n="@@already_have_an_account">
+  Already have an account? <a [routerLink]="['../', 'login']" class="underline text-blue">Log in</a>
+</p>
+<p class="signup__delimiter" i18n="@@or">OR</p>
+<app-button customClass="button--grey button--medium">
+  <img ngSrc="icons/google-logo.svg" width="24" height="24" alt="google-logo">
+  <span i18n="@@sign_up_with_google">Sign up with Google</span>
+</app-button>

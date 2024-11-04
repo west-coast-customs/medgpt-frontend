@@ -1,0 +1,17 @@
+.login {
+  &__title {
+    @apply text-[36px] font-bold mb-[24px] leading-[44px];
+  }
+
+  &__form {
+    @apply flex flex-col gap-[12px] mb-[12px];
+  }
+
+  &__hint {
+    @apply text-[14px] font-normal mb-[24px];
+  }
+
+  &__delimiter {
+    @apply text-[18px] font-semibold text-grey mb-[24px];
+  }
+}

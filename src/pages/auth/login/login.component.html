@@ -1,0 +1,14 @@
+<h1 class="login__title" i18n="@@login_title">Log in to your account</h1>
+<form class="login__form">
+  <app-input placeholder="Enter your email" i18n-placeholder="@@enter_email"/>
+  <app-input placeholder="Enter your password" i18n-placeholder="@@enter_password"/>
+  <app-button i18n="@@log_in">Log in</app-button>
+</form>
+<p class="login__hint" i18n="@@already_have_an_account">
+  Don't have an account? <a [routerLink]="['../', 'signup']" class="underline text-blue">Register</a>
+</p>
+<p class="login__delimiter">OR</p>
+<app-button customClass="button--grey button--medium">
+  <img ngSrc="icons/google-logo.svg" width="24" height="24" alt="google-logo">
+  <span i18n="@@continue_with_google">Continue with Google</span>
+</app-button>

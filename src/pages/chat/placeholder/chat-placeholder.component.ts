@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DescriptionCardsComponent } from "../../shared/components/description-cards/description-cards.component";
-import { InputComponent } from '../../shared/components/input/input.component';
+import { DescriptionCardsComponent } from "../../../widgets/description-cards/description-cards.component";
+import { InputComponent } from '../../../shared/components/input/input.component';
 
 @Component({
   selector: 'app-chat-placeholder',
