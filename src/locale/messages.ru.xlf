@@ -74,6 +74,54 @@
         <source>Message MedGPT</source>
         <target state="new">Написать MedGPT</target>
       </trans-unit>
+      <trans-unit id="login_title" datatype="html">
+        <source>Log in to your account</source>
+        <target state="new">Log in to your account</target>
+      </trans-unit>
+      <trans-unit id="enter_email" datatype="html">
+        <source>Enter your email</source>
+        <target state="new">Enter your email</target>
+      </trans-unit>
+      <trans-unit id="enter_password" datatype="html">
+        <source>Enter your password</source>
+        <target state="new">Enter your password</target>
+      </trans-unit>
+      <trans-unit id="log_in" datatype="html">
+        <source>Log in</source>
+        <target state="new">Log in</target>
+      </trans-unit>
+      <trans-unit id="already_have_an_account" datatype="html">
+        <source> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;underline text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target state="new"> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;underline text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="continue_with_google" datatype="html">
+        <source>Continue with Google</source>
+        <target state="new">Continue with Google</target>
+      </trans-unit>
+      <trans-unit id="signup_title" datatype="html">
+        <source>Create account</source>
+        <target state="new">Create account</target>
+      </trans-unit>
+      <trans-unit id="confirm_password" datatype="html">
+        <source>Confirm your password</source>
+        <target state="new">Confirm your password</target>
+      </trans-unit>
+      <trans-unit id="sign_up" datatype="html">
+        <source>Sign up</source>
+        <target state="new">Sign up</target>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>OR</source>
+        <target state="new">OR</target>
+      </trans-unit>
+      <trans-unit id="sign_up_with_google" datatype="html">
+        <source>Sign up with Google</source>
+        <target state="new">Sign up with Google</target>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>Next</source>
+        <target state="new">Next</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

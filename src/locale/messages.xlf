@@ -56,6 +56,42 @@
       <trans-unit id="input_placeholder" datatype="html">
         <source>Message MedGPT</source>
       </trans-unit>
+      <trans-unit id="already_have_an_account" datatype="html">
+        <source> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;underline text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+      </trans-unit>
+      <trans-unit id="confirm_password" datatype="html">
+        <source>Confirm your password</source>
+      </trans-unit>
+      <trans-unit id="continue_with_google" datatype="html">
+        <source>Continue with Google</source>
+      </trans-unit>
+      <trans-unit id="enter_email" datatype="html">
+        <source>Enter your email</source>
+      </trans-unit>
+      <trans-unit id="enter_password" datatype="html">
+        <source>Enter your password</source>
+      </trans-unit>
+      <trans-unit id="log_in" datatype="html">
+        <source>Log in</source>
+      </trans-unit>
+      <trans-unit id="login_title" datatype="html">
+        <source>Log in to your account</source>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>Next</source>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>OR</source>
+      </trans-unit>
+      <trans-unit id="sign_up" datatype="html">
+        <source>Sign up</source>
+      </trans-unit>
+      <trans-unit id="sign_up_with_google" datatype="html">
+        <source>Sign up with Google</source>
+      </trans-unit>
+      <trans-unit id="signup_title" datatype="html">
+        <source>Create account</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
