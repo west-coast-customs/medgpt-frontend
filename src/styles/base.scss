@@ -14,6 +14,14 @@ body {
     @apply desktop:p-[20px];
   }
 
+  &--inlined {
+    @apply flex-row;
+
+    .page__content {
+      @apply h-full;
+    }
+  }
+
   &__content {
     @apply m-auto w-full max-w-[784px];
   }

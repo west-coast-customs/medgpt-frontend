@@ -8,7 +8,7 @@
   Don't have an account? <a [routerLink]="['../', 'signup']" class="underline text-blue">Register</a>
 </p>
 <p class="login__delimiter">OR</p>
-<app-button customClass="button--grey button--medium">
+<app-button (click)="onLoginWithGoogleClick()" customClass="button--grey button--medium">
   <img ngSrc="icons/google-logo.svg" width="24" height="24" alt="google-logo">
   <span i18n="@@continue_with_google">Continue with Google</span>
 </app-button>

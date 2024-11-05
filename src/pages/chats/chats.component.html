@@ -1,12 +1,11 @@
-<aside>
-  <app-create-chat class="mb-[16px]"/>
-  <app-chat-list/>
-  <div class="chats__navigation mt-auto">
-    <hr>
-    <app-chat-navigation class="block mt-[20%]"/>
-  </div>
-</aside>
+<div class="page page--inlined">
+  <aside class="chats__aside">
+    <app-create-chat class="chats__create-chat"/>
+    <app-chat-list class="chats__list"/>
+    <app-chat-navigation class="chats__navigation"/>
+  </aside>
 
-<main>
-  <router-outlet/>
-</main>
+  <main class="page__content chats__content">
+    <router-outlet/>
+  </main>
+</div>

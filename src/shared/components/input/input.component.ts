@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal, model, ModelSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  input,
+  InputSignal,
+  output,
+  OutputEmitterRef,
+  viewChild
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 
@@ -15,5 +24,12 @@ export class InputComponent {
   placeholder: InputSignal<string> = input<string>('')
   customClass: InputSignal<string> = input<string>('')
 
-  inputText: ModelSignal<string> = model<string>('')
+  inputText: InputSignal<string> = input<string>('')
+  inputTextChange: OutputEmitterRef<string> = output<string>()
+
+  inputElement = viewChild<ElementRef<HTMLInputElement>>('inputElement')
+
+  focus(): void {
+    setTimeout(() => this.inputElement()?.nativeElement.focus())
+  }
 }

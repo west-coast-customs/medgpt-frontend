@@ -7,6 +7,7 @@
     } @else {
       <input #input class="bg-grey bg-opacity-0 w-full outline-0"
              (clickOutside)="onChatEdit(chat, input.value)"
+             (keyup.space)="$event.preventDefault()"
              (keyup.enter)="onChatEdit(chat, input.value)"
              [value]="chat.name">
     }

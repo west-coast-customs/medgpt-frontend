@@ -1,1 +1,9 @@
-<input [ngClass]="customClass()" [disabled]="disabled()" [(ngModel)]="inputText" [placeholder]="placeholder()"/>
+<div class="input__wrapper"
+     [ngClass]="customClass()">
+  <input #inputElement class="input__field"
+         [disabled]="disabled()"
+         [ngModel]="inputText()"
+         (ngModelChange)="inputTextChange.emit($event)"
+         [placeholder]="placeholder()"/>
+  <ng-content/>
+</div>

@@ -16,10 +16,5 @@ import { ChatService } from '../../shared/services/chat.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ChatsComponent {
-  constructor(private chatService: ChatsService,
-              private destroyRef: DestroyRef) {
-    this.chatService.loadAll()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe()
-  }
+
 }

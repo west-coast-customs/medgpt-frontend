@@ -17,6 +17,7 @@ module.exports = {
       'mid-grey': '#F4F4F4',
       'disabled-grey': '#D9D9D9',
       'grey': '#7D7D7D',
+      'border-grey': '#CCCCCC',
     },
     fontFamily: {
       display: 'Inter, sans-serif'

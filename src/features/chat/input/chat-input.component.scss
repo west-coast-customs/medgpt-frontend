@@ -1,54 +1,22 @@
+:host {
+  @apply flex gap-[12px];
+}
+
 .chat-input {
   &__attachment {
-    @apply self-center h-fit;
-  }
-}
-
-:host {
-  display: flex;
-  gap: 12px;
-  margin-top: auto;
-}
-
-.input {
-  &__wrapper {
-    width: 100%;
-    border-radius: 30px;
-    @apply bg-mid-grey;
-    @apply border-[2px] border-solid;
-    border-color: transparent;
-    transition: border-color 250ms ease-in-out;
-    display: flex;
-    gap: 12px;
-
-    &:focus-within {
-      @apply border-blue;
-    }
+    @apply h-fit self-center;
   }
 
-  &__image {
-    margin-right: 12px;
-    width: 32px;
-    height: 32px;
-    place-self: center;
-    place-content: center;
-    place-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    @apply bg-blue;
+  &__field {
+    @apply w-full;
+  }
+
+  &__button {
+    @apply rounded-full bg-blue cursor-pointer p-[4px];
     transition: background-color 250ms ease-in-out;
 
-    &--disabled {
-      @apply bg-disabled-grey;
+    &[disabled] {
+      @apply bg-disabled-grey cursor-default;
     }
   }
-}
-
-input {
-  width: 100%;
-  height: 52px;
-  padding: 24px 16px;
-  border-radius: 30px;
-  outline: none;
-  @apply bg-mid-grey;
 }

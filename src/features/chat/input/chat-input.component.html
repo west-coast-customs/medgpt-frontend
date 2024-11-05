@@ -1,15 +1,14 @@
 <img class="chat-input__attachment" ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
-<div class="input__wrapper">
-  <app-input [disabled]="waitingBotResponse()"
-             (keyup.enter)="onInput()"
-             customClass="input--rounded"
-             class="chat__input"
-             i18n-placeholder="@@input_placeholder"
-             placeholder="Message MedGPT"/>
 
-  <button (click)="onInput()"
-          class="input__image"
-          [class.input__image--disabled]="inputTextEmpty()">
+<app-input customClass="input--rounded"
+           i18n-placeholder="@@input_placeholder"
+           placeholder="Message MedGPT"
+           [(inputText)]="inputText"
+           [disabled]="inputDisabled()"
+           (keyup.enter)="onInput()">
+  <button class="chat-input__button"
+          [disabled]="inputButtonDisabled()"
+          (click)="onInput()">
     <img ngSrc="icons/arrow-up.svg" width="24" height="24" alt="arrow-up">
   </button>
-</div>
+</app-input>

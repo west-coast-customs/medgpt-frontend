@@ -35,6 +35,9 @@ export class ChatListComponent {
               private chatsService: ChatsService,
               private chatService: ChatService,
               private destroyRef: DestroyRef) {
+    this.chatsService.loadAll()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe()
   }
 
   onChatClick(id: string): void {
@@ -54,7 +57,7 @@ export class ChatListComponent {
   }
 
   onChatEdit(chat: ChatItem, newName: string) {
-    if (chat.name === newName) {
+    if (!newName || chat.name === newName) {
       chat.editing = false
       return
     }
