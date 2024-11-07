@@ -1,9 +1,10 @@
 <div class="input__wrapper"
      [ngClass]="customClass()">
   <input #inputElement class="input__field"
-         [disabled]="disabled()"
-         [ngModel]="inputText()"
-         (ngModelChange)="inputTextChange.emit($event)"
+         (focus)="onInputFocus()"
+         [type]="type()"
+         [disabled]="disabled() || disabledForm()"
+         [(ngModel)]="value"
          [placeholder]="placeholder()"/>
   <ng-content/>
 </div>

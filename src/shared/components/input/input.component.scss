@@ -3,14 +3,18 @@
 }
 
 .input {
-  &--rounded {
-    @apply rounded-[30px] #{!important};
-  }
-
   &__wrapper {
-    @apply flex bg-mid-grey pl-[24px] pr-[12px] py-[10px] border-2 rounded-[16px];
+    @apply flex bg-mid-grey px-[22px] py-[20px] border-2 rounded-[16px];
     border-color: transparent;
     transition: border-color 250ms ease-in-out;
+
+    &.input--rounded {
+      @apply rounded-[30px];
+    }
+
+    &.input--slim {
+      @apply pl-[24px] pr-[12px] py-[10px];
+    }
 
     &:focus-within {
       @apply border-blue;

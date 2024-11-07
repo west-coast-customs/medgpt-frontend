@@ -1,9 +1,10 @@
 <img class="chat-input__attachment" ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
 
-<app-input customClass="input--rounded"
+<app-input customClass="input--rounded input--slim"
            i18n-placeholder="@@input_placeholder"
            placeholder="Message MedGPT"
-           [(inputText)]="inputText"
+           [(ngModel)]="inputText"
+           [ngModelOptions]="{ standalone: true }"
            [disabled]="inputDisabled()"
            (keyup.enter)="onInput()">
   <button class="chat-input__button"
