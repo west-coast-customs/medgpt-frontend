@@ -1,27 +1,13 @@
 :host {
-  @apply w-full;
+  @apply flex w-full;
 }
 
 .input {
-  &__wrapper {
-    @apply flex bg-mid-grey px-[22px] py-[20px] border-2 rounded-[16px];
-    border-color: transparent;
-    transition: border-color 250ms ease-in-out;
-
-    &.input--rounded {
-      @apply rounded-[30px];
-    }
-
-    &.input--slim {
-      @apply pl-[24px] pr-[12px] py-[10px];
-    }
-
-    &:focus-within {
-      @apply border-blue;
-    }
+  &__field {
+    @apply bg-mid-grey outline-none w-full font-medium;
   }
 
-  &__field {
-    @apply bg-mid-grey outline-none w-full;
+  &__image {
+    @apply h-fit cursor-pointer;
   }
 }

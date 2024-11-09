@@ -1,35 +1,44 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   ElementRef,
   input,
   InputSignal,
   model,
   ModelSignal,
+  Signal,
   signal,
   viewChild,
   WritableSignal
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import { fadeInOutHeight } from '../../animations';
+import { PasswordMatchValidatorDirective } from '../../validators/password-match-validator.directive';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule, NgClass, NgOptimizedImage, PasswordMatchValidatorDirective],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true }]
+  animations: [fadeInOutHeight(250)],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true }],
 })
 export class InputComponent implements ControlValueAccessor {
   placeholder: InputSignal<string> = input<string>('')
-  customClass: InputSignal<string> = input<string>('')
-  type = input<'text' | 'email' | 'password'>('text')
+  autocomplete: InputSignal<string> = input<string>('')
+  type: InputSignal<"text" | "email" | "password"> = input<'text' | 'email' | 'password'>('text')
+
+  showPassword: WritableSignal<boolean> = signal(false)
 
   disabled: InputSignal<boolean> = input<boolean>(false)
   disabledForm: WritableSignal<boolean> = signal(false)
+
+  inputDisabled: Signal<boolean> = computed(() => this.disabled() || this.disabledForm())
 
   value: ModelSignal<string> = model('')
   onChange: ((value: string) => void) | undefined
@@ -37,7 +46,7 @@ export class InputComponent implements ControlValueAccessor {
 
   constructor() {
     effect(() => {
-      if (!this.disabled() && !this.disabledForm()) {
+      if (!this.inputDisabled()) {
         this.onChange?.(this.value())
       }
     });
@@ -59,13 +68,14 @@ export class InputComponent implements ControlValueAccessor {
     this.disabledForm.set(isDisabled)
   }
 
-  inputElement = viewChild<ElementRef<HTMLInputElement>>('inputElement')
+  inputElement: Signal<ElementRef<HTMLInputElement> | undefined> = viewChild<ElementRef<HTMLInputElement>>('inputElement')
 
   focus(): void {
-    setTimeout(() => this.inputElement()?.nativeElement.focus())
+    this.inputElement()?.nativeElement.focus()
   }
 
-  onInputFocus(): void {
-    this.onTouched?.()
+  toggleShowPassword(event: MouseEvent): void {
+    event.stopPropagation();
+    this.showPassword.update((prev: boolean) => !prev)
   }
 }

@@ -6,8 +6,6 @@ import { ChatsService } from '../../shared/services/chats.service';
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./chats.component'),
-    providers: [ChatService, ChatsService],
     children: [
       {
         path: '',

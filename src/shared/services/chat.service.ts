@@ -1,7 +1,7 @@
 import { computed, DestroyRef, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
-import { distinctUntilChanged, filter, map, switchMap } from 'rxjs';
+import { distinctUntilChanged, filter, map, startWith, switchMap, tap } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { Chat, ChatMessage, ChatsService } from './chats.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -30,15 +30,14 @@ export class ChatService {
     this.router.events
       .pipe(
         filter((event: unknown) => event instanceof NavigationEnd),
+        startWith({ urlAfterRedirects: window.location.href }),
         map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop() as string),
+        tap(() => this.disconnect()),
         filter((chatId: string) => !!chatId && chatId !== 'chats'),
         switchMap((chatId: string) => this.chatsService.get(chatId)),
-        distinctUntilChanged(),
         takeUntilDestroyed()
       )
       .subscribe((chat: Chat | null) => {
-        this.disconnect()
-
         if (chat) {
           this.connect(chat.id)
 

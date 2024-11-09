@@ -1,5 +1,9 @@
 <button class="button" [disabled]="disabled()" [ngClass]="customClass()">
   <div class="button__content">
-    <ng-content/>
+    @if (!loading()) {
+      <ng-content/>
+    } @else {
+      <app-loader customClass="loader--button"/>
+    }
   </div>
 </button>

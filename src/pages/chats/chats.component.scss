@@ -1,6 +1,7 @@
 .chats {
   &__aside {
-    @apply flex flex-col h-full p-[20px] border-r border-r-border-grey;
+    @apply absolute flex bg-white flex-col h-full p-[20px] border-r border-r-border-grey z-[1];
+    @apply desktop:relative;
   }
 
   &__create-chat {
@@ -19,6 +20,15 @@
   }
 
   &__content {
-    @apply py-[20px];
+    @apply py-[20px] px-[12px];
+  }
+
+  &__menu {
+    @apply absolute cursor-pointer left-[12px];
+    transition: left 250ms ease;
+
+    &--opened {
+      @apply left-[300px];
+    }
   }
 }

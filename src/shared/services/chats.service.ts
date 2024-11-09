@@ -22,7 +22,7 @@ export class ChatsService {
   constructor(private httpService: HttpClient) {}
 
   loadAll(): Observable<Chat[]> {
-    return this.httpService.request<Chat[]>('GET', '/api/chat/', { body: { email: 'test@test.org' } })
+    return this.httpService.get<Chat[]>('/api/chat/')
       .pipe(tap((chats: Chat[]) => this.chats.set(chats)))
   }
 

@@ -2,18 +2,19 @@
   <app-button (click)="onChatClick(chat.id)"
               [customClass]="'button--transparent ' + (chat.id === activeChatId() ? 'button--selected' : '')">
     <img ngSrc="icons/message-plus.svg" width="24" height="24" alt="message-plus">
-    @if (!chat.editing) {
-      <span>{{ chat.name }}</span>
+    @if (!editingChatName()) {
+      <span class="chat-list__name">{{ chat.name }}</span>
     } @else {
-      <input #input class="bg-grey bg-opacity-0 w-full outline-0"
+      <input #input
+             class="chat-list__input"
              (clickOutside)="onChatEdit(chat, input.value)"
              (keyup.space)="$event.preventDefault()"
              (keyup.enter)="onChatEdit(chat, input.value)"
              [value]="chat.name">
     }
-    @if (chat.id === activeChatId() && !chat.editing) {
-      <div @fadeOnEnter class="flex ml-auto cursor-pointer">
-        <img (click)="chat.editing = true" ngSrc="icons/pencil.svg" width="24" height="24" alt="pencil">
+    @if (chat.id === activeChatId() && !editingChatName()) {
+      <div @fadeOnEnter class="chat-list__actions">
+        <img (click)="onChatEditClick()" ngSrc="icons/pencil.svg" width="24" height="24" alt="pencil">
         <img (click)="onChatDeleteClick(chat.id)" ngSrc="icons/trash.svg" width="24" height="24" alt="trash">
       </div>
     }

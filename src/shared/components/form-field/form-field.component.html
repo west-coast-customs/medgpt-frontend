@@ -1,0 +1,24 @@
+<div (click)="focus()" class="form-field__wrapper"
+     [ngClass]="customClass()">
+  <ng-content/>
+</div>
+
+@if (inputModel()?.errors && inputModel()?.touched) {
+  <div @fadeInOutHeight class="form-field__error">
+    <img class="h-fit" ngSrc="icons/alert-triangle.svg" height="18" width="18" alt="alert-triangle">
+    @if (inputModel()?.hasError('required')) {
+      <p i18n="@@field_required">This field is required</p>
+    }
+    @if (inputModel()?.hasError('email')) {
+      <p i18n="@@email_invalid">Email is invalid</p>
+    }
+    @if (inputModel()?.hasError('minlength')) {
+      @if (inputModel()?.name === 'password') {
+        <p i18n="@@password_minlength">Password must have at least 6 characters</p>
+      }
+    }
+    @if (inputModel()?.hasError('passwordMatch')) {
+      <p i18n="@@passwords_do_not_match">Passwords do not match</p>
+    }
+  </div>
+}

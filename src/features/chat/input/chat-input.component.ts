@@ -15,11 +15,12 @@ import { InputComponent } from '../../../shared/components/input/input.component
 import { ChatService } from '../../../shared/services/chat.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { FormFieldComponent } from "../../../shared/components/form-field/form-field.component";
 
 @Component({
   selector: 'app-chat-input',
   standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule, InputComponent, FormsModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, InputComponent, FormsModule, FormFieldComponent],
   templateUrl: './chat-input.component.html',
   styleUrl: './chat-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

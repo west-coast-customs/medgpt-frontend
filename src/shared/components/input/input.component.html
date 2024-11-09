@@ -1,10 +1,13 @@
-<div class="input__wrapper"
-     [ngClass]="customClass()">
-  <input #inputElement class="input__field"
-         (focus)="onInputFocus()"
-         [type]="type()"
-         [disabled]="disabled() || disabledForm()"
-         [(ngModel)]="value"
-         [placeholder]="placeholder()"/>
-  <ng-content/>
-</div>
+<input #inputElement
+       class="input__field"
+       (keydown)="onTouched?.()"
+       [autocomplete]="autocomplete()"
+       [type]="showPassword() ? 'text' : type()"
+       [disabled]="inputDisabled()"
+       [(ngModel)]="value"
+       [placeholder]="placeholder()"/>
+@if (type() === 'password') {
+  <img (click)="toggleShowPassword($event)" class="input__image"
+       [ngSrc]="'icons/' + (showPassword() ? 'eye' : 'eye-closed') + '.svg'" height="24" width="24"
+       [alt]="showPassword() ? 'eye' : 'eye-closed'"/>
+}

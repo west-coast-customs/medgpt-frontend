@@ -1,0 +1,28 @@
+<form (ngSubmit)="onFormSubmit(signupForm)" #signupForm="ngForm" class="signup-form">
+  <app-form-field>
+    <app-input required
+               email
+               [(ngModel)]="formValue.email"
+               name="email" type="email"
+               placeholder="Enter your email"
+               i18n-placeholder="@@enter_email"/>
+  </app-form-field>
+  <app-form-field>
+    <app-input required
+               [(ngModel)]="formValue.password"
+               (ngModelChange)="passwordMatch.control.updateValueAndValidity(); passwordMatch.control.markAsTouched()"
+               minlength="6"
+               name="password" type="password"
+               autocomplete="password"
+               placeholder="Enter your password"
+               i18n-placeholder="@@enter_password"/>
+  </app-form-field>
+  <app-form-field>
+    <app-input #passwordMatch="ngModel" appPasswordMatchValidator
+               [(ngModel)]="formValue.passwordConfirm"
+               name="passwordConfirm" type="password"
+               placeholder="Confirm your password"
+               i18n-placeholder="@@confirm_password"/>
+  </app-form-field>
+  <app-button [loading]="signupLoading()" [disabled]="!!signupForm.invalid" i18n="@@sign_up">Sign up</app-button>
+</form>
