@@ -59,8 +59,8 @@ export class ChatListComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((chats: Chat[]) => {
-        const lastChat = chats.at(-1)
-        void this.router.navigate(lastChat ? ['chats', lastChat.id] : ['chats'], {})
+        const lastChat: Chat | undefined = chats.at(-1)
+        void this.router.navigate(lastChat ? ['chats', lastChat.id] : ['chats'])
       })
   }
 
