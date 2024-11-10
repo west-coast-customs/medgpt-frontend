@@ -1,0 +1,22 @@
+:host {
+  @apply flex gap-[12px];
+}
+
+.chat-input {
+  &__attachment {
+    @apply h-fit self-center;
+  }
+
+  &__field {
+    @apply w-full;
+  }
+
+  &__button {
+    @apply rounded-full bg-blue cursor-pointer p-[4px];
+    transition: background-color 250ms ease-in-out;
+
+    &[disabled] {
+      @apply bg-disabled-grey cursor-default;
+    }
+  }
+}

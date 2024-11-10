@@ -1,12 +1,17 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  overflow: auto;
+  @apply flex flex-col gap-[4px] overflow-auto;
 }
 
-span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 60%;
+.chat-list {
+  &__name {
+    @apply overflow-hidden text-ellipsis max-w-[138px] whitespace-nowrap;
+  }
+
+  &__input {
+    @apply bg-grey bg-opacity-0 w-full outline-0 max-w-[190px];
+  }
+
+  &__actions {
+    @apply flex ml-auto cursor-pointer;
+  }
 }

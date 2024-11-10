@@ -1,18 +1,17 @@
-import { computed, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { computed, DestroyRef, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
-import { distinctUntilChanged, filter, map, switchMap } from 'rxjs';
+import { distinctUntilChanged, filter, map, startWith, switchMap, tap } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { Chat, ChatMessage, ChatsService } from './chats.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export enum MessageAuthors {
   USER = 'user',
   AGENT = 'agent'
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatService {
   #activeChatWebsocket$: WebSocketSubject<string> | undefined;
 
@@ -25,18 +24,20 @@ export class ChatService {
   gotNewMessage: Signal<boolean> = computed<boolean>(() => !!this.activeChatNewMessages().length)
   waitingBotResponse: Signal<boolean> = computed(() => this.activeChatMessages().at(-1)?.role === MessageAuthors.USER)
 
-  constructor(private router: Router, private chatsService: ChatsService) {
+  constructor(private router: Router,
+              private chatsService: ChatsService,
+              private destroyRef: DestroyRef) {
     this.router.events
       .pipe(
         filter((event: unknown) => event instanceof NavigationEnd),
+        startWith({ urlAfterRedirects: window.location.href }),
         map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop() as string),
+        tap(() => this.disconnect()),
         filter((chatId: string) => !!chatId && chatId !== 'chats'),
         switchMap((chatId: string) => this.chatsService.get(chatId)),
-        distinctUntilChanged()
+        takeUntilDestroyed()
       )
       .subscribe((chat: Chat | null) => {
-        this.disconnect()
-
         if (chat) {
           this.connect(chat.id)
 
@@ -99,7 +100,10 @@ export class ChatService {
     if (!this.#activeChatWebsocket$) return
 
     this.#activeChatWebsocket$
-      .pipe(map((message: string) => JSON.parse(message)))
+      .pipe(
+        map((message: string) => JSON.parse(message)),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe((message: ChatMessage) => {
         this.activeChatNewMessages.update((messages: ChatMessage[]) => [...messages, message])
       })

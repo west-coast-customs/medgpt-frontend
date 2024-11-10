@@ -15,16 +15,14 @@ export interface ChatMessage {
   references: string[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatsService {
   chats: WritableSignal<Chat[]> = signal<Chat[]>([])
 
   constructor(private httpService: HttpClient) {}
 
   loadAll(): Observable<Chat[]> {
-    return this.httpService.request<Chat[]>('GET', '/api/chat/', { body: { email: 'test@test.org' } })
+    return this.httpService.get<Chat[]>('/api/chat/')
       .pipe(tap((chats: Chat[]) => this.chats.set(chats)))
   }
 

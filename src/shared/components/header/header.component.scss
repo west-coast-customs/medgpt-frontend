@@ -1,0 +1,11 @@
+.header {
+  @apply flex items-center justify-between;
+
+  &__logo {
+    @apply text-[24px] font-bold cursor-pointer;
+
+    &:only-child {
+      @apply m-auto;
+    }
+  }
+}

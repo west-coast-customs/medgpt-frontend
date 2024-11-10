@@ -1,14 +1,6 @@
-.header {
-  @apply fixed left-[20px] right-[20px] flex items-center justify-between;
-
-  &__logo {
-    @apply text-[24px] font-bold;
-  }
-}
-
 .main {
-  @apply flex overflow-auto flex-col h-[calc(100%-87px)] max-w-[784px] justify-between m-auto;
-  @apply desktop:justify-center desktop:h-full;
+  @apply flex overflow-auto flex-col m-auto h-full;
+  @apply desktop:justify-center;
 
   &__heading {
     @apply mb-[62px];
@@ -53,9 +45,7 @@
       @apply flex flex-col items-center gap-[14px] text-[24px] font-semibold mb-[40px];
     }
   }
-}
 
-.footer {
   &__navigation {
     @apply flex justify-center gap-[14px] mb-[24px];
 

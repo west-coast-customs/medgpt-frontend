@@ -2,49 +2,80 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   input,
   InputSignal,
   model,
   ModelSignal,
-  output,
-  OutputEmitterRef,
   Signal,
-  viewChild
+  signal,
+  viewChild,
+  WritableSignal
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import { fadeInOutHeight } from '../../animations';
+import { PasswordMatchValidatorDirective } from '../../validators/password-match-validator.directive';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-    FormsModule
-  ],
+  imports: [FormsModule, NgClass, NgOptimizedImage, PasswordMatchValidatorDirective],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInOutHeight(250)],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true }],
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
+  placeholder: InputSignal<string> = input<string>('')
+  autocomplete: InputSignal<string> = input<string>('')
+  type: InputSignal<"text" | "email" | "password"> = input<'text' | 'email' | 'password'>('text')
+
+  showPassword: WritableSignal<boolean> = signal(false)
+
   disabled: InputSignal<boolean> = input<boolean>(false)
-  placeholder: InputSignal<string | undefined> = input<string>()
+  disabledForm: WritableSignal<boolean> = signal(false)
 
-  inputText: ModelSignal<string> = model<string>('')
-  inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
+  inputDisabled: Signal<boolean> = computed(() => this.disabled() || this.disabledForm())
 
-  private inputElement = viewChild<ElementRef<HTMLInputElement>>('input')
+  value: ModelSignal<string> = model('')
+  onChange: ((value: string) => void) | undefined
+  onTouched: (() => void) | undefined
 
-  onInput: OutputEmitterRef<string> = output<string>()
-
-  onInputClick(): void {
-    this.onInput.emit(this.inputText())
-    this.inputText.set('')
+  constructor() {
+    effect(() => {
+      if (!this.inputDisabled()) {
+        this.onChange?.(this.value())
+      }
+    });
   }
 
-  focusInput(): void {
-    setTimeout(() => {
-      this.inputElement()?.nativeElement.focus()
-    })
+  writeValue(newValue: string): void {
+    this.value.set(newValue)
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabledForm.set(isDisabled)
+  }
+
+  inputElement: Signal<ElementRef<HTMLInputElement> | undefined> = viewChild<ElementRef<HTMLInputElement>>('inputElement')
+
+  focus(): void {
+    this.inputElement()?.nativeElement.focus()
+  }
+
+  toggleShowPassword(event: MouseEvent): void {
+    event.stopPropagation();
+    this.showPassword.update((prev: boolean) => !prev)
   }
 }

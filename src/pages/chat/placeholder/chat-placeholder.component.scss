@@ -1,0 +1,16 @@
+:host {
+  @apply flex flex-col h-full;
+}
+
+.chat-placeholder {
+  @apply my-auto;
+
+  &__heading {
+    @apply mb-[62px];
+    @apply desktop:mb-[16px];
+  }
+
+  &__title {
+    @apply text-[36px] mb-[24px] font-bold leading-[44px];
+  }
+}

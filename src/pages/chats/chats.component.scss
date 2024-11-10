@@ -1,26 +1,34 @@
-:host {
-  display: flex;
-  height: 100%;
-
-  aside {
-    display: flex;
-    flex-direction: column;
-    padding-right: 20px;
-    height: 100%;
-    border-right: 1px solid #CCCCCC;
-  }
-
-  main {
-    height: 100%;
-    width: 100%;
-    margin: 0 180px;
-  }
-}
-
 .chats {
+  &__aside {
+    @apply absolute flex bg-white flex-col h-full p-[20px] border-r border-r-border-grey z-[1];
+    @apply desktop:relative;
+  }
+
+  &__create-chat {
+    @apply mb-[16px];
+  }
+
+  &__list {
+    @apply mb-auto;
+  }
+
   &__navigation {
-    hr {
-      color: #CCCCCC;
+    &:before {
+      content: '';
+      @apply block mb-[20%] mx-[-20px] border-t border-t-border-grey;
+    }
+  }
+
+  &__content {
+    @apply py-[20px] px-[12px];
+  }
+
+  &__menu {
+    @apply absolute cursor-pointer left-[12px];
+    transition: left 250ms ease;
+
+    &--opened {
+      @apply left-[300px];
     }
   }
 }

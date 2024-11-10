@@ -1,23 +1,9 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
+  @apply flex flex-col h-full;
 }
 
 .chat {
-  &__input {
-    width: 784px;
-  }
-
-  &__wrapper {
-    max-width: 784px;
-    display: flex;
-    flex-direction: column-reverse;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 20px;
-    overflow: auto;
+  &__window {
+    @apply flex flex-col-reverse h-full mb-[20px] overflow-auto;
   }
 }

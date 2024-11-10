@@ -1,0 +1,7 @@
+<h1 class="login__title" i18n="@@login_title">Log in to your account</h1>
+<app-login-form class="login__form"/>
+<p class="login__hint" i18n="@@dont_have_an_account">
+  Don't have an account? <a [routerLink]="['../', 'signup']" class="text-blue">Register</a>
+</p>
+<p class="login__delimiter">OR</p>
+<app-google-auth-button/>

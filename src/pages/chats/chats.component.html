@@ -1,12 +1,19 @@
-<aside>
-  <app-create-chat class="mb-[16px]"/>
-  <app-chat-list/>
-  <div class="chats__navigation mt-auto">
-    <hr>
-    <app-navigation class="block mt-[20%]"/>
-  </div>
-</aside>
+<div @fadeOnEnter class="page page--inlined">
+  @if (!mobileView() || sidebarVisible()) {
+    <aside @slideInOut class="chats__aside">
+      <app-create-chat class="chats__create-chat"/>
+      <app-chat-list class="chats__list"/>
+      <app-chat-navigation class="chats__navigation"/>
+    </aside>
+  }
 
-<main>
-  <router-outlet/>
-</main>
+  <main class="page__content chats__content">
+    @if (mobileView()) {
+      <img class="chats__menu"
+           [class.chats__menu--opened]="sidebarVisible()"
+           (click)="toggleSidebarVisible()"
+           ngSrc="icons/menu.svg" height="24" width="24" alt="menu">
+    }
+    <router-outlet/>
+  </main>
+</div>

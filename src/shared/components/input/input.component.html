@@ -1,14 +1,13 @@
-<img class="self-center h-fit" ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
-<div class="input__wrapper">
-  <input #input
-         (keyup.enter)="onInputClick()"
-         [disabled]="disabled()"
-         [(ngModel)]="inputText"
-         [placeholder]="placeholder()"/>
-
-  <div (click)="onInputClick()"
-       class="input__image"
-       [class.input__image--disabled]="inputTextEmpty()">
-    <img ngSrc="icons/arrow-up.svg" width="24" height="24" alt="arrow-up">
-  </div>
-</div>
+<input #inputElement
+       class="input__field"
+       (keydown)="onTouched?.()"
+       [autocomplete]="autocomplete()"
+       [type]="showPassword() ? 'text' : type()"
+       [disabled]="inputDisabled()"
+       [(ngModel)]="value"
+       [placeholder]="placeholder()"/>
+@if (type() === 'password') {
+  <img (click)="toggleShowPassword($event)" class="input__image"
+       [ngSrc]="'icons/' + (showPassword() ? 'eye' : 'eye-closed') + '.svg'" height="24" width="24"
+       [alt]="showPassword() ? 'eye' : 'eye-closed'"/>
+}

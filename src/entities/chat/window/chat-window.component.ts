@@ -7,9 +7,7 @@ import { fadeInUpOnEnter, fadeOnEnter } from '../../../shared/animations';
 @Component({
   selector: 'app-chat-window',
   standalone: true,
-  imports: [
-    LoaderComponent
-  ],
+  imports: [LoaderComponent],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

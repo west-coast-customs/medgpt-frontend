@@ -3,26 +3,42 @@
 }
 
 .button {
-  @apply flex gap-[6px] items-center justify-center bg-blue text-white rounded-[12px] w-full;
+  @apply font-bold bg-blue text-white rounded-[12px] w-full py-[20px];
   transition: background-color 250ms ease-in-out;
+
+  &__content {
+    @apply flex gap-[8px] items-center justify-center;
+  }
 
   &[disabled] {
     @apply bg-disabled-grey;
   }
 
   &--small {
-    @apply w-[250px] h-[40px];
+    @apply min-w-[250px];
   }
 
   &--big {
-    @apply text-[20px] font-bold h-[60px] w-full;
+    @apply text-[20px];
+  }
+
+  &--grey {
+    @apply bg-mid-grey text-black;
+  }
+
+  &--medium {
+    @apply font-medium;
   }
 
   &--transparent {
-    @apply bg-white text-black p-[12px] justify-start;
+    @apply bg-white text-black p-[12px];
 
     &:hover:not(.button--selected) {
       @apply bg-mid-grey;
+    }
+
+    .button__content {
+      @apply justify-start;
     }
   }
 

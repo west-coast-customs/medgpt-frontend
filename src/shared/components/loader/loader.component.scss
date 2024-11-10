@@ -3,46 +3,49 @@
 }
 
 .loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #FFF;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  position: relative;
-  animation: pulse 1s linear infinite;
-  @apply bg-blue bg-opacity-20;
-}
+  @apply inline-block relative box-border w-[24px] h-[24px] border-[5px] border-white rounded-full;
 
-.loader:after {
-  content: '';
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border: 5px solid #FFF;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation: scaleUp 1s linear infinite;
-}
+  &--chat {
+    @apply w-[48px] h-[48px] bg-blue bg-opacity-20;
+    animation: pulse 1s linear infinite;
 
-@keyframes scaleUp {
-  0% {
-    transform: translate(-50%, -50%) scale(0)
-  }
-  60%, 100% {
-    transform: translate(-50%, -50%) scale(1)
-  }
-}
+    &:after {
+      @apply inline-block absolute box-border w-[48px] h-[48px] left-1/2 top-1/2 border-[5px] border-white rounded-full;
+      content: '';
+      transform: translate(-50%, -50%);
+      animation: scaleUp 1s linear infinite;
 
-@keyframes pulse {
-  0%, 60%, 100% {
-    transform: scale(1)
+      @keyframes scaleUp {
+        0% {
+          transform: translate(-50%, -50%) scale(0)
+        }
+        60%, 100% {
+          transform: translate(-50%, -50%) scale(1)
+        }
+      }
+    }
+
+    @keyframes pulse {
+      0%, 60%, 100% {
+        transform: scale(1)
+      }
+      80% {
+        transform: scale(1.2)
+      }
+    }
   }
-  80% {
-    transform: scale(1.2)
+
+  &--button {
+    @apply border-t-white border-x-white border-b-[transparent];
+    animation: rotation 1s linear infinite;
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
