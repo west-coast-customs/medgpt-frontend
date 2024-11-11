@@ -3,10 +3,10 @@
 }
 
 .loader {
-  @apply inline-block relative box-border w-[24px] h-[24px] border-[5px] border-white rounded-full;
+  @apply block relative box-border w-[20px] h-[20px] border-[4px] border-white rounded-full;
 
   &--chat {
-    @apply w-[48px] h-[48px] bg-blue bg-opacity-20;
+    @apply inline-block w-[48px] h-[48px] bg-blue bg-opacity-20;
     animation: pulse 1s linear infinite;
 
     &:after {

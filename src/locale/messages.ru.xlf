@@ -146,6 +146,18 @@
         <source> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <target state="new"> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
       </trans-unit>
+      <trans-unit id="user_exists" datatype="html">
+        <source>User with given email already exists</source>
+        <target state="new">User with given email already exists</target>
+      </trans-unit>
+      <trans-unit id="invalid_credentials" datatype="html">
+        <source>Invalid username or password</source>
+        <target state="new">Invalid username or password</target>
+      </trans-unit>
+      <trans-unit id="unknown_error" datatype="html">
+        <source>Unknown error</source>
+        <target state="new">Unknown error</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

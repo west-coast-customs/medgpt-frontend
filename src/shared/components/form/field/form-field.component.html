@@ -4,8 +4,7 @@
 </div>
 
 @if (inputModel()?.errors && inputModel()?.touched) {
-  <div @fadeInOutHeight class="form-field__error">
-    <img class="h-fit" ngSrc="icons/alert-triangle.svg" height="18" width="18" alt="alert-triangle">
+  <app-form-error class="form-field__error" @fadeInOutHeight>
     @if (inputModel()?.hasError('required')) {
       <p i18n="@@field_required">This field is required</p>
     }
@@ -20,5 +19,5 @@
     @if (inputModel()?.hasError('passwordMatch')) {
       <p i18n="@@passwords_do_not_match">Passwords do not match</p>
     }
-  </div>
+  </app-form-error>
 }

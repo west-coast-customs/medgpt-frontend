@@ -1,5 +1,5 @@
 :host {
-  @apply w-full;
+  @apply w-full flex flex-col;
 }
 
 .form-field {
@@ -26,6 +26,6 @@
   }
 
   &__error {
-    @apply flex items-center font-medium text-[14px] gap-[8px] mt-[6px] text-start text-red;
+    @apply mt-[6px];
   }
 }

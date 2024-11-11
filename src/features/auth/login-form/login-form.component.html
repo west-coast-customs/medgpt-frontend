@@ -1,20 +1,25 @@
 <form (ngSubmit)="onFormSubmit(loginForm)" #loginForm="ngForm" class="login-form">
   <app-form-field>
-    <app-input required
-               email
-               [(ngModel)]="formValue.email"
-               name="email" type="email"
-               placeholder="Enter your email"
-               i18n-placeholder="@@enter_email"/>
+    <app-form-input required
+                    email
+                    [(ngModel)]="formValue.email"
+                    name="email" type="email"
+                    placeholder="Enter your email"
+                    i18n-placeholder="@@enter_email"/>
   </app-form-field>
   <app-form-field>
-    <app-input required
-               [(ngModel)]="formValue.password"
-               name="password" type="password"
-               autocomplete="password"
-               placeholder="Enter your password"
-               i18n-placeholder="@@enter_password"/>
+    <app-form-input required
+                    [(ngModel)]="formValue.password"
+                    name="password" type="password"
+                    autocomplete="password"
+                    placeholder="Enter your password"
+                    i18n-placeholder="@@enter_password"/>
   </app-form-field>
+  @if (loginError()) {
+    <app-form-error @fadeInOutHeight>
+      <p>{{ loginError() }}</p>
+    </app-form-error>
+  }
   <p class="login-form__hint" i18n="@@forgot_your_password">
     <a [routerLink]="['../', 'signup']" class="text-blue">Forgot your password?</a>
   </p>

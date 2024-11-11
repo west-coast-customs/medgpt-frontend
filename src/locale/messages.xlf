@@ -110,6 +110,15 @@
       <trans-unit id="dont_have_an_account" datatype="html">
         <source> Don&apos;t have an account? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
       </trans-unit>
+      <trans-unit id="invalid_credentials" datatype="html">
+        <source>Invalid username or password</source>
+      </trans-unit>
+      <trans-unit id="unknown_error" datatype="html">
+        <source>Unknown error</source>
+      </trans-unit>
+      <trans-unit id="user_exists" datatype="html">
+        <source>User with given email already exists</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

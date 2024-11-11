@@ -1,13 +1,24 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, signal, WritableSignal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  Signal,
+  signal,
+  viewChild,
+  WritableSignal
+} from '@angular/core';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
-import { InputComponent } from "../../../shared/components/input/input.component";
+import { FormInputComponent } from "../../../shared/components/form/input/form-input.component";
 import { FormsModule, NgForm } from '@angular/forms';
 import { PasswordMatchValidatorDirective } from '../../../shared/validators/password-match-validator.directive';
-import { FormFieldComponent } from '../../../shared/components/form-field/form-field.component';
+import { FormFieldComponent } from '../../../shared/components/form/field/form-field.component';
 import { AuthService } from '../../../shared/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { catchError, EMPTY, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormErrorComponent } from '../../../shared/components/form/error/form-error.component';
+import { fadeInOutHeight } from '../../../shared/animations';
 
 export interface SignupFormValue {
   email: string;
@@ -20,16 +31,18 @@ export interface SignupFormValue {
   standalone: true,
   imports: [
     ButtonComponent,
-    InputComponent,
+    FormInputComponent,
     FormsModule,
     PasswordMatchValidatorDirective,
-    FormFieldComponent
+    FormFieldComponent,
+    FormErrorComponent
   ],
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.scss',
+  animations: [fadeInOutHeight(250)],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignupFormComponent {
+export class SignupFormComponent implements AfterViewInit {
   formValue: SignupFormValue = {
     email: '',
     password: '',
@@ -37,12 +50,22 @@ export class SignupFormComponent {
   }
 
   signupLoading: WritableSignal<boolean> = signal(false)
+  signupError: WritableSignal<string> = signal('')
+
+  form: Signal<NgForm> = viewChild.required(NgForm)
 
   constructor(
     private authService: AuthService,
     private destroyRef: DestroyRef,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.form().form.valueChanges
+      ?.pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.signupError.set(''))
+  }
 
   onFormSubmit(form: NgForm): void {
     if (form.invalid) return;
@@ -57,10 +80,14 @@ export class SignupFormComponent {
           next: () => this.signupLoading.set(false),
           error: () => this.signupLoading.set(false)
         }),
+        catchError((error: string) => {
+          this.signupError.set(error)
+          return EMPTY
+        }),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
-        void this.router.navigate(['../', 'login'], { relativeTo: this.activatedRoute})
+        void this.router.navigate(['../', 'login'], { relativeTo: this.activatedRoute })
       })
   }
 }

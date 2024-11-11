@@ -15,20 +15,20 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { fadeInOutHeight } from '../../animations';
-import { PasswordMatchValidatorDirective } from '../../validators/password-match-validator.directive';
+import { fadeInOutHeight } from '../../../animations';
+import { PasswordMatchValidatorDirective } from '../../../validators/password-match-validator.directive';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-form-input',
   standalone: true,
   imports: [FormsModule, NgClass, NgOptimizedImage, PasswordMatchValidatorDirective],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
+  templateUrl: './form-input.component.html',
+  styleUrl: './form-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInOutHeight(250)],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true }],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: FormInputComponent, multi: true }],
 })
-export class InputComponent implements ControlValueAccessor {
+export class FormInputComponent implements ControlValueAccessor {
   placeholder: InputSignal<string> = input<string>('')
   autocomplete: InputSignal<string> = input<string>('')
   type: InputSignal<"text" | "email" | "password"> = input<'text' | 'email' | 'password'>('text')
