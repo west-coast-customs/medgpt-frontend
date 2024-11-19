@@ -7,6 +7,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { fadeOnEnter, slideInOut } from '../../shared/animations';
 import { MediaService } from '../../shared/services/media.service';
 import { NgOptimizedImage } from '@angular/common';
+import { ChatService } from '../../shared/services/chat.service';
+import { ChatsService } from '../../shared/services/chats.service';
 
 @Component({
   selector: 'app-chats',
@@ -15,7 +17,8 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './chats.component.scss',
   imports: [RouterOutlet, CreateChatComponent, ChatNavigationComponent, ChatListComponent, NgOptimizedImage],
   animations: [fadeOnEnter(1000), slideInOut(250)],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ChatService, ChatsService],
 })
 export default class ChatsComponent {
   mobileView: Signal<boolean | undefined> = toSignal(inject(MediaService).mobileViewObs)

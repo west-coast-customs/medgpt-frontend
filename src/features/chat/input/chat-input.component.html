@@ -1,13 +1,13 @@
 <img class="chat-input__attachment" priority ngSrc="icons/paperclip.svg" width="28" height="28" alt="paperclip">
 
 <app-form-field customClass="input--rounded input--slim">
-  <app-input i18n-placeholder="@@input_placeholder"
+  <app-form-input i18n-placeholder="@@input_placeholder"
              placeholder="Message MedGPT"
              [(ngModel)]="inputText"
              [ngModelOptions]="{ standalone: true }"
              [disabled]="inputDisabled()"
              (keyup.enter)="onInput()">
-  </app-input>
+  </app-form-input>
   <button class="chat-input__button"
           [disabled]="inputButtonDisabled()"
           (click)="onInput()">

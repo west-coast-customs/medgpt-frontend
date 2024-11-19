@@ -3,7 +3,7 @@
 }
 
 .button {
-  @apply font-bold bg-blue text-white rounded-[12px] w-full py-[20px];
+  @apply text-[18px] leading-[20px] font-bold bg-blue text-white rounded-[12px] w-full py-[20px];
   transition: background-color 250ms ease-in-out;
 
   &__content {

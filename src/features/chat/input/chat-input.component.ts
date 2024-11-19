@@ -11,16 +11,16 @@ import {
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputComponent } from '../../../shared/components/input/input.component';
+import { FormInputComponent } from '../../../shared/components/form/input/form-input.component';
 import { ChatService } from '../../../shared/services/chat.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { FormFieldComponent } from "../../../shared/components/form-field/form-field.component";
+import { FormFieldComponent } from "../../../shared/components/form/field/form-field.component";
 
 @Component({
   selector: 'app-chat-input',
   standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule, InputComponent, FormsModule, FormFieldComponent],
+  imports: [NgOptimizedImage, ReactiveFormsModule, FormInputComponent, FormsModule, FormFieldComponent],
   templateUrl: './chat-input.component.html',
   styleUrl: './chat-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -36,7 +36,7 @@ export class ChatInputComponent {
   inputDisabled = computed(() => this.disabled() || this.waitingBotResponse())
   inputButtonDisabled = computed(() => this.inputDisabled() || this.inputTextEmpty())
 
-  private input = viewChild<InputComponent>(InputComponent)
+  private input = viewChild<FormInputComponent>(FormInputComponent)
 
   constructor(private chatService: ChatService,
               private activatedRoute: ActivatedRoute) {
