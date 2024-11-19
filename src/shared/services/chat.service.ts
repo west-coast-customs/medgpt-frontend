@@ -44,6 +44,8 @@ export class ChatService {
           if (chat.messages) {
             this.activeChatOldMessages.set(chat.messages)
           }
+        } else {
+          void this.router.navigate(['chats'])
         }
       })
   }

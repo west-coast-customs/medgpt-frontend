@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
-import { catchError, EMPTY } from 'rxjs';
+import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 
@@ -13,7 +13,7 @@ export const chatsInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, n
           if (error.status === 401) {
             void router.navigateByUrl('/')
           }
-          return EMPTY
+          return next(req)
         })
       )
   }
