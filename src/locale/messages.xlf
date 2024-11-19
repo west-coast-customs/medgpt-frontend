@@ -119,6 +119,9 @@
       <trans-unit id="user_exists" datatype="html">
         <source>User with given email already exists</source>
       </trans-unit>
+      <trans-unit id="chat_error" datatype="html">
+        <source>Some error has occurred during the request, please try again later.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

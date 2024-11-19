@@ -1,6 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { MessageAuthors } from './chat.service';
 
 export interface Chat {
@@ -26,8 +26,9 @@ export class ChatsService {
       .pipe(tap((chats: Chat[]) => this.chats.set(chats)))
   }
 
-  create(name: string): Observable<Chat> {
-    return this.httpService.post<Chat>('/api/chat/', { name })
+  create(): Observable<Chat> {
+    return this.httpService.post<Chat>('/api/chat/', { name: `Chat #${ this.chats().length + 1 }` })
+      .pipe(switchMap((chat: Chat) => this.loadAll().pipe(map(() => chat))))
   }
 
   get(id: string): Observable<Chat | null> {

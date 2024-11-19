@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { chatResolver } from '../chat/chat.resolver';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
       {
         path: ':id',
         loadComponent: () => import('../chat/chat.component'),
+        resolve: { chat: chatResolver }
       }
     ]
   },
