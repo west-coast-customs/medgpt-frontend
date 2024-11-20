@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ChatsService } from '../shared/services/chats.service';
+import { chatsResolver } from '../pages/chats/chats.resolver';
 
 export const routes: Routes = [
   {
@@ -15,6 +17,8 @@ export const routes: Routes = [
     path: 'chats',
     loadComponent: () => import('../pages/chats/chats.component'),
     loadChildren: () => import('../pages/chats/chats.routes'),
+    resolve: { chats: chatsResolver },
+    providers: [ChatsService],
   },
   {
     path: '**',

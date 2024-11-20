@@ -1,14 +1,20 @@
 import { computed, DestroyRef, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { WebSocketSubject, WebSocketSubjectConfig } from 'rxjs/webSocket';
-import { distinctUntilChanged, filter, map, startWith, switchMap, tap } from 'rxjs';
-import { NavigationEnd, Router } from '@angular/router';
-import { Chat, ChatMessage, ChatsService } from './chats.service';
+import { catchError, map, of } from 'rxjs';
+import { Chat, ChatMessage } from './chats.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export enum MessageAuthors {
   USER = 'user',
-  AGENT = 'agent'
+  AGENT = 'agent',
+  ERROR = 'error'
+}
+
+const ERROR_MESSAGE: ChatMessage = {
+  content: $localize`:@@chat_error:Some error has occurred during the request, please try again later.`,
+  role: MessageAuthors.ERROR,
+  references: []
 }
 
 @Injectable()
@@ -22,32 +28,18 @@ export class ChatService {
   activeChatMessages: Signal<ChatMessage[]> = computed<ChatMessage[]>(() => [...this.activeChatOldMessages(), ...this.activeChatNewMessages()])
 
   gotNewMessage: Signal<boolean> = computed<boolean>(() => !!this.activeChatNewMessages().length)
-  waitingBotResponse: Signal<boolean> = computed(() => this.activeChatMessages().at(-1)?.role === MessageAuthors.USER)
+  waitingBotResponse: Signal<boolean> = computed<boolean>(() => this.activeChatMessages().at(-1)?.role === MessageAuthors.USER)
 
-  constructor(private router: Router,
-              private chatsService: ChatsService,
-              private destroyRef: DestroyRef) {
-    this.router.events
-      .pipe(
-        filter((event: unknown) => event instanceof NavigationEnd),
-        startWith({ urlAfterRedirects: window.location.href }),
-        map(({ urlAfterRedirects }) => urlAfterRedirects.split('/').pop() as string),
-        tap(() => this.disconnect()),
-        filter((chatId: string) => !!chatId && chatId !== 'chats'),
-        switchMap((chatId: string) => this.chatsService.get(chatId)),
-        takeUntilDestroyed()
-      )
-      .subscribe((chat: Chat | null) => {
-        if (chat) {
-          this.connect(chat.id)
+  constructor(private destroyRef: DestroyRef) {}
 
-          if (chat.messages) {
-            this.activeChatOldMessages.set(chat.messages)
-          }
-        } else {
-          void this.router.navigate(['chats'])
-        }
-      })
+  initChat(chat: Chat): void {
+    this.disconnect()
+
+    this.connect(chat.id)
+
+    if (chat.messages) {
+      this.activeChatOldMessages.set(chat.messages)
+    }
   }
 
   #config: WebSocketSubjectConfig<string> = {
@@ -104,6 +96,10 @@ export class ChatService {
     this.#activeChatWebsocket$
       .pipe(
         map((message: string) => JSON.parse(message)),
+        catchError(() => {
+          this.connect(this.activeChatId())
+          return of(ERROR_MESSAGE)
+        }),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((message: ChatMessage) => {

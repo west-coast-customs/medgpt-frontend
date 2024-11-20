@@ -25,13 +25,8 @@ export class CreateChatComponent {
   }
 
   onNewChatClick(): void {
-    this.chatsService.create(`Chat #${ this.chatsService.chats().length + 1 }`)
-      .pipe(
-        switchMap((chat: Chat) =>
-          this.chatsService.loadAll().pipe(map(() => chat))
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
+    this.chatsService.create()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((chat: Chat) => {
         void this.router.navigate([chat.id], { relativeTo: this.activatedRoute })
       })

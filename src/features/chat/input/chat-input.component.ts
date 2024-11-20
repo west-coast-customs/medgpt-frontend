@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   effect,
   input,
   model,
   ModelSignal,
+  OnInit,
   Signal,
   viewChild
 } from '@angular/core';
@@ -14,8 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormInputComponent } from '../../../shared/components/form/input/form-input.component';
 import { ChatService } from '../../../shared/services/chat.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from "../../../shared/components/form/field/form-field.component";
+import { Chat, ChatsService } from '../../../shared/services/chats.service';
 
 @Component({
   selector: 'app-chat-input',
@@ -25,7 +28,7 @@ import { FormFieldComponent } from "../../../shared/components/form/field/form-f
   styleUrl: './chat-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChatInputComponent {
+export class ChatInputComponent implements OnInit {
   disabled = input<boolean>(false)
 
   waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
@@ -39,6 +42,9 @@ export class ChatInputComponent {
   private input = viewChild<FormInputComponent>(FormInputComponent)
 
   constructor(private chatService: ChatService,
+              private chatsService: ChatsService,
+              private router: Router,
+              private destroyRef: DestroyRef,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params
       .pipe(takeUntilDestroyed())
@@ -51,8 +57,31 @@ export class ChatInputComponent {
     });
   }
 
+  ngOnInit(): void {
+    const initialMessage: string = this.router.lastSuccessfulNavigation?.extras.state?.['message']
+    if (initialMessage) {
+      this.chatService.send(initialMessage)
+      void this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        replaceUrl: true,
+        onSameUrlNavigation: 'reload'
+      })
+    }
+  }
+
   onInput(): void {
-    this.chatService.send(this.inputText())
-    this.inputText.set('')
+    if (!this.chatService.activeChatId()) {
+      this.chatsService.create()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((chat: Chat) => {
+          void this.router.navigate([chat.id], {
+            relativeTo: this.activatedRoute,
+            state: { message: this.inputText() }
+          })
+        })
+    } else {
+      this.chatService.send(this.inputText())
+      this.inputText.set('')
+    }
   }
 }

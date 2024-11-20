@@ -3,11 +3,12 @@ import { ChatService, MessageAuthors } from '../../../shared/services/chat.servi
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { ChatMessage } from '../../../shared/services/chats.service';
 import { fadeInUpOnEnter, fadeOnEnter } from '../../../shared/animations';
+import { TrimPipe } from '../../../shared/pipes/trim.pipe';
 
 @Component({
   selector: 'app-chat-window',
   standalone: true,
-  imports: [LoaderComponent],
+  imports: [LoaderComponent, TrimPipe],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -2,8 +2,9 @@
   @for (message of activeChatMessages(); track $index) {
     <p @fadeInUpOnEnter [@.disabled]="!$last || !gotNewMessage()" class="chat__message"
        [class.chat__message--user]="message.role === MessageAuthors.USER"
-       [class.chat__message--bot]="message.role === MessageAuthors.AGENT">
-      {{ message.content }}
+       [class.chat__message--bot]="message.role === MessageAuthors.AGENT"
+       [class.chat__message--error]="message.role === MessageAuthors.ERROR"
+       [innerHTML]="message.content | trim">
     </p>
   }
   @if (waitingBotResponse()) {

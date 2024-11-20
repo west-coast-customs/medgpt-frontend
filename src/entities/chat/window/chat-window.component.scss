@@ -4,7 +4,7 @@
   }
 
   &__message {
-    @apply px-[12px] py-[10px] rounded-[20px] w-fit max-w-[85%] leading-[20px] text-left;
+    @apply px-[12px] py-[10px] rounded-[20px] w-fit max-w-[85%] leading-[20px] text-left whitespace-pre-line;
 
     &--user {
       @apply bg-mid-grey self-end;
@@ -12,6 +12,10 @@
 
     &--bot {
       @apply bg-blue bg-opacity-20;
+    }
+
+    &--error {
+      @apply bg-red bg-opacity-20;
     }
   }
 }
