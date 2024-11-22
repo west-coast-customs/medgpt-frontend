@@ -1,0 +1,28 @@
+<h1 class="auth__title">
+  @if (loginFlow()) {
+    <ng-container i18n="@@login_title">Log in to your account</ng-container>
+  } @else {
+    <ng-container i18n="@@signup_title">Create account</ng-container>
+  }
+</h1>
+<app-auth-form class="auth__form"/>
+<p class="auth__hint">
+  @if (loginFlow()) {
+    <ng-container i18n="@@dont_have_an_account">
+      Don't have an account? <a [routerLink]="['../', 'signup']" class="text-blue">Register</a>
+    </ng-container>
+  } @else {
+    <ng-container i18n="@@already_have_an_account">
+      Already have an account? <a [routerLink]="['../', 'login']" class="text-blue">Log in</a>
+    </ng-container>
+  }
+</p>
+<p class="auth__delimiter" i18n="@@or">OR</p>
+<app-button (click)="onGoogleButtonClick()" customClass="button--grey button--medium">
+  <img ngSrc="icons/google-logo.svg" width="24" height="24" alt="google-logo">
+  @if (loginFlow()) {
+    <span i18n="@@continue_with_google">Continue with Google</span>
+  } @else {
+    <span i18n="@@sign_up_with_google">Sign up with Google</span>
+  }
+</app-button>

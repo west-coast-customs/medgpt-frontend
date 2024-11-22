@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, output, OutputEmitterRef } from '@angular/core';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { NgOptimizedImage } from '@angular/common';
-import { Chat, ChatsService } from '../../../shared/services/chats.service';
+import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, switchMap } from 'rxjs';

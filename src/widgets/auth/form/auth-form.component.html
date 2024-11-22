@@ -1,0 +1,46 @@
+<form (ngSubmit)="onFormSubmit(loginForm)" #loginForm="ngForm" class="form">
+  <app-form-field>
+    <app-form-input required
+                    email
+                    [(ngModel)]="formValue.email"
+                    name="email" type="email"
+                    placeholder="Enter your email"
+                    i18n-placeholder="@@enter_email"/>
+  </app-form-field>
+  <app-form-field>
+    <app-form-input required
+                    [(ngModel)]="formValue.password"
+                    (ngModelChange)="onPasswordModelChange()"
+                    minlength="6"
+                    name="password" type="password"
+                    autocomplete="password"
+                    placeholder="Enter your password"
+                    i18n-placeholder="@@enter_password"/>
+  </app-form-field>
+  @if (!loginFlow()) {
+    <app-form-field>
+      <app-form-input #passwordMatch="ngModel" appPasswordMatchValidator
+                      [(ngModel)]="formValue.passwordConfirm"
+                      name="passwordConfirm" type="password"
+                      placeholder="Confirm your password"
+                      i18n-placeholder="@@confirm_password"/>
+    </app-form-field>
+  }
+  @if (authError()) {
+    <app-form-error @fadeInOutHeight>
+      <p>{{ authError() }}</p>
+    </app-form-error>
+  }
+  @if (loginFlow()) {
+    <p class="form__hint">
+      <a [routerLink]="['../', 'signup']" class="text-blue" i18n="@@forgot_your_password">Forgot your password?</a>
+    </p>
+  }
+  <app-button [loading]="authLoading()" [disabled]="!!loginForm.invalid">
+    @if (loginFlow()) {
+      <ng-container i18n="@@log_in">Log in</ng-container>
+    } @else {
+      <ng-container i18n="@@sign_up">Sign up</ng-container>
+    }
+  </app-button>
+</form>

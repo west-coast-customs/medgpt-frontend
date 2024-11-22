@@ -1,0 +1,13 @@
+.chat-item {
+  &__name {
+    @apply overflow-hidden text-ellipsis max-w-[138px] whitespace-nowrap;
+  }
+
+  &__input {
+    @apply bg-grey bg-opacity-0 w-full outline-0 max-w-[190px];
+  }
+
+  &__actions {
+    @apply flex ml-auto cursor-pointer;
+  }
+}

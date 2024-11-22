@@ -1,0 +1,13 @@
+<div @fadeOnEnter class="page page--spaced">
+  <app-header/>
+  <main [@fadeOnTrigger]="navigationEnd()" class="page__content auth__content">
+    <router-outlet/>
+  </main>
+  <footer class="auth__footer">
+    <p>
+      When you "Sign up" or “Log in”, you agree to <a class="auth__link" href="">Terms of Service</a>. We will manage
+      information about you as described in our <a class="auth__link" href="">Privacy Policy</a>, and
+      <a class="auth__link" href="">Cookie Policy</a>.
+    </p>
+  </footer>
+</div>
