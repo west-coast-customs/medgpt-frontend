@@ -1,0 +1,20 @@
+:host {
+  @apply flex flex-col h-full;
+}
+
+.window {
+  @apply flex flex-col-reverse h-full mb-[20px] overflow-auto;
+}
+
+.placeholder {
+  @apply my-auto;
+
+  &__heading {
+    @apply mb-[62px];
+    @apply desktop:mb-[16px];
+  }
+
+  &__title {
+    @apply text-[36px] mb-[24px] font-bold leading-[44px];
+  }
+}

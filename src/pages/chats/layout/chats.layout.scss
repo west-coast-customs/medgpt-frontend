@@ -1,0 +1,34 @@
+.chats {
+  &__aside {
+    @apply absolute flex bg-white flex-col h-full p-[20px] border-r border-r-border-grey z-[1];
+    @apply desktop:relative;
+  }
+
+  &__create {
+    @apply mb-[16px];
+  }
+
+  &__list {
+    @apply flex flex-col gap-[4px] overflow-auto mb-auto;
+  }
+
+  &__navigation {
+    &:before {
+      content: '';
+      @apply block mb-[20%] mx-[-20px] border-t border-t-border-grey;
+    }
+  }
+
+  &__content {
+    @apply py-[20px] px-[12px];
+  }
+
+  &__menu {
+    @apply absolute cursor-pointer left-[12px];
+    transition: left 250ms ease;
+
+    &--opened {
+      @apply left-[300px];
+    }
+  }
+}

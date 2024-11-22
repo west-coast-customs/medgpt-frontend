@@ -14,11 +14,11 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormInputComponent } from '../../../shared/components/form/input/form-input.component';
-import { ChatService } from '../../../shared/services/chat.service';
+import { ActiveChatService } from '../../../entities/chat/api/active-chat.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from "../../../shared/components/form/field/form-field.component";
-import { Chat, ChatsService } from '../../../shared/services/chats.service';
+import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
 
 @Component({
   selector: 'app-chat-input',
@@ -31,7 +31,7 @@ import { Chat, ChatsService } from '../../../shared/services/chats.service';
 export class ChatInputComponent implements OnInit {
   disabled = input<boolean>(false)
 
-  waitingBotResponse: Signal<boolean> = this.chatService.waitingBotResponse
+  waitingBotResponse: Signal<boolean> = this.activeChatService.waitingBotResponse
 
   inputText: ModelSignal<string> = model<string>('')
   inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
@@ -41,7 +41,7 @@ export class ChatInputComponent implements OnInit {
 
   private input = viewChild<FormInputComponent>(FormInputComponent)
 
-  constructor(private chatService: ChatService,
+  constructor(private activeChatService: ActiveChatService,
               private chatsService: ChatsService,
               private router: Router,
               private destroyRef: DestroyRef,
@@ -59,8 +59,9 @@ export class ChatInputComponent implements OnInit {
 
   ngOnInit(): void {
     const initialMessage: string = this.router.lastSuccessfulNavigation?.extras.state?.['message']
+
     if (initialMessage) {
-      this.chatService.send(initialMessage)
+      this.activeChatService.send(initialMessage)
       void this.router.navigate([], {
         relativeTo: this.activatedRoute,
         replaceUrl: true,
@@ -70,7 +71,7 @@ export class ChatInputComponent implements OnInit {
   }
 
   onInput(): void {
-    if (!this.chatService.activeChatId()) {
+    if (!this.activeChatService.activeChatId()) {
       this.chatsService.create()
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((chat: Chat) => {
@@ -80,7 +81,7 @@ export class ChatInputComponent implements OnInit {
           })
         })
     } else {
-      this.chatService.send(this.inputText())
+      this.activeChatService.send(this.inputText())
       this.inputText.set('')
     }
   }

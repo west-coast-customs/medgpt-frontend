@@ -1,9 +1,0 @@
-:host {
-  @apply flex flex-col h-full;
-}
-
-.chat {
-  &__window {
-    @apply flex flex-col-reverse h-full mb-[20px] overflow-auto;
-  }
-}

@@ -15,8 +15,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { fadeInOutHeight } from '../../../animations';
-import { PasswordMatchValidatorDirective } from '../../../validators/password-match-validator.directive';
+import { fadeInOutHeight } from '../../../utils/animations';
+import { PasswordMatchValidatorDirective } from '../validators/password-match-validator.directive';
 
 @Component({
   selector: 'app-form-input',

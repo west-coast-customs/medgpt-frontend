@@ -1,8 +1,0 @@
-<app-button (click)="onGoogleButtonClick()" customClass="button--grey button--medium">
-  <img ngSrc="icons/google-logo.svg" width="24" height="24" alt="google-logo">
-  @if (activatedRoute === 'login') {
-    <span i18n="@@continue_with_google">Continue with Google</span>
-  } @else {
-    <span i18n="@@sign_up_with_google">Sign up with Google</span>
-  }
-</app-button>

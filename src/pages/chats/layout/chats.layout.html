@@ -1,0 +1,23 @@
+<div @fadeOnEnter class="page page--inlined">
+  @if (!mobileView() || sidebarVisible()) {
+    <aside @slideInOut class="chats__aside">
+      <app-create-chat class="chats__create"/>
+      <div class="chats__list">
+        @for (chat of chats(); track chat.id) {
+          <app-chat-item [chat]="chat"/>
+        }
+      </div>
+      <app-chat-navigation class="chats__navigation"/>
+    </aside>
+  }
+
+  <main [@fadeOnTrigger]="navigationEnd()" class="page__content chats__content">
+    @if (mobileView()) {
+      <img class="chats__menu"
+           [class.chats__menu--opened]="sidebarVisible()"
+           (click)="toggleSidebarVisible()"
+           ngSrc="icons/menu.svg" height="24" width="24" alt="menu">
+    }
+    <router-outlet/>
+  </main>
+</div>

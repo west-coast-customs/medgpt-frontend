@@ -11,11 +11,11 @@ import {
 } from '@angular/core';
 import { FormsModule, NgControl } from '@angular/forms';
 import { NgClass, NgOptimizedImage } from '@angular/common';
-import { PasswordMatchValidatorDirective } from '../../../validators/password-match-validator.directive';
+import { PasswordMatchValidatorDirective } from '../validators/password-match-validator.directive';
 import { FormInputComponent } from '../input/form-input.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormErrorComponent } from '../error/form-error.component';
-import { fadeInOutHeight } from '../../../animations';
+import { fadeInOutHeight } from '../../../utils/animations';
 
 @Component({
   selector: 'app-form-field',

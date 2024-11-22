@@ -1,0 +1,19 @@
+@if (placeholderPage()) {
+  @defer (when placeholderPage()) {
+    <div class="placeholder">
+      <div class="placeholder__heading">
+        <h1 class="placeholder__title">
+          <span>Med<span class="text-blue">GPT</span></span>
+        </h1>
+      </div>
+
+      <app-description-cards/>
+    </div>
+  }
+} @else {
+  <div class="window">
+    <app-chat-window/>
+  </div>
+}
+
+<app-chat-input/>

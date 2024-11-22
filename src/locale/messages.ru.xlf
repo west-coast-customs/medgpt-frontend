@@ -110,10 +110,6 @@
         <source>Sign up</source>
         <target state="new">Sign up</target>
       </trans-unit>
-      <trans-unit id="or" datatype="html">
-        <source>OR</source>
-        <target state="new">OR</target>
-      </trans-unit>
       <trans-unit id="sign_up_with_google" datatype="html">
         <source>Sign up with Google</source>
         <target state="new">Sign up with Google</target>
@@ -123,8 +119,8 @@
         <target state="new">Next</target>
       </trans-unit>
       <trans-unit id="forgot_your_password" datatype="html">
-        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Forgot your password?<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <target state="new"><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Forgot your password?<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <source>Forgot your password?</source>
+        <target state="new">Forgot your password?</target>
       </trans-unit>
       <trans-unit id="field_required" datatype="html">
         <source>This field is required</source>
@@ -161,6 +157,14 @@
       <trans-unit id="chat_error" datatype="html">
         <source>Some error has occurred during the request, please try again later.</source>
         <target state="new">Some error has occurred during the request, please try again later.</target>
+      </trans-unit>
+      <trans-unit id="new_chat" datatype="html">
+        <source>New chat</source>
+        <target state="new">New chat</target>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>OR</source>
+        <target state="new">OR</target>
       </trans-unit>
     </body>
   </file>

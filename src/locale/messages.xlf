@@ -80,9 +80,6 @@
       <trans-unit id="next" datatype="html">
         <source>Next</source>
       </trans-unit>
-      <trans-unit id="or" datatype="html">
-        <source>OR</source>
-      </trans-unit>
       <trans-unit id="sign_up" datatype="html">
         <source>Sign up</source>
       </trans-unit>
@@ -99,7 +96,7 @@
         <source>This field is required</source>
       </trans-unit>
       <trans-unit id="forgot_your_password" datatype="html">
-        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;../&apos;, &apos;signup&apos;]&quot; class=&quot;text-blue&quot;&gt;"/>Forgot your password?<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <source>Forgot your password?</source>
       </trans-unit>
       <trans-unit id="password_minlength" datatype="html">
         <source>Password must have at least 6 characters</source>
@@ -121,6 +118,12 @@
       </trans-unit>
       <trans-unit id="chat_error" datatype="html">
         <source>Some error has occurred during the request, please try again later.</source>
+      </trans-unit>
+      <trans-unit id="new_chat" datatype="html">
+        <source>New chat</source>
+      </trans-unit>
+      <trans-unit id="or" datatype="html">
+        <source>OR</source>
       </trans-unit>
     </body>
   </file>

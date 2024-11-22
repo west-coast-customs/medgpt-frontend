@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { distinctUntilChanged, fromEvent, map, Observable, shareReplay, startWith } from 'rxjs';
 
-export enum MEDIA {
+export enum Media {
   DESKTOP = 'DESKTOP',
   MOBILE = 'MOBILE',
 }
 
 @Injectable({ providedIn: 'root' })
 export class MediaService {
-  private mediaObs: Observable<MEDIA> = fromEvent<UIEvent>(window, 'resize')
+  private mediaObs: Observable<Media> = fromEvent<UIEvent>(window, 'resize')
     .pipe(
       map((event: UIEvent) => this.calculateMedia(event.view?.innerWidth ?? window.innerWidth)),
       startWith(this.calculateMedia(window.innerWidth)),
@@ -17,16 +17,16 @@ export class MediaService {
 
   mobileViewObs: Observable<boolean> = this.mediaObs
     .pipe(
-      map((media: MEDIA) => media === MEDIA.MOBILE),
+      map((media: Media) => media === Media.MOBILE),
       distinctUntilChanged(),
       shareReplay({ bufferSize: 1, refCount: true })
     )
 
-  private calculateMedia(innerWidth: number): MEDIA {
+  private calculateMedia(innerWidth: number): Media {
     if (innerWidth > 1024) {
-      return MEDIA.DESKTOP;
+      return Media.DESKTOP;
     } else {
-      return MEDIA.MOBILE;
+      return Media.MOBILE;
     }
   }
 }
