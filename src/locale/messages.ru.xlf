@@ -166,6 +166,18 @@
         <source>OR</source>
         <target state="new">OR</target>
       </trans-unit>
+      <trans-unit id="Login required" datatype="html">
+        <source>Login required</source>
+        <target state="new">Login required</target>
+      </trans-unit>
+      <trans-unit id="success" datatype="html">
+        <source>Success</source>
+        <target state="new">Success</target>
+      </trans-unit>
+      <trans-unit id="error" datatype="html">
+        <source>Error</source>
+        <target state="new">Error</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { catchError, Observable, ObservedValueOf, OperatorFunction, throwError } from 'rxjs';
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import { catchError, Observable, ObservedValueOf, OperatorFunction, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 export interface Credentials {
@@ -36,6 +36,7 @@ const authCatchError: () => OperatorFunction<unknown, ObservedValueOf<Observable
   providedIn: 'root'
 })
 export class AuthService {
+  loggedIn: WritableSignal<boolean> = signal(!!localStorage.getItem('loggedIn'))
 
   constructor(private httpService: HttpClient) {}
 
@@ -46,10 +47,22 @@ export class AuthService {
 
   login(credentials: Credentials): Observable<void | unknown> {
     return this.httpService.post<void>('/api/native-auth/login/', credentials)
-      .pipe(authCatchError())
+      .pipe(
+        tap(() => {
+          localStorage.setItem('loggedIn', String(true))
+          this.loggedIn.set(true)
+        }),
+        authCatchError()
+      )
   }
 
   logout(): Observable<void> {
     return this.httpService.post<void>('/api/common-auth/logout/', null)
+      .pipe(
+        tap(() => {
+          localStorage.removeItem('loggedIn')
+          this.loggedIn.set(false)
+        })
+      )
   }
 }

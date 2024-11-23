@@ -1,6 +1,6 @@
 <div @fadeOnEnter class="page page--inlined">
   @if (!mobileView() || sidebarVisible()) {
-    <aside @slideInOut class="chats__aside">
+    <aside @slideInRightOutLeft class="chats__aside">
       <app-create-chat class="chats__create"/>
       <div class="chats__list">
         @for (chat of chats(); track chat.id) {

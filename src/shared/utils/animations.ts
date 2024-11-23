@@ -1,4 +1,4 @@
-import { animate, animation, keyframes, query, style, transition, trigger } from '@angular/animations';
+import { animate, animation, group, keyframes, query, style, transition, trigger } from '@angular/animations';
 
 export const fadeOnEnter = (time: number) => trigger('fadeOnEnter', [
   transition(':enter', [
@@ -46,7 +46,7 @@ export const fadeInUpOnEnter = (time: number) => trigger('fadeInUpOnEnter', [
   ])
 ])
 
-export const slideInOut = (time: number) => trigger('slideInOut', [
+export const slideInRightOutLeft = (time: number) => trigger('slideInRightOutLeft', [
   transition(':enter', [
     style({ visibility: 'hidden' }),
     animation([
@@ -70,4 +70,46 @@ export const slideInOut = (time: number) => trigger('slideInOut', [
       )
     ])
   ]),
+])
+
+export const bounceInRightOutRight = (time: number) => trigger('bounceInRightOutRight', [
+  transition(':enter', [
+    style({ visibility: 'hidden' }),
+    animation(
+      group([
+        animate(
+          `${ time }ms`,
+          keyframes([
+            style({ transform: 'translate3d(100%, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+            style({ transform: 'translate3d(-25px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6 }),
+            style({ transform: 'translate3d(10px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.75 }),
+            style({ transform: 'translate3d(-5px, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.9 }),
+            style({ transform: 'translate3d(0, 0, 0)', easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1 })
+          ])
+        ),
+        animate(
+          `${ time }ms`,
+          keyframes([
+            style({ visibility: 'visible', opacity: 0, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0 }),
+            style({ opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 0.6 }),
+            style({ opacity: 1, easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)', offset: 1 })
+          ])
+        )
+      ]),
+    )],
+  ),
+  transition(':leave', [
+    animation(
+      group([
+        animate(
+          `${ time }ms`,
+          keyframes([
+            style({ opacity: 1, transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 0 }),
+            style({ opacity: 1, transform: 'translate3d(-20px, 0, 0)', easing: 'ease', offset: 0.2 }),
+            style({ opacity: 0, transform: 'translate3d(100%, 0, 0)', easing: 'ease', offset: 1 })
+          ])
+        )
+      ]),
+    )]
+  ),
 ])

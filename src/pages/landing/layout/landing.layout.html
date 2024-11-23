@@ -1,9 +1,13 @@
 <div class="page page--spaced">
   @if (!mobileView()) {
     <app-header @fadeOnEnter>
-      <app-button [routerLink]="['auth', 'login']" customClass="button--small" i18n="@@login_button_text">
-        Log In
-      </app-button>
+      @if (!loggedIn()) {
+        <app-button [routerLink]="['auth', 'login']" customClass="button--small" i18n="@@login_button_text">
+          Log In
+        </app-button>
+      } @else {
+        <app-logout-button customClass="button--small button--transparent"/>
+      }
     </app-header>
   }
 

@@ -4,7 +4,7 @@ import { CreateChatComponent } from '../../../features/chat/create/create-chat.c
 import { ChatNavigationComponent } from '../../../widgets/chat/navigation/chat-navigation.component';
 import { ChatItemComponent } from '../../../widgets/chat/item/chat-item.component';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { fadeOnEnter, fadeOnTrigger, slideInOut } from '../../../shared/utils/animations';
+import { fadeOnEnter, fadeOnTrigger, slideInRightOutLeft } from '../../../shared/utils/animations';
 import { MediaService } from '../../../shared/services/media.service';
 import { NgOptimizedImage } from '@angular/common';
 import { ActiveChatService } from '../../../entities/chat/api/active-chat.service';
@@ -17,7 +17,7 @@ import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
   templateUrl: './chats.layout.html',
   styleUrl: './chats.layout.scss',
   imports: [RouterOutlet, CreateChatComponent, ChatNavigationComponent, ChatItemComponent, NgOptimizedImage],
-  animations: [fadeOnEnter(1000), fadeOnTrigger(1000), slideInOut(250)],
+  animations: [fadeOnEnter(1000), fadeOnTrigger(1000), slideInRightOutLeft(250)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ActiveChatService],
 })
