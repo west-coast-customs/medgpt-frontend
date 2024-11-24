@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, WritableSignal } from '@angular/core';
 import { Toast, ToastsService, ToastType } from '../../services/toasts.service';
-import { bounceInRightOutRight } from '../../utils/animations';
+import { bounceInLeftOutRight } from '../../utils/animations';
 
 @Component({
   selector: 'app-toasts',
   standalone: true,
   templateUrl: './toasts.component.html',
   styleUrl: './toasts.component.scss',
-  animations: [bounceInRightOutRight(500)],
+  animations: [bounceInLeftOutRight(500)],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToastsComponent {

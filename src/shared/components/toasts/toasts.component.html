@@ -1,5 +1,5 @@
 @for (toast of toasts(); track toast.id) {
-  <div @bounceInRightOutRight class="toast toast--{{ toast.type }}">
+  <div @bounceInLeftOutRight class="toast toast--{{ toast.type }}">
     <span class="toast__title">
       @switch (toast.type) {
         @case (ToastType.SUCCESS) {

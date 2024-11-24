@@ -72,7 +72,7 @@ export const slideInRightOutLeft = (time: number) => trigger('slideInRightOutLef
   ]),
 ])
 
-export const bounceInRightOutRight = (time: number) => trigger('bounceInRightOutRight', [
+export const bounceInLeftOutRight = (time: number) => trigger('bounceInLeftOutRight', [
   transition(':enter', [
     style({ visibility: 'hidden' }),
     animation(
