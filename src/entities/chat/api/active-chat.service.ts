@@ -96,7 +96,8 @@ export class ActiveChatService {
     this.#activeChatWebsocket$
       .pipe(
         map((message: string) => JSON.parse(message)),
-        catchError(() => {
+        catchError((error: unknown) => {
+          console.error(error)
           this.connect(this.activeChatId())
           return of(ERROR_MESSAGE)
         }),

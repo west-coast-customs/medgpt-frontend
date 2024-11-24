@@ -125,6 +125,15 @@
       <trans-unit id="or" datatype="html">
         <source>OR</source>
       </trans-unit>
+      <trans-unit id="error" datatype="html">
+        <source>Error</source>
+      </trans-unit>
+      <trans-unit id="Login required" datatype="html">
+        <source>Login required</source>
+      </trans-unit>
+      <trans-unit id="success" datatype="html">
+        <source>Success</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

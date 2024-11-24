@@ -1,0 +1,48 @@
+:host {
+  @apply fixed top-[10%] right-[20px] flex flex-col gap-[10px] z-[1] min-w-[250px];
+}
+
+.toast {
+  @apply relative flex flex-col items-start gap-[6px] border p-[12px] rounded-[10px];
+
+  &--success {
+    @apply border-green-toast-border bg-green-toast-bg;
+
+    .toast__title {
+      @apply text-green;
+    }
+
+    .toast__icon {
+      @apply bg-green;
+    }
+  }
+
+  &--error {
+    @apply border-red-toast-border bg-red-toast-bg;
+
+    .toast__title {
+      @apply text-red;
+    }
+
+    .toast__icon {
+      @apply bg-red;
+    }
+  }
+
+  &__title {
+    @apply text-[14px] font-bold;
+  }
+
+  &__message {
+    @apply text-[12px];
+  }
+
+  &__icon {
+    @apply absolute right-[12px] top-1/2 -translate-y-1/2 w-[24px] h-[24px] cursor-pointer;
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-image: url('../../../../public/icons/cross.svg')
+  }
+}

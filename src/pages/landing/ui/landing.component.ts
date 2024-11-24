@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal, Signal, W
 import { Observable } from 'rxjs';
 import { MediaService } from '../../../shared/services/media.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { CardComponent } from '../../../shared/components/card/card.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Router } from '@angular/router';
@@ -17,9 +16,7 @@ const STEPS: number = 3
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CardComponent, ButtonComponent, NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent
-  ],
+  imports: [ButtonComponent, NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent],
   animations: [fadeOnEnter(1000)]
 })
 export default class LandingComponent {
@@ -36,7 +33,6 @@ export default class LandingComponent {
   lastStep: Signal<boolean> = computed(() => this.currentStep() === STEPS - 1)
 
   constructor(private router: Router) {
-    console.log(window.location)
     this.mobileViewObs
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.currentStep.set(0))
