@@ -5,7 +5,7 @@
     <ng-container i18n="@@signup_title">Create account</ng-container>
   }
 </h1>
-<app-auth-form class="auth__form"/>
+<app-auth-form [loginFlow]="loginFlow()" class="auth__form"/>
 <p class="auth__hint">
   @if (loginFlow()) {
     <ng-container i18n="@@dont_have_an_account">

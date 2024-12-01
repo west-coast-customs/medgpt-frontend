@@ -7,7 +7,8 @@
   }
 
   &__title {
-    @apply text-[16px] font-semibold mb-[6px];
+    word-break: break-word;
+    @apply text-[16px] leading-[20px] font-semibold mb-[6px];
     @apply desktop:text-[18px];
   }
 

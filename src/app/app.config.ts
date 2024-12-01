@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { chatsInterceptor } from './interceptors/chats.interceptor';
+import { chatsInterceptor } from '../pages/chats/middleware/chats.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

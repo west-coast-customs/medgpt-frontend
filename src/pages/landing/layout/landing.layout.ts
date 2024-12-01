@@ -7,6 +7,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { fadeOnEnter } from '../../../shared/utils/animations';
 import { LogoutButtonComponent } from '../../../features/auth/logout-button/logout-button.component';
 import { AuthService } from '../../../shared/services/auth.service';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'app-landing-layout',
@@ -19,6 +20,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 })
 export default class LandingLayout {
   mobileView: Signal<boolean | undefined> = toSignal(inject(MediaService).mobileViewObs)
+  russianLanguage: Signal<boolean> = inject(LanguageService).russianLanguage
 
   loggedIn: WritableSignal<boolean> = inject(AuthService).loggedIn
 }

@@ -14,14 +14,13 @@ import {
   WritableSignal
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { fadeInOutHeight } from '../../../utils/animations';
-import { PasswordMatchValidatorDirective } from '../validators/password-match-validator.directive';
 
 @Component({
   selector: 'app-form-input',
   standalone: true,
-  imports: [FormsModule, NgClass, NgOptimizedImage, PasswordMatchValidatorDirective],
+  imports: [FormsModule, NgOptimizedImage],
   templateUrl: './form-input.component.html',
   styleUrl: './form-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

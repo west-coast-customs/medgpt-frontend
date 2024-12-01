@@ -14,7 +14,7 @@ body {
 }
 
 .page {
-  @apply flex flex-col h-full;
+  @apply flex flex-col min-h-full;
 
   &--spaced {
     @apply pt-[40px] pb-[60px] px-[22px];
@@ -22,7 +22,7 @@ body {
   }
 
   &--inlined {
-    @apply flex-row;
+    @apply flex-row h-full;
 
     .page__content {
       @apply h-full;
@@ -31,6 +31,14 @@ body {
 
   &__content {
     @apply m-auto w-full max-w-[784px];
+  }
+
+  &__footer {
+    @apply text-[14px] leading-[20px];
+  }
+
+  &__link {
+    @apply cursor-pointer underline underline-offset-2 text-blue font-medium;
   }
 }
 

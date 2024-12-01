@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
-  inject,
+  input,
+  InputSignal,
   Signal,
   signal,
   viewChild,
@@ -11,15 +12,16 @@ import {
 } from '@angular/core';
 import { FormFieldComponent } from '../../../shared/components/form/field/form-field.component';
 import { FormInputComponent } from '../../../shared/components/form/input/form-input.component';
-import { PasswordMatchValidatorDirective } from '../../../shared/components/form/validators/password-match-validator.directive';
+import {
+  PasswordMatchValidatorDirective
+} from '../../../shared/components/form/validators/password-match-validator.directive';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { FormErrorComponent } from '../../../shared/components/form/error/form-error.component';
-import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../../shared/services/auth.service';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
-import { AuthFlow } from '../../../pages/auth/middleware/auth.routes';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, of, switchMap, tap } from 'rxjs';
 import { fadeInOutHeight } from '../../../shared/utils/animations';
 
 interface AuthFormValue {
@@ -46,9 +48,7 @@ interface AuthFormValue {
   animations: [fadeInOutHeight(250)],
 })
 export class AuthFormComponent implements AfterViewInit {
-  loginFlow: Signal<boolean | undefined> = toSignal(
-    inject(ActivatedRoute).data.pipe(map((data: Data) => data?.['flow'] as AuthFlow === AuthFlow.LOGIN))
-  )
+  loginFlow: InputSignal<boolean | undefined> = input<boolean>()
 
   formValue: AuthFormValue = {
     email: '',
@@ -67,8 +67,7 @@ export class AuthFormComponent implements AfterViewInit {
     private destroyRef: DestroyRef,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngAfterViewInit(): void {
     this.form().form.valueChanges
