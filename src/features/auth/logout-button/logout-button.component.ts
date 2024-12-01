@@ -23,7 +23,7 @@ export class LogoutButtonComponent {
               private destroyRef: DestroyRef,
               private router: Router) {}
 
-  onLogoutClick() {
+  onLogoutClick(): void {
     this.authService.logout()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {

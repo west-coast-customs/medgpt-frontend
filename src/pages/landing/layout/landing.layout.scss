@@ -1,0 +1,16 @@
+.header {
+  @apply mb-[20px];
+}
+
+.footer {
+  @apply flex flex-col items-center mt-[20px] bg-light-grey rounded-[20px] px-[12px] py-[16px];
+  @apply desktop:flex-row desktop:max-w-[784px] desktop:mx-auto;
+
+  &__section {
+    @apply flex flex-col basis-1/2 items-center;
+  }
+
+  &__link {
+    @apply w-fit;
+  }
+}

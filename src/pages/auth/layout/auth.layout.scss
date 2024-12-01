@@ -1,13 +1,7 @@
-.auth {
-  &__content {
-    @apply max-w-[386px];
-  }
+.content {
+  @apply max-w-[386px];
+}
 
-  &__footer {
-    @apply max-w-[784px] mx-auto text-[14px] leading-[20px];
-  }
-
-  &__link {
-    @apply underline underline-offset-2 text-blue font-medium;
-  }
+.footer {
+  @apply max-w-[784px] mx-auto;
 }

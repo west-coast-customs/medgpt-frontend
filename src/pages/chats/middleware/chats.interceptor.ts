@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { ToastsService } from '../../shared/services/toasts.service';
+import { ToastsService } from '../../../shared/services/toasts.service';
 
 export const chatsInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const router: Router = inject(Router)

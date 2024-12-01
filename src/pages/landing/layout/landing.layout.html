@@ -1,6 +1,6 @@
 <div class="page page--spaced">
   @if (!mobileView()) {
-    <app-header @fadeOnEnter>
+    <app-header class="header" @fadeOnEnter>
       @if (!loggedIn()) {
         <app-button [routerLink]="['auth', 'login']" customClass="button--small" i18n="@@login_button_text">
           Log In
@@ -14,4 +14,22 @@
   <main @fadeOnEnter class="page__content" [class.h-full]="mobileView()">
     <router-outlet/>
   </main>
+  @defer (when russianLanguage()) {
+    @if (russianLanguage()) {
+      <footer @fadeOnEnter class="page__footer footer">
+        <div class="footer__section">
+          <span>ООО «ПРОМОТОР-ИНВЕСТ»</span>
+          <span>142104, Московская область, г. о. Подольск, г. Подольск, ул. Литейная, д. 17, кв. 48</span>
+          <span>ИНН 5074067591</span>
+          <span>ОГРН 1215000000830</span>
+        </div>
+        <div class="footer__section">
+          <span>Тел.: <a href="tel:+79104362768" class="page__link footer__link">+7 (910) 436-27-68</a></span>
+          <span>E-mail: <a href="mailto:аa@promoter-invest.com" class="page__link footer__link">аa&#64;promoter-invest.com</a></span>
+          <a href="files/privacy-policy.pdf" target="_blank" class="page__link footer__link">Политика в отношении обработки персональных данных</a>
+          <a href="files/offer.pdf" target="_blank" class="page__link footer__link">Публичная оферта</a>
+        </div>
+      </footer>
+    }
+  }
 </div>

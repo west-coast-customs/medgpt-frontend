@@ -10,8 +10,7 @@ import {
   Signal
 } from '@angular/core';
 import { FormsModule, NgControl } from '@angular/forms';
-import { NgClass, NgOptimizedImage } from '@angular/common';
-import { PasswordMatchValidatorDirective } from '../validators/password-match-validator.directive';
+import { NgClass } from '@angular/common';
 import { FormInputComponent } from '../input/form-input.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormErrorComponent } from '../error/form-error.component';
@@ -20,7 +19,7 @@ import { fadeInOutHeight } from '../../../utils/animations';
 @Component({
   selector: 'app-form-field',
   standalone: true,
-  imports: [FormsModule, NgClass, NgOptimizedImage, PasswordMatchValidatorDirective, FormErrorComponent],
+  imports: [FormsModule, NgClass, FormErrorComponent],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +33,7 @@ export class FormFieldComponent implements AfterContentInit {
 
   constructor(protected cdr: ChangeDetectorRef, private destroyRef: DestroyRef) {}
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.inputModel()?.valueChanges
       ?.pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((() => this.cdr.markForCheck()))
