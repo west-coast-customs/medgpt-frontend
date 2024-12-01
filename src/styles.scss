@@ -22,7 +22,7 @@ body {
   }
 
   &--inlined {
-    @apply flex-row;
+    @apply flex-row h-full;
 
     .page__content {
       @apply h-full;
