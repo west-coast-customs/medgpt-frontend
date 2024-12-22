@@ -178,6 +178,22 @@
         <source>Error</source>
         <target state="new">Error</target>
       </trans-unit>
+      <trans-unit id="pricing" datatype="html">
+        <source>Pricing</source>
+        <target state="new">Pricing</target>
+      </trans-unit>
+      <trans-unit id="price_per_month" datatype="html">
+        <source>99$ per month</source>
+        <target state="new">99$ per month</target>
+      </trans-unit>
+      <trans-unit id="full_access" datatype="html">
+        <source>Full access to all functions, including document uploading</source>
+        <target state="new">Full access to all functions, including document uploading</target>
+      </trans-unit>
+      <trans-unit id="price_per_year" datatype="html">
+        <source>990$ per year</source>
+        <target state="new">990$ per year</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

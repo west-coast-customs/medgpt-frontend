@@ -14,10 +14,11 @@ body {
 }
 
 .page {
-  @apply flex flex-col min-h-full;
+  @apply flex flex-col min-h-full h-full;
+  @apply desktop:h-[unset];
 
   &--spaced {
-    @apply pt-[40px] pb-[60px] px-[22px];
+    @apply pt-[40px] pb-[60px] px-[16px];
     @apply desktop:p-[20px];
   }
 

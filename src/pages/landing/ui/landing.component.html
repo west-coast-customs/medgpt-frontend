@@ -7,11 +7,10 @@
         <ng-container *ngTemplateOutlet="mainDescription"/>
 
         <app-description-cards/>
-
-        <ng-container *ngTemplateOutlet="mainSubDescription"/>
       </div>
 
       <div class="main__footing">
+        <ng-container *ngTemplateOutlet="pricingSection"/>
         <app-button (click)="onButtonClick()" customClass="button--big">
           <ng-container [ngTemplateOutlet]="letsChatButton"/>
         </app-button>
@@ -46,7 +45,7 @@
 
         @defer (when lastStep()) {
           @if (lastStep()) {
-            <p @fadeOnEnter class="main__text" i18n="@@last_step_text">
+            <p @fadeOnEnter class="main__text mb-[16px]" i18n="@@last_step_text">
               Join the community of professionals using MedGPT to reach new heights in medicine and biology
             </p>
           }
@@ -60,7 +59,9 @@
 
         @defer (when lastStep()) {
           @if (lastStep()) {
-            <ng-container @fadeOnEnter *ngTemplateOutlet="mainSubDescription"/>
+            <div class="main__pricing">
+              <ng-container *ngTemplateOutlet="pricingSection"/>
+            </div>
           }
         }
       </div>
@@ -99,7 +100,7 @@
 </ng-template>
 
 <ng-template #mainDescription>
-  <p class="main__text" i18n="@@medgpt_description">
+  <p class="main__text mb-[48px]" i18n="@@medgpt_description">
     MedGPT is an AI-powered web application designed to make your work with scientific articles easier. Whether you
     are a scientist, a doctor or a student, MedGPT will help you effectively research, analyze and apply scientific
     information
@@ -115,4 +116,16 @@
 <ng-template #letsChatButton>
   <span i18n="@@lets_chat_button_text">Let’s Chat</span>
   <img ngSrc="icons/arrow-right.svg" width="20" height="20" alt="arrow-right">
+</ng-template>
+
+<ng-template #pricingSection>
+  <app-card>
+    <div class="main__pricing">
+      <h2 class="main__subtitle" i18n="@@pricing">Pricing</h2>
+      <app-pricing-cards/>
+    </div>
+  </app-card>
+  @if (!mobileView()) {
+    <ng-container *ngTemplateOutlet="mainSubDescription"/>
+  }
 </ng-template>

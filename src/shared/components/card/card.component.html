@@ -1,9 +1,14 @@
-<div class="card">
+<div class="card" [ngClass]="customClass()">
   @if (image()) {
     <div class="card__image">
       <img [ngSrc]="'icons/' + image() + '.svg'" [alt]="image()" width="24" height="24">
     </div>
   }
-  <h4 class="card__title">{{ title() }}</h4>
-  <p class="card__text">{{ text() }}</p>
+  @if (title()) {
+    <h4 class="card__title" [ngClass]="titleClass()">{{ title() }}</h4>
+  }
+  @if (text()) {
+    <p class="card__text">{{ text() }}</p>
+  }
+  <ng-content/>
 </div>

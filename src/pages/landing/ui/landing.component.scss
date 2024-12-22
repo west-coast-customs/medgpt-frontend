@@ -1,9 +1,8 @@
 .main {
-  @apply flex overflow-auto flex-col m-auto h-full;
+  @apply flex overflow-auto flex-col m-auto h-full justify-between;
   @apply desktop:justify-center;
 
   &__heading {
-    @apply mb-[62px];
     @apply desktop:mb-[16px];
   }
 
@@ -17,20 +16,17 @@
   }
 
   &__subtitle {
-    @apply text-[18px] font-semibold;
+    @apply text-[18px] text-center font-semibold;
     @apply desktop:text-[24px];
   }
 
   &__text {
-    @apply mb-[48px] text-[18px] font-medium leading-[22px];
+    @apply text-[18px] font-medium leading-[22px];
   }
 
   &__info {
-    @apply grow;
-    @apply desktop:grow-0;
-
     &__title {
-      @apply flex flex-col gap-[12px] items-center mb-[32px] text-[24px] font-bold leading-[30px];
+      @apply flex flex-col gap-[12px] items-center mb-[16px] text-[24px] font-bold leading-[30px];
     }
   }
 
@@ -57,5 +53,17 @@
         @apply bg-blue;
       }
     }
+  }
+
+  &__footing, &__pricing {
+    @apply flex flex-col;
+  }
+
+  &__footing {
+    @apply desktop:gap-[16px];
+  }
+
+  &__pricing {
+    @apply gap-[10px];
   }
 }

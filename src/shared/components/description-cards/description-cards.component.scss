@@ -1,5 +1,6 @@
 :host {
-  @apply flex flex-wrap gap-[12px] mb-[32px];
+  @apply flex flex-wrap gap-[12px] my-[20px];
+  @apply desktop:mb-[12px];
 
   * {
     @apply basis-[calc(50%-6px)];
