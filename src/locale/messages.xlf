@@ -134,6 +134,18 @@
       <trans-unit id="success" datatype="html">
         <source>Success</source>
       </trans-unit>
+      <trans-unit id="full_access" datatype="html">
+        <source>Full access to all functions, including document uploading</source>
+      </trans-unit>
+      <trans-unit id="price_per_month" datatype="html">
+        <source>99$ per month</source>
+      </trans-unit>
+      <trans-unit id="price_per_year" datatype="html">
+        <source>990$ per year</source>
+      </trans-unit>
+      <trans-unit id="pricing" datatype="html">
+        <source>Pricing</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

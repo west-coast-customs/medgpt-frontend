@@ -7,6 +7,8 @@ import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Router } from '@angular/router';
 import { DescriptionCardsComponent } from '../../../shared/components/description-cards/description-cards.component';
 import { fadeOnEnter } from '../../../shared/utils/animations';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { PricingCardsComponent } from '../../../shared/components/pricing-cards/pricing-cards.component';
 
 const STEPS: number = 3
 
@@ -16,7 +18,7 @@ const STEPS: number = 3
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent],
+  imports: [ButtonComponent, NgTemplateOutlet, NgOptimizedImage, DescriptionCardsComponent, CardComponent, PricingCardsComponent],
   animations: [fadeOnEnter(1000)]
 })
 export default class LandingComponent {
