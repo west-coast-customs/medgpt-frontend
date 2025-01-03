@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
-import { chatResolver } from './chat.resolver';
+import { chatResolver } from './chat/chat.resolver';
+import { settingsResolver } from './settings/settings.resolver';
 
 const routes: Routes = [
   {
@@ -7,11 +8,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('../ui/chat.page'),
+        loadComponent: () => import('../ui/chat/chat.page'),
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('../ui/settings/settings.page'),
+        resolve: { settings: settingsResolver }
       },
       {
         path: ':id',
-        loadComponent: () => import('../ui/chat.page'),
+        loadComponent: () => import('../ui/chat/chat.page'),
         resolve: { chat: chatResolver }
       }
     ]

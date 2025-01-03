@@ -1,0 +1,8 @@
+:host {
+  @apply flex gap-[5px] rounded-[12px] leading-[20px] font-bold p-[10px] bg-light-grey;
+  @apply desktop:p-[20px]
+}
+
+.selected {
+  @apply text-blue;
+}

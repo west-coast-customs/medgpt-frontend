@@ -128,7 +128,7 @@
       <trans-unit id="error" datatype="html">
         <source>Error</source>
       </trans-unit>
-      <trans-unit id="Login required" datatype="html">
+      <trans-unit id="login_required" datatype="html">
         <source>Login required</source>
       </trans-unit>
       <trans-unit id="success" datatype="html">
@@ -145,6 +145,66 @@
       </trans-unit>
       <trans-unit id="pricing" datatype="html">
         <source>Pricing</source>
+      </trans-unit>
+      <trans-unit id="email" datatype="html">
+        <source>Email</source>
+      </trans-unit>
+      <trans-unit id="field_maxlength" datatype="html">
+        <source> Maximum <x id="INTERPOLATION" equiv-text="{{ inputModel()?.errors?.[&apos;maxlength&apos;]?.[&apos;requiredLength&apos;] }}"/> characters </source>
+      </trans-unit>
+      <trans-unit id="first_name" datatype="html">
+        <source>First name</source>
+      </trans-unit>
+      <trans-unit id="last_name" datatype="html">
+        <source>Last name</source>
+      </trans-unit>
+      <trans-unit id="login_successful" datatype="html">
+        <source>Login successful</source>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Log out</source>
+      </trans-unit>
+      <trans-unit id="no_numbers_and_special_characters" datatype="html">
+        <source> This field can not contain numbers and special characters </source>
+      </trans-unit>
+      <trans-unit id="personal_data" datatype="html">
+        <source>Personal data</source>
+      </trans-unit>
+      <trans-unit id="personal_data_changed" datatype="html">
+        <source>Personal data changed</source>
+      </trans-unit>
+      <trans-unit id="save" datatype="html">
+        <source>Save</source>
+      </trans-unit>
+      <trans-unit id="second_name" datatype="html">
+        <source>Second name</source>
+      </trans-unit>
+      <trans-unit id="settings" datatype="html">
+        <source>Settings</source>
+      </trans-unit>
+      <trans-unit id="settings_subscription_data" datatype="html">
+        <source>Subscription data</source>
+      </trans-unit>
+      <trans-unit id="signup_successful" datatype="html">
+        <source>Signup successful</source>
+      </trans-unit>
+      <trans-unit id="active_subscription" datatype="html">
+        <source>Active subscription</source>
+      </trans-unit>
+      <trans-unit id="expiration_date" datatype="html">
+        <source>Expiration date:</source>
+      </trans-unit>
+      <trans-unit id="inactive_subscription" datatype="html">
+        <source>Inactive subscription</source>
+      </trans-unit>
+      <trans-unit id="monthly_plan" datatype="html">
+        <source>Monthly plan</source>
+      </trans-unit>
+      <trans-unit id="trial_subscription" datatype="html">
+        <source>Trial subscription</source>
+      </trans-unit>
+      <trans-unit id="yearly_plan" datatype="html">
+        <source>Yearly plan</source>
       </trans-unit>
     </body>
   </file>

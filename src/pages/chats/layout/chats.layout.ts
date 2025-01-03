@@ -10,13 +10,14 @@ import { NgOptimizedImage } from '@angular/common';
 import { ActiveChatService } from '../../../entities/chat/api/active-chat.service';
 import { filter } from 'rxjs';
 import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
+import { HeaderComponent } from "../../../widgets/header/header.component";
 
 @Component({
   selector: 'app-chats',
   standalone: true,
   templateUrl: './chats.layout.html',
   styleUrl: './chats.layout.scss',
-  imports: [RouterOutlet, CreateChatComponent, ChatNavigationComponent, ChatItemComponent, NgOptimizedImage],
+  imports: [RouterOutlet, CreateChatComponent, ChatNavigationComponent, ChatItemComponent, NgOptimizedImage, HeaderComponent],
   animations: [fadeOnEnter(1000), fadeOnTrigger(1000), slideInRightOutLeft(250)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ActiveChatService],

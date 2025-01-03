@@ -8,4 +8,8 @@
       @apply m-auto;
     }
   }
+
+  &__controls {
+    @apply flex items-center gap-[20px];
+  }
 }

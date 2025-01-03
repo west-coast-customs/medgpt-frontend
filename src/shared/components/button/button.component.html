@@ -1,4 +1,7 @@
-<button class="button" [disabled]="disabled()" [ngClass]="customClass()">
+<button [routerLink]="link()" [routerLinkActive]="linkActive()"
+        [disabled]="disabled()"
+        [ngClass]="customClass()"
+        class="button" >
   <div class="button__content">
     @if (!loading()) {
       <ng-content/>

@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, input, InputSignal } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Signal } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 import { NgOptimizedImage } from '@angular/common';
+import { MediaService } from '../../shared/services/media.service';
 
 @Component({
   selector: 'app-logout-button',
@@ -17,7 +18,7 @@ import { NgOptimizedImage } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogoutButtonComponent {
-  customClass: InputSignal<string> = input('')
+  mobileView: Signal<boolean | undefined> = toSignal(inject(MediaService).mobileViewObs)
 
   constructor(private authService: AuthService,
               private destroyRef: DestroyRef,

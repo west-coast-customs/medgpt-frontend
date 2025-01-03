@@ -2,11 +2,12 @@
 
 <app-form-field customClass="input--rounded input--slim">
   <app-form-input i18n-placeholder="@@input_placeholder"
-             placeholder="Message MedGPT"
-             [(ngModel)]="inputText"
-             [ngModelOptions]="{ standalone: true }"
-             [disabled]="inputDisabled()"
-             (keyup.enter)="onInput()">
+                  placeholder="Message MedGPT"
+                  name="chat-input"
+                  [(ngModel)]="inputText"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="inputDisabled()"
+                  (keyup.enter)="onInput()">
   </app-form-input>
   <button class="chat-input__button"
           [disabled]="inputButtonDisabled()"

@@ -16,6 +16,16 @@
         <p i18n="@@password_minlength">Password must have at least 6 characters</p>
       }
     }
+    @if (inputModel()?.hasError('maxlength')) {
+      <p i18n="@@field_maxlength">
+        Maximum {{ inputModel()?.errors?.['maxlength']?.['requiredLength'] }} characters
+      </p>
+    }
+    @if (inputModel()?.hasError('pattern')) {
+      <p i18n="@@no_numbers_and_special_characters">
+        This field can not contain numbers and special characters
+      </p>
+    }
     @if (inputModel()?.hasError('passwordMatch')) {
       <p i18n="@@passwords_do_not_match">Passwords do not match</p>
     }

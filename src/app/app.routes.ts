@@ -12,6 +12,7 @@ export const routes: Routes = [
     path: 'auth',
     loadComponent: () => import('../pages/auth/layout/auth.layout'),
     loadChildren: () => import('../pages/auth/middleware/auth.routes'),
+    data: { hideHeaderButton: true }
   },
   {
     path: 'chats',

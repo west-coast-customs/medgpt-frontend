@@ -18,12 +18,11 @@ export class MediaService {
   mobileViewObs: Observable<boolean> = this.mediaObs
     .pipe(
       map((media: Media) => media === Media.MOBILE),
-      distinctUntilChanged(),
       shareReplay({ bufferSize: 1, refCount: true })
     )
 
   private calculateMedia(innerWidth: number): Media {
-    if (innerWidth > 1024) {
+    if (innerWidth >= 1024) {
       return Media.DESKTOP;
     } else {
       return Media.MOBILE;

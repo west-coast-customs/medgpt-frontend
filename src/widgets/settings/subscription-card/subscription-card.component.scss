@@ -1,0 +1,63 @@
+.card {
+  @apply relative flex rounded-[10px] overflow-hidden px-[10px] py-[20px];
+  @apply desktop:px-[50px];
+  box-shadow: 11px 17px 48px #e5e5e5;
+
+  &__shapes {
+    @apply absolute w-[400px] h-[400px] top-[-75px] left-[50%] translate-x-[-25%];
+    @apply desktop:top-0 desktop:left-0 desktop:translate-x-0;
+  }
+
+  &__shape {
+    @apply absolute w-full h-full opacity-[0.8] top-[-250px] left-[-100px] rounded-[150px] bg-blue;
+    animation: rotate 30s linear infinite;
+
+    &:nth-child(1) {
+      @apply top-[-245px] opacity-[0.4];
+      animation: rotate 25s linear infinite;
+    }
+
+    &:nth-child(2) {
+      @apply top-[-240px] opacity-[0.3];
+      animation: rotate 32s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0)
+      }
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  }
+
+  &__content {
+    @apply flex flex-col gap-[20px] items-center justify-between w-full z-[1];
+    @apply desktop:flex-row;
+  }
+
+  &__buttons {
+    @apply flex justify-center w-full gap-[10px];
+    @apply desktop:justify-end desktop:gap-[20px];
+  }
+
+  &__button {
+    @apply min-w-[130px] max-w-[160px] grow-0;
+    @apply desktop:grow;
+  }
+
+  &__text {
+    @apply z-[1] flex flex-col shrink-0 text-white gap-[5px];
+  }
+
+  &__title {
+    @apply text-[20px] font-bold;
+    @apply desktop:text-[24px];
+  }
+
+  &__subtitle {
+    @apply text-[14px];
+    @apply desktop:text-[16px];
+  }
+}

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LogoutButtonComponent } from '../../../features/auth/logout-button/logout-button.component';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-chat-navigation',
   standalone: true,
-  imports: [LogoutButtonComponent],
+  imports: [ButtonComponent, NgOptimizedImage],
   templateUrl: './chat-navigation.component.html',
   styleUrl: './chat-navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

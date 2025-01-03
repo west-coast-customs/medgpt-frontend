@@ -1,8 +1,12 @@
 :host {
-  @apply flex w-full;
+  @apply flex w-full relative;
 }
 
 .input {
+  &__label {
+    @apply absolute top-[-45px] font-bold;
+  }
+
   &__field {
     @apply bg-mid-grey outline-none w-full font-medium;
   }

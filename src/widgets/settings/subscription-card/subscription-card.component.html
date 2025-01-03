@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card__shapes">
+    <div class="card__shape"></div>
+    <div class="card__shape"></div>
+    <div class="card__shape"></div>
+  </div>
+
+  <div class="card__content">
+    <div class="card__text">
+      <h3 class="card__title">
+        {{ subscriptionStatus() }}
+      </h3>
+      @if (settings().subscription.expiration_date) {
+        <p class="card__subtitle">
+          <ng-container i18n="@@expiration_date">Expiration date:</ng-container>
+          {{ settings().subscription.expiration_date | date }}
+        </p>
+      }
+    </div>
+    <div class="card__buttons">
+      <app-button (click)="onSubscriptionPlanClick(SubscriptionPeriods.MONTHLY)" class="card__button"
+                  customClass="button--white button--scaled">
+        <ng-container i18n="@@monthly_plan">Monthly plan</ng-container>
+      </app-button>
+      <app-button (click)="onSubscriptionPlanClick(SubscriptionPeriods.YEARLY)" class="card__button"
+                  customClass="button--scaled">
+        <ng-container i18n="@@yearly_plan">Yearly plan</ng-container>
+      </app-button>
+    </div>
+  </div>
+</div>
