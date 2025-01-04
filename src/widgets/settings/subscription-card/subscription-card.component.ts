@@ -54,6 +54,8 @@ export class SubscriptionCardComponent {
         }),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe()
+      .subscribe((paymentUrl: string) => {
+        window.location.href = paymentUrl
+      })
   }
 }

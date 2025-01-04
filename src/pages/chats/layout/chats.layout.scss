@@ -23,7 +23,8 @@
   }
 
   &__delimiter {
-    @apply block mb-[20px] mx-[-20px] text-border-grey;
+    @apply block mb-[20px] mx-[-12px] text-border-grey;
+    @apply desktop:mx-[-20px];
   }
 
   &__content {

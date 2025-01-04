@@ -60,8 +60,8 @@ export class ProfileService {
       .pipe(tap((profileUpdated: Profile) => this.profile.update((profile) => ({ ...profile!, ...profileUpdated }))))
   }
 
-  activateSubscription(period: SubscriptionPeriods): Observable<void> {
+  activateSubscription(period: SubscriptionPeriods): Observable<string> {
     const countryCode: Language = this.languageService.currentLanguage()
-    return this.httpService.post<void>('/api/users/subscription', { period, country_code: countryCode })
+    return this.httpService.post<string>('/api/users/subscription', { period, country_code: countryCode })
   }
 }
