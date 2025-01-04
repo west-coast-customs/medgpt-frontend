@@ -18,14 +18,21 @@
       }
     </div>
     <div class="card__buttons">
-      <app-button (click)="onSubscriptionPlanClick(SubscriptionPeriods.MONTHLY)" class="card__button"
-                  customClass="button--white button--scaled">
-        <ng-container i18n="@@monthly_plan">Monthly plan</ng-container>
-      </app-button>
-      <app-button (click)="onSubscriptionPlanClick(SubscriptionPeriods.YEARLY)" class="card__button"
-                  customClass="button--scaled">
-        <ng-container i18n="@@yearly_plan">Yearly plan</ng-container>
-      </app-button>
+      @if (!subscriptionPlanLoading()) {
+        <app-button @fadeOnEnter (click)="onSubscriptionPlanClick(SubscriptionPeriods.MONTHLY)"
+                    class="card__button"
+                    customClass="button--white button--scaled">
+          <ng-container i18n="@@monthly_plan">Monthly plan</ng-container>
+        </app-button>
+        <app-button @fadeOnEnter (click)="onSubscriptionPlanClick(SubscriptionPeriods.YEARLY)"
+                    class="card__button"
+                    customClass="button--scaled">
+          <ng-container i18n="@@yearly_plan">Yearly plan</ng-container>
+        </app-button>
+      }
+      @if (subscriptionPlanLoading()) {
+        <app-loader @fadeOnEnter customClass="loader--subscription"/>
+      }
     </div>
   </div>
 </div>
