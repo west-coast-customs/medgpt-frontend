@@ -3,12 +3,12 @@ import { ActiveChatService, MessageAuthors } from '../../../entities/chat/api/ac
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { ChatMessage } from '../../../entities/chat/api/chats.service';
 import { fadeInUpOnEnter, fadeOnEnter } from '../../../shared/utils/animations';
-import { TrimPipe } from '../../../shared/pipes/trim.pipe';
+import { ChatWindowMessagePipe } from './chat-window-message.pipe';
 
 @Component({
   selector: 'app-chat-window',
   standalone: true,
-  imports: [LoaderComponent, TrimPipe],
+  imports: [LoaderComponent, ChatWindowMessagePipe],
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

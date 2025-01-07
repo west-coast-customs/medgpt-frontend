@@ -14,7 +14,6 @@ export enum MessageAuthors {
 const ERROR_MESSAGE: ChatMessage = {
   content: $localize`:@@chat_error:Some error has occurred during the request, please try again later.`,
   role: MessageAuthors.ERROR,
-  references: []
 }
 
 @Injectable()
