@@ -49,4 +49,10 @@ export class ChatsService {
   update(id: string, name: string): Observable<void> {
     return this.httpService.put<void>(`/api/chat/${ id }`, { name })
   }
+
+  uploadFile(file: File): Observable<void> {
+    const formData: FormData = new FormData()
+    formData.append('file', file)
+    return this.httpService.post<void>('/api/chat/uploadfile', formData)
+  }
 }

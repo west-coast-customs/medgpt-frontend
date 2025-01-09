@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
+  Component, computed,
+  DestroyRef, effect,
   ElementRef, input, InputSignal,
   signal,
   Signal,
@@ -32,9 +32,11 @@ import { ClickOutsideDirective } from '../../../shared/directives/click-outside.
   animations: [fadeOnEnter(250)]
 })
 export class ChatItemComponent {
-  chat: InputSignal<Chat> = input.required<Chat>()
-
   activeChatId: Signal<string> = this.activeChatService.activeChatId
+
+  chat: InputSignal<Chat> = input.required<Chat>()
+  chatActive: Signal<boolean> = computed(() => this.chat().id === this.activeChatId())
+
   editingChatName: WritableSignal<boolean> = signal(false)
 
   inputElement: Signal<ElementRef<HTMLInputElement> | undefined> = viewChild<ElementRef<HTMLInputElement>>('input')
@@ -43,7 +45,13 @@ export class ChatItemComponent {
               private activatedRoute: ActivatedRoute,
               private chatsService: ChatsService,
               private activeChatService: ActiveChatService,
-              private destroyRef: DestroyRef) {
+              private destroyRef: DestroyRef,
+              private elementRef: ElementRef) {
+    effect(() => {
+      if (this.chatActive()) {
+        this.elementRef.nativeElement.scrollIntoView()
+      }
+    });
   }
 
   onChatClick(id: string): void {

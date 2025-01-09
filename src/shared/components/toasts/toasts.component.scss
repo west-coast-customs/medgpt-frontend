@@ -34,7 +34,7 @@
   }
 
   &__message {
-    @apply text-[12px];
+    @apply whitespace-break-spaces text-left text-[12px];
   }
 
   &__icon {

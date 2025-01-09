@@ -1,0 +1,8 @@
+<input type="file" hidden (change)="onFileSelected($event)" #fileUpload>
+
+<app-button (click)="fileUpload.click(); fileUpload.value = ''"
+            [loading]="fileUploading()"
+            customClass="button--white">
+  <img ngSrc="icons/paperclip.svg" width="20" height="20" alt="paperclip">
+  <span i18n="@@upload_file">Upload file</span>
+</app-button>

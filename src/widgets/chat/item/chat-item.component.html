@@ -1,5 +1,5 @@
 <app-button (click)="onChatClick(chat().id)"
-            [customClass]="'button--transparent button--align-start ' + (chat().id === activeChatId() ? 'button--selected' : '')">
+            [customClass]="'button--transparent button--align-start ' + (chatActive() ? 'button--selected' : '')">
   <img ngSrc="icons/message-plus.svg" width="24" height="24" alt="message-plus">
   @if (chat().id === activeChatId() && editingChatName()) {
     <input #input
@@ -11,7 +11,7 @@
   } @else {
     <span class="chat-item__name">{{ chat().name }}</span>
   }
-  @if (chat().id === activeChatId() && !editingChatName()) {
+  @if (chatActive() && !editingChatName()) {
     <div @fadeOnEnter class="chat-item__actions">
       <img (click)="onChatEditClick()" ngSrc="icons/pencil.svg" width="24" height="24" alt="pencil">
       <img (click)="onChatDeleteClick(chat().id)" ngSrc="icons/trash.svg" width="24" height="24" alt="trash">
