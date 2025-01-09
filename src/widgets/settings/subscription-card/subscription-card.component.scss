@@ -1,6 +1,6 @@
 .card {
   @apply relative flex rounded-[10px] overflow-hidden px-[10px] py-[20px];
-  @apply desktop:px-[50px];
+  @apply desktop:px-[25px];
   box-shadow: 11px 17px 48px #e5e5e5;
 
   &__shapes {
