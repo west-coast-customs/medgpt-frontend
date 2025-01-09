@@ -44,12 +44,12 @@ export class UploadFileComponent {
       .some((acceptType: string) => file?.type.includes(acceptType))
 
     if (!correctFileType) {
-      this.toastsService.show(`${ $localize`:@@file_format_error:Incorrect file format.` }\n${ $localize`:@@accepted_formats:Accepted formats` }:${ [...ACCEPTED_FORMATS.values()].join(', ') }`)
+      this.toastsService.show(`${ $localize`:@@file_format_error:Incorrect file format` }.\n${ $localize`:@@accepted_formats:Accepted formats` }:${ [...ACCEPTED_FORMATS.values()].join(', ') }`)
       return
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      this.toastsService.show($localize`:@@maximum_file_size_error:File size should not exceed ${ MAX_FILE_SIZE_MB } MB`)
+      this.toastsService.show(`${ $localize`:@@maximum_file_size_error:File size should not exceed` } ${ MAX_FILE_SIZE_MB } ${ $localize`:@@mb:MB` }`)
       return
     }
 
