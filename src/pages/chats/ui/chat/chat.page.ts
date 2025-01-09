@@ -8,13 +8,13 @@ import {
   Signal,
   untracked
 } from '@angular/core';
-import { ChatWindowComponent } from '../../../widgets/chat/window/chat-window.component';
-import { ChatInputComponent } from '../../../features/chat/input/chat-input.component';
+import { ChatWindowComponent } from '../../../../widgets/chat/window/chat-window.component';
+import { ChatInputComponent } from '../../../../features/chat/input/chat-input.component';
 import { ActivatedRoute, Data } from '@angular/router';
-import { ActiveChatService } from '../../../entities/chat/api/active-chat.service';
+import { ActiveChatService } from '../../../../entities/chat/api/active-chat.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Chat } from '../../../entities/chat/api/chats.service';
-import { DescriptionCardsComponent } from '../../../shared/components/description-cards/description-cards.component';
+import { Chat } from '../../../../entities/chat/api/chats.service';
+import { DescriptionCardsComponent } from '../../../../shared/components/description-cards/description-cards.component';
 import { map } from 'rxjs';
 
 @Component({

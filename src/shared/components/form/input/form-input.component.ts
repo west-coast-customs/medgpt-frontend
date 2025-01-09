@@ -17,6 +17,8 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 import { NgOptimizedImage } from '@angular/common';
 import { fadeInOutHeight } from '../../../utils/animations';
 
+type InputType = 'text' | 'email' | 'password'
+
 @Component({
   selector: 'app-form-input',
   standalone: true,
@@ -28,9 +30,11 @@ import { fadeInOutHeight } from '../../../utils/animations';
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: FormInputComponent, multi: true }],
 })
 export class FormInputComponent implements ControlValueAccessor {
+  name: InputSignal<string> = input.required<string>()
+  label: InputSignal<string | undefined> = input<string | undefined>()
   placeholder: InputSignal<string> = input<string>('')
   autocomplete: InputSignal<string> = input<string>('')
-  type: InputSignal<"text" | "email" | "password"> = input<'text' | 'email' | 'password'>('text')
+  type: InputSignal<InputType> = input<InputType>('text')
 
   showPassword: WritableSignal<boolean> = signal(false)
 

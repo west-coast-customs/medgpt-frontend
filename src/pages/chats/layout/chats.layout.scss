@@ -1,7 +1,17 @@
+.header {
+  @apply px-[20px] py-[10px] border-b border-b-border-grey;
+}
+
 .chats {
+  @apply relative flex h-full;
+
+  &__page {
+    @apply h-full;
+  }
+
   &__aside {
-    @apply absolute flex bg-white flex-col h-full p-[20px] border-r border-r-border-grey z-[1];
-    @apply desktop:relative;
+    @apply absolute flex bg-white flex-col h-full p-[12px] border-r border-r-border-grey z-[1];
+    @apply desktop:relative desktop:p-[20px];
   }
 
   &__create {
@@ -12,23 +22,22 @@
     @apply flex flex-col gap-[4px] overflow-auto mb-auto;
   }
 
-  &__navigation {
-    &:before {
-      content: '';
-      @apply block mb-[20%] mx-[-20px] border-t border-t-border-grey;
-    }
+  &__delimiter {
+    @apply block mb-[20px] mx-[-12px] text-border-grey;
+    @apply desktop:mx-[-20px];
   }
 
   &__content {
-    @apply py-[20px] px-[12px];
+    @apply h-full py-[20px] px-[12px];
   }
 
   &__menu {
-    @apply absolute cursor-pointer left-[12px];
+    @apply absolute cursor-pointer left-[12px] bg-white rounded-[5px];
     transition: left 250ms ease;
 
     &--opened {
-      @apply left-[300px];
+      @apply left-[285px];
     }
   }
+
 }

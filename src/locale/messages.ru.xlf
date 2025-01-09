@@ -166,7 +166,7 @@
         <source>OR</source>
         <target state="new">OR</target>
       </trans-unit>
-      <trans-unit id="Login required" datatype="html">
+      <trans-unit id="login_required" datatype="html">
         <source>Login required</source>
         <target state="new">Login required</target>
       </trans-unit>
@@ -193,6 +193,86 @@
       <trans-unit id="price_per_year" datatype="html">
         <source>990$ per year</source>
         <target state="new">990$ per year</target>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Log out</source>
+        <target state="new">Log out</target>
+      </trans-unit>
+      <trans-unit id="personal_data" datatype="html">
+        <source>Personal data</source>
+        <target state="new">Personal data</target>
+      </trans-unit>
+      <trans-unit id="last_name" datatype="html">
+        <source>Last name</source>
+        <target state="new">Last name</target>
+      </trans-unit>
+      <trans-unit id="first_name" datatype="html">
+        <source>First name</source>
+        <target state="new">First name</target>
+      </trans-unit>
+      <trans-unit id="second_name" datatype="html">
+        <source>Second name</source>
+        <target state="new">Second name</target>
+      </trans-unit>
+      <trans-unit id="save" datatype="html">
+        <source>Save</source>
+        <target state="new">Save</target>
+      </trans-unit>
+      <trans-unit id="email" datatype="html">
+        <source>Email</source>
+        <target state="new">Email</target>
+      </trans-unit>
+      <trans-unit id="settings_subscription_data" datatype="html">
+        <source>Subscription data</source>
+        <target state="new">Subscription data</target>
+      </trans-unit>
+      <trans-unit id="personal_data_changed" datatype="html">
+        <source>Personal data changed</source>
+        <target state="new">Personal data changed</target>
+      </trans-unit>
+      <trans-unit id="field_maxlength" datatype="html">
+        <source> Maximum <x id="INTERPOLATION" equiv-text="{{ inputModel()?.errors?.[&apos;maxlength&apos;]?.[&apos;requiredLength&apos;] }}"/> characters </source>
+        <target state="new"> Maximum <x id="INTERPOLATION" equiv-text="{{ inputModel()?.errors?.[&apos;maxlength&apos;]?.[&apos;requiredLength&apos;] }}"/> characters </target>
+      </trans-unit>
+      <trans-unit id="no_numbers_and_special_characters" datatype="html">
+        <source> This field can not contain numbers and special characters </source>
+        <target state="new"> This field can not contain numbers and special characters </target>
+      </trans-unit>
+      <trans-unit id="login_successful" datatype="html">
+        <source>Login successful</source>
+        <target state="new">Login successful</target>
+      </trans-unit>
+      <trans-unit id="signup_successful" datatype="html">
+        <source>Signup successful</source>
+        <target state="new">Signup successful</target>
+      </trans-unit>
+      <trans-unit id="settings" datatype="html">
+        <source>Settings</source>
+        <target state="new">Settings</target>
+      </trans-unit>
+      <trans-unit id="trial_subscription" datatype="html">
+        <source>Trial subscription</source>
+        <target state="new">Trial subscription</target>
+      </trans-unit>
+      <trans-unit id="active_subscription" datatype="html">
+        <source>Active subscription</source>
+        <target state="new">Active subscription</target>
+      </trans-unit>
+      <trans-unit id="inactive_subscription" datatype="html">
+        <source>Inactive subscription</source>
+        <target state="new">Inactive subscription</target>
+      </trans-unit>
+      <trans-unit id="expiration_date" datatype="html">
+        <source>Expiration date:</source>
+        <target state="new">Expiration date:</target>
+      </trans-unit>
+      <trans-unit id="monthly_plan" datatype="html">
+        <source>Monthly plan</source>
+        <target state="new">Monthly plan</target>
+      </trans-unit>
+      <trans-unit id="yearly_plan" datatype="html">
+        <source>Yearly plan</source>
+        <target state="new">Yearly plan</target>
       </trans-unit>
     </body>
   </file>

@@ -1,4 +1,15 @@
 <header class="header">
   <p routerLink="/" class="header__logo">Med<span class="text-blue">GPT</span></p>
-  <ng-content/>
+  <div class="header__controls">
+    <app-language-switcher/>
+    @if (!hideHeaderButton) {
+      @if (!loggedIn()) {
+        <app-button [routerLink]="['auth', 'login']" customClass="button--small" i18n="@@login_button_text">
+          Log In
+        </app-button>
+      } @else {
+        <app-logout-button/>
+      }
+    }
+  </div>
 </header>

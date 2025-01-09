@@ -1,0 +1,15 @@
+:host {
+  @apply flex flex-col gap-[10px] h-full justify-evenly my-auto;
+}
+
+.settings {
+  &__subtitle {
+    @apply text-[20px] font-bold;
+    @apply desktop:text-[24px];
+  }
+
+  &__section {
+    @apply flex flex-col gap-[15px];
+    @apply desktop:gap-[20px];
+  }
+}

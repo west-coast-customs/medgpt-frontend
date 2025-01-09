@@ -1,0 +1,53 @@
+<form (formValueChange)="onFormValueChange($event)"
+      (ngSubmit)="onFormSubmit(personalDataForm)"
+      class="form"
+      #personalDataForm="ngForm">
+  <app-form-field class="mt-[15px]">
+    <app-form-input required
+                    maxlength="50"
+                    pattern="[a-zA-Zа-яА-Я-]*"
+                    [ngModel]="formValue().lastName"
+                    label="Last name"
+                    name="lastName"
+                    i18n-label="@@last_name"/>
+  </app-form-field>
+
+  <app-form-field class="mt-[15px]">
+    <app-form-input required
+                    maxlength="50"
+                    pattern="[a-zA-Zа-яА-Я-]*"
+                    [ngModel]="formValue().firstName"
+                    name="firstName"
+                    label="First name"
+                    i18n-label="@@first_name"/>
+  </app-form-field>
+
+  <app-form-field class="mt-[15px]">
+    <app-form-input maxlength="50"
+                    pattern="[a-zA-Zа-яА-Я-]*"
+                    [ngModel]="formValue().secondName"
+                    name="secondName"
+                    label="Second name"
+                    i18n-label="@@second_name"/>
+  </app-form-field>
+
+  <app-button [loading]="changePersonalDataLoading()"
+              [disabled]="!!personalDataForm.invalid || noChanges() || changePersonalDataLoading()"
+              customClass="button--big">
+    <span i18n="@@save">Save</span>
+  </app-button>
+
+  <app-form-field class="mt-[25px]">
+    <app-form-input [ngModel]="formValue().email"
+                    [disabled]="true"
+                    name="email"
+                    label="Email"
+                    i18n-label="@@email"/>
+  </app-form-field>
+
+  @if (changePersonalError()) {
+    <app-form-error @fadeInOutHeight>
+      <p>{{ changePersonalError() }}</p>
+    </app-form-error>
+  }
+</form>

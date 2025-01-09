@@ -23,6 +23,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, EMPTY, of, switchMap, tap } from 'rxjs';
 import { fadeInOutHeight } from '../../../shared/utils/animations';
+import { ToastsService, ToastType } from '../../../shared/services/toasts.service';
 
 interface AuthFormValue {
   email: string;
@@ -66,7 +67,8 @@ export class AuthFormComponent implements AfterViewInit {
     private authService: AuthService,
     private destroyRef: DestroyRef,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastsService: ToastsService
   ) {}
 
   ngAfterViewInit(): void {
@@ -88,7 +90,15 @@ export class AuthFormComponent implements AfterViewInit {
       .pipe(
         switchMap(() => authObs),
         tap({
-          next: () => this.authLoading.set(false),
+          next: () => {
+            this.authLoading.set(false)
+            this.toastsService.show(
+              this.loginFlow()
+                ? $localize`:@@login_successful:Login successful`
+                : $localize`:@@signup_successful:Signup successful`,
+              ToastType.SUCCESS
+            )
+          },
           error: () => this.authLoading.set(false)
         }),
         catchError((error: string) => {

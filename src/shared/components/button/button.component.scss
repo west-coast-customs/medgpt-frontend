@@ -26,6 +26,16 @@
     @apply bg-mid-grey text-black;
   }
 
+  &--white {
+    @apply text-blue border border-blue;
+    background-color: transparent;
+  }
+
+  &--scaled {
+    @apply text-[14px];
+    @apply desktop:text-[18px];
+  }
+
   &--medium {
     @apply font-medium;
   }

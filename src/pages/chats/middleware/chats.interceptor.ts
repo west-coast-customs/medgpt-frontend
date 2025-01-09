@@ -13,7 +13,7 @@ export const chatsInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, n
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            toastService.show($localize`:@@Login required:Login required`)
+            toastService.show($localize`:@@login_required:Login required`)
             void router.navigateByUrl('/auth')
           }
           return next(req)

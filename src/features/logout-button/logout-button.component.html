@@ -1,0 +1,14 @@
+@defer (when mobileView()) {
+  @if (mobileView()) {
+    <img (click)="onLogoutClick()" class="cursor-pointer" ngSrc="icons/logout.svg" width="20" height="20" alt="logout">
+  }
+}
+
+@defer (when !mobileView()) {
+  @if (!mobileView()) {
+    <app-button (click)="onLogoutClick()" customClass="button--small button--transparent">
+      <img ngSrc="icons/logout.svg" width="20" height="20" alt="logout">
+      <ng-container i18n="@@logout">Log out</ng-container>
+    </app-button>
+  }
+}

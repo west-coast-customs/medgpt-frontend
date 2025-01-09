@@ -1,4 +1,8 @@
+<label class="input__label" [for]="name()">
+  {{ label() }}
+</label>
 <input #inputElement
+       [id]="name()"
        class="input__field"
        (keydown)="onTouched?.()"
        [autocomplete]="autocomplete()"

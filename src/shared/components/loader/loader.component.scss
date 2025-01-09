@@ -35,10 +35,8 @@
     }
   }
 
-  &--button {
-    @apply border-t-white border-x-white border-b-[transparent];
+  &--button, &--subscription {
     animation: rotation 1s linear infinite;
-
     @keyframes rotation {
       0% {
         transform: rotate(0deg);
@@ -47,5 +45,13 @@
         transform: rotate(360deg);
       }
     }
+  }
+
+  &--button {
+    @apply border-t-white border-x-white border-b-[transparent];
+  }
+
+  &--subscription {
+    @apply h-[60px] w-[60px] border-[8px] border-t-blue border-x-blue border-b-[transparent];
   }
 }
