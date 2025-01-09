@@ -10,9 +10,15 @@ export interface Chat {
 }
 
 export interface ChatMessage {
-  role: MessageAuthors
+  role: MessageAuthors;
   content: string;
-  references: string[];
+  sources?: ChatMessageSource[];
+}
+
+export interface ChatMessageSource {
+  id: string;
+  title: string;
+  extended_title?: string;
 }
 
 @Injectable()
