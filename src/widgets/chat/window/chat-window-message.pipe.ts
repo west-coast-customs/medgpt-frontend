@@ -9,7 +9,7 @@ export class ChatWindowMessagePipe implements PipeTransform {
   transform(message: ChatMessage): string {
     let formattedMessage: string = `${ message.content }`
 
-    if (message.sources) {
+    if (message.sources?.length) {
       formattedMessage += `\n\n ${ this.#formatSources(message.sources) }`;
     }
 

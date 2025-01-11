@@ -10,10 +10,10 @@
       <h3 class="card__title">
         {{ subscriptionStatus() }}
       </h3>
-      @if (settings().subscription.expiration_date) {
+      @if (subscription().expiration_date) {
         <p class="card__subtitle">
           <ng-container i18n="@@expiration_date">Expiration date:</ng-container>
-          {{ settings().subscription.expiration_date | date }}
+          {{ subscription().expiration_date | date }}
         </p>
       }
     </div>

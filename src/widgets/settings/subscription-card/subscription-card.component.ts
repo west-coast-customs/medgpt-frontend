@@ -3,18 +3,16 @@ import {
   Component,
   computed,
   DestroyRef,
-  inject,
   Signal,
   signal,
   WritableSignal
 } from '@angular/core';
 import {
-  Profile,
   ProfileService,
+  Subscription,
   SUBSCRIPTION_STATUSES_MAP,
   SubscriptionPeriods
 } from '../../../entities/profile/api/profile.service';
-import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -38,8 +36,8 @@ import { fadeOnEnter } from '../../../shared/utils/animations';
 export class SubscriptionCardComponent {
   SubscriptionPeriods: typeof SubscriptionPeriods = SubscriptionPeriods
 
-  settings: WritableSignal<Profile> = signal(inject(ActivatedRoute).snapshot.data?.['settings'])
-  subscriptionStatus: Signal<string | undefined> = computed(() => SUBSCRIPTION_STATUSES_MAP.get(this.settings().subscription.status))
+  subscription: WritableSignal<Subscription> = this.profileService.subscription as WritableSignal<Subscription>
+  subscriptionStatus: Signal<string | undefined> = computed(() => SUBSCRIPTION_STATUSES_MAP.get(this.subscription().status))
   subscriptionPlanLoading: WritableSignal<boolean> = signal(false)
 
   constructor(private profileService: ProfileService, private destroyRef: DestroyRef) {}

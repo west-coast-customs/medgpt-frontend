@@ -11,7 +11,13 @@
   }
 
   &[disabled] {
-    @apply bg-disabled-grey;
+    @apply bg-disabled-grey text-grey;
+
+    ::ng-deep {
+      img {
+        filter: invert(0.5) grayscale(1);
+      }
+    }
   }
 
   &--small {
@@ -27,8 +33,11 @@
   }
 
   &--white {
-    @apply text-blue border border-blue;
-    background-color: transparent;
+    @apply text-blue border border-blue bg-white;
+
+    &[disabled] {
+      @apply border-disabled-grey text-grey;
+    }
   }
 
   &--scaled {
@@ -40,8 +49,13 @@
     @apply font-medium;
   }
 
+  &--tiny {
+    @apply text-[16px] py-[6px] px-[18px] rounded-[6px];
+  }
+
   &--transparent {
-    @apply bg-white text-black;
+    @apply text-black;
+    background-color: transparent;
 
     &:hover:not(.button--selected) {
       @apply bg-mid-grey;

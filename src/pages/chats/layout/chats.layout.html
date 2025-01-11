@@ -24,9 +24,26 @@
       </aside>
     }
 
+    @if (showSubscriptionNotification()) {
+      <div @fadeOnEnter class="chats__notification">
+
+        @if (inactiveSubscription()) {
+          <ng-container i18n="@@subscription_inactive">Inactive subscription</ng-container>
+        }
+        @if (trialSubscription()) {
+          <ng-container i18n="@@subscription_trial">Trial subscription</ng-container>
+        },
+        <ng-container i18n="@@subscription_functions_restricted">some functions may be restricted</ng-container>
+        <app-button class="whitespace-nowrap" customClass="button--white button--tiny" link="settings">
+          <ng-container i18n="@@activate_subscription">Activate subscription</ng-container>
+        </app-button>
+      </div>
+    }
+
     <main [@fadeOnTrigger]="navigationEnd()" class="page__content chats__content">
       @if (mobileView()) {
         <img class="chats__menu"
+             [class.chats__menu--shifted]="showSubscriptionNotification()"
              [class.chats__menu--opened]="sidebarVisible()"
              (click)="toggleSidebarVisible()"
              ngSrc="icons/menu.svg" height="24" width="24" alt="menu">

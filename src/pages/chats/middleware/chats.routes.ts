@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { chatResolver } from './chat/chat.resolver';
-import { settingsResolver } from './settings/settings.resolver';
+import { chatResolver } from './chat.resolver';
+import { profileResolver } from './profile.resolver';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
       {
         path: 'settings',
         loadComponent: () => import('../ui/settings/settings.page'),
-        resolve: { settings: settingsResolver }
+        resolve: { profile: profileResolver },
       },
       {
         path: ':id',

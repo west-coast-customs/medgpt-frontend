@@ -1,6 +1,6 @@
 import { ResolveFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { Chat, ChatsService } from '../../../../entities/chat/api/chats.service';
+import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
 import { tap } from 'rxjs';
 
 export const chatResolver: ResolveFn<Chat | null> = (route) => {

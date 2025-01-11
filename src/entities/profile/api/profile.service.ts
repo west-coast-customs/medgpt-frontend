@@ -14,7 +14,6 @@ export interface Profile extends ProfileFullName {
   email: string
   created_at: string
   is_verified: boolean
-  subscription: Subscription
 }
 
 export interface Subscription {
@@ -46,11 +45,11 @@ export const SUBSCRIPTION_STATUSES_MAP = new Map<SubscriptionStatuses, string>([
 })
 export class ProfileService {
   profile: WritableSignal<Profile | null> = signal<Profile | null>(null)
+  subscription: WritableSignal<Subscription | null> = signal<Subscription | null>(null)
 
-  constructor(private httpService: HttpClient, private languageService: LanguageService) {
-  }
+  constructor(private httpService: HttpClient, private languageService: LanguageService) {}
 
-  loadProfile(): Observable<Profile> {
+  getProfile(): Observable<Profile> {
     return this.httpService.get<Profile>('/api/users/profile')
       .pipe(tap((profile: Profile) => this.profile.set(profile)))
   }
@@ -58,6 +57,11 @@ export class ProfileService {
   changeFullName(fullName: ProfileFullName): Observable<Profile> {
     return this.httpService.put<Profile>('/api/users/profile/fullname', fullName)
       .pipe(tap((profileUpdated: Profile) => this.profile.update((profile) => ({ ...profile!, ...profileUpdated }))))
+  }
+
+  getSubscription(): Observable<Subscription> {
+    return this.httpService.get<Subscription>('/api/users/subscription')
+      .pipe(tap((subscription: Subscription) => this.subscription.set(subscription)))
   }
 
   activateSubscription(period: SubscriptionPeriods): Observable<string> {

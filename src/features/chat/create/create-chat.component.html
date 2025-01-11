@@ -1,4 +1,5 @@
 <app-button (click)="onNewChatClick()"
+            [disabled]="!viableSubscription()"
             customClass="button--small">
   <img ngSrc="icons/plus.svg" width="20" height="20" alt="plus">
   <span i18n="@@new_chat">New chat</span>

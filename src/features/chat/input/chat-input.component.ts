@@ -4,7 +4,7 @@ import {
   computed,
   DestroyRef,
   effect,
-  input,
+  input, InputSignal,
   model,
   ModelSignal,
   OnInit,
@@ -19,6 +19,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from "../../../shared/components/form/field/form-field.component";
 import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
+import { ProfileService, SubscriptionStatuses } from '../../../entities/profile/api/profile.service';
 
 @Component({
   selector: 'app-chat-input',
@@ -29,20 +30,22 @@ import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatInputComponent implements OnInit {
-  disabled = input<boolean>(false)
+  viableSubscription: Signal<boolean> = computed(() =>
+    [SubscriptionStatuses.ACTIVE, SubscriptionStatuses.TRIAL].includes(this.profileService.subscription()!.status))
 
   waitingBotResponse: Signal<boolean> = this.activeChatService.waitingBotResponse
 
   inputText: ModelSignal<string> = model<string>('')
   inputTextEmpty: Signal<boolean> = computed(() => !this.inputText()?.trim().length)
 
-  inputDisabled = computed(() => this.disabled() || this.waitingBotResponse())
-  inputButtonDisabled = computed(() => this.inputDisabled() || this.inputTextEmpty())
+  inputDisabled: Signal<boolean> = computed(() => !this.viableSubscription() || this.waitingBotResponse())
+  inputButtonDisabled: Signal<boolean> = computed(() => this.inputDisabled() || this.inputTextEmpty())
 
-  private input = viewChild<FormInputComponent>(FormInputComponent)
+  private input: Signal<FormInputComponent | undefined> = viewChild<FormInputComponent>(FormInputComponent)
 
   constructor(private activeChatService: ActiveChatService,
               private chatsService: ChatsService,
+              private profileService: ProfileService,
               private router: Router,
               private destroyRef: DestroyRef,
               private activatedRoute: ActivatedRoute) {
