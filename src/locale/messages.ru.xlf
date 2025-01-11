@@ -306,6 +306,22 @@
         <source>MB</source>
         <target state="new">MB</target>
       </trans-unit>
+      <trans-unit id="subscription_inactive" datatype="html">
+        <source>Inactive subscription</source>
+        <target state="new">Inactive subscription</target>
+      </trans-unit>
+      <trans-unit id="subscription_trial" datatype="html">
+        <source>Trial subscription</source>
+        <target state="new">Trial subscription</target>
+      </trans-unit>
+      <trans-unit id="subscription_functions_restricted" datatype="html">
+        <source>some functions may be restricted</source>
+        <target state="new">some functions may be restricted</target>
+      </trans-unit>
+      <trans-unit id="activate_subscription" datatype="html">
+        <source>Activate subscription</source>
+        <target state="new">Activate subscription</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

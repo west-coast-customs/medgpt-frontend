@@ -230,6 +230,18 @@
       <trans-unit id="mb" datatype="html">
         <source>MB</source>
       </trans-unit>
+      <trans-unit id="activate_subscription" datatype="html">
+        <source>Activate subscription</source>
+      </trans-unit>
+      <trans-unit id="subscription_functions_restricted" datatype="html">
+        <source>some functions may be restricted</source>
+      </trans-unit>
+      <trans-unit id="subscription_inactive" datatype="html">
+        <source>Inactive subscription</source>
+      </trans-unit>
+      <trans-unit id="subscription_trial" datatype="html">
+        <source>Trial subscription</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
