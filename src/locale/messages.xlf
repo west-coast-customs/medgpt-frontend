@@ -206,6 +206,30 @@
       <trans-unit id="yearly_plan" datatype="html">
         <source>Yearly plan</source>
       </trans-unit>
+      <trans-unit id="accepted_formats" datatype="html">
+        <source>Accepted formats</source>
+      </trans-unit>
+      <trans-unit id="file_format_error" datatype="html">
+        <source>Incorrect file format</source>
+      </trans-unit>
+      <trans-unit id="file_upload_error" datatype="html">
+        <source>File upload failed</source>
+      </trans-unit>
+      <trans-unit id="file_uploaded" datatype="html">
+        <source>File uploaded successfully</source>
+      </trans-unit>
+      <trans-unit id="maximum_file_size_error" datatype="html">
+        <source>File size should not exceed</source>
+      </trans-unit>
+      <trans-unit id="sources" datatype="html">
+        <source>Sources</source>
+      </trans-unit>
+      <trans-unit id="upload_file" datatype="html">
+        <source>Upload file</source>
+      </trans-unit>
+      <trans-unit id="mb" datatype="html">
+        <source>MB</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

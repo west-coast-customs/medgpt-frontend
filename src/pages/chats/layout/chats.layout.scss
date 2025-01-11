@@ -3,7 +3,8 @@
 }
 
 .chats {
-  @apply relative flex h-full;
+  @apply relative flex h-[calc(100%-61px)];
+  @apply desktop:h-[calc(100%-81px)];
 
   &__page {
     @apply h-full;
@@ -22,8 +23,12 @@
     @apply flex flex-col gap-[4px] overflow-auto mb-auto;
   }
 
+  &__navigation, &__controls {
+    @apply flex flex-col gap-[20px];
+  }
+
   &__delimiter {
-    @apply block mb-[20px] mx-[-12px] text-border-grey;
+    @apply block my-[20px] mx-[-12px] text-border-grey;
     @apply desktop:mx-[-20px];
   }
 

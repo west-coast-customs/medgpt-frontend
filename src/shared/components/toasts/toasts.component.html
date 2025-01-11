@@ -10,7 +10,7 @@
         }
       }
     </span>
-    <span class="toast__message">{{ toast.message }}</span>
+    <span class="toast__message" [innerHtml]="toast.message"></span>
     <div (click)="onRemoveToastClick(toast.id)" class="toast__icon"></div>
   </div>
 }

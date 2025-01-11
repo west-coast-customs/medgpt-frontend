@@ -3,14 +3,24 @@
   <div class="chats">
     @if (!mobileView() || sidebarVisible()) {
       <aside @slideInRightOutLeft class="chats__aside">
-        <app-create-chat class="chats__create"/>
+        <div class="chats__controls">
+          <app-create-chat/>
+          <app-upload-file/>
+        </div>
+        <hr class="chats__delimiter">
         <div class="chats__list">
           @for (chat of chats(); track chat.id) {
             <app-chat-item [chat]="chat"/>
           }
         </div>
         <hr class="chats__delimiter">
-        <app-chat-navigation/>
+        <div class="chats__navigation">
+          <app-button link="settings" linkActive="button--selected"
+                      customClass="button--transparent button--align-start">
+            <img ngSrc="icons/settings.svg" width="20" height="20" alt="settings">
+            <ng-container i18n="@@settings">Settings</ng-container>
+          </app-button>
+        </div>
       </aside>
     }
 

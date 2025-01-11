@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CreateChatComponent } from '../../../features/chat/create/create-chat.component';
-import { ChatNavigationComponent } from '../../../widgets/chat/navigation/chat-navigation.component';
 import { ChatItemComponent } from '../../../widgets/chat/item/chat-item.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { fadeOnEnter, fadeOnTrigger, slideInRightOutLeft } from '../../../shared/utils/animations';
@@ -11,13 +10,15 @@ import { ActiveChatService } from '../../../entities/chat/api/active-chat.servic
 import { filter } from 'rxjs';
 import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
 import { HeaderComponent } from "../../../widgets/header/header.component";
+import { UploadFileComponent } from '../../../features/chat/upload-file/upload-file.component';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-chats',
   standalone: true,
   templateUrl: './chats.layout.html',
   styleUrl: './chats.layout.scss',
-  imports: [RouterOutlet, CreateChatComponent, ChatNavigationComponent, ChatItemComponent, NgOptimizedImage, HeaderComponent],
+  imports: [RouterOutlet, CreateChatComponent, ChatItemComponent, NgOptimizedImage, HeaderComponent, UploadFileComponent, ButtonComponent],
   animations: [fadeOnEnter(1000), fadeOnTrigger(1000), slideInRightOutLeft(250)],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ActiveChatService],
