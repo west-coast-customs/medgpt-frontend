@@ -43,23 +43,23 @@ interface PersonalSettingsFormValue {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonalDataFormComponent {
-  #settings: WritableSignal<Profile> = signal(inject(ActivatedRoute).snapshot.data?.['settings'])
+  #profile: WritableSignal<Profile> = this.profileService.profile as WritableSignal<Profile>
 
   changePersonalDataLoading: WritableSignal<boolean> = signal(false)
   changePersonalError: WritableSignal<string> = signal('')
 
   noChanges: Signal<boolean> = computed(() => {
-    const { last_name, first_name, second_name } = this.#settings()
+    const { last_name, first_name, second_name } = this.#profile()
     const { lastName, firstName, secondName } = this.formValue()
 
     return last_name === lastName && first_name === firstName && second_name === secondName
   })
 
   formValue: WritableSignal<Partial<PersonalSettingsFormValue>> = signal({
-    lastName: this.#settings().last_name,
-    firstName: this.#settings().first_name,
-    secondName: this.#settings().second_name,
-    email: this.#settings().email
+    lastName: this.#profile().last_name,
+    firstName: this.#profile().first_name,
+    secondName: this.#profile().second_name,
+    email: this.#profile().email
   })
 
   onFormValueChange(newValue: Partial<PersonalSettingsFormValue>): void {
@@ -87,7 +87,7 @@ export class PersonalDataFormComponent {
           next: (profileUpdated: Profile) => {
             this.changePersonalDataLoading.set(false)
             this.toastsService.show($localize`:@@personal_data_changed:Personal data changed`, ToastType.SUCCESS)
-            this.#settings.set(profileUpdated)
+            this.#profile.set(profileUpdated)
           },
           error: () => this.changePersonalDataLoading.set(false)
         }),

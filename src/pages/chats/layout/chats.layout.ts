@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal, Signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CreateChatComponent } from '../../../features/chat/create/create-chat.component';
 import { ChatItemComponent } from '../../../widgets/chat/item/chat-item.component';
@@ -12,6 +12,7 @@ import { Chat, ChatsService } from '../../../entities/chat/api/chats.service';
 import { HeaderComponent } from "../../../widgets/header/header.component";
 import { UploadFileComponent } from '../../../features/chat/upload-file/upload-file.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { ProfileService, SubscriptionStatuses } from '../../../entities/profile/api/profile.service';
 
 @Component({
   selector: 'app-chats',
@@ -28,7 +29,7 @@ export default class ChatsLayout {
 
   mobileView: Signal<boolean | undefined> = toSignal(inject(MediaService).mobileViewObs)
 
-  navigationEnd = toSignal(
+  navigationEnd: Signal<NavigationEnd | undefined> = toSignal(
     inject(Router).events.pipe(filter(event => event instanceof NavigationEnd))
   )
 
@@ -37,4 +38,12 @@ export default class ChatsLayout {
   toggleSidebarVisible(): void {
     this.sidebarVisible.update(value => !value)
   }
+
+  #profileService: ProfileService = inject(ProfileService)
+
+  inactiveSubscription: Signal<boolean> = computed(() => this.#profileService.subscription()?.status === SubscriptionStatuses.INACTIVE)
+  trialSubscription: Signal<boolean> = computed(() => this.#profileService.subscription()?.status === SubscriptionStatuses.TRIAL)
+
+  settingsPage: Signal<boolean> = computed(() => this.navigationEnd()?.url.indexOf('settings') !== -1)
+  showSubscriptionNotification = computed(() => !this.settingsPage() && (this.inactiveSubscription() || this.trialSubscription()))
 }

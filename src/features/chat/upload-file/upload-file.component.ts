@@ -1,10 +1,19 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, signal, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  Signal,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { ToastsService, ToastType } from '../../../shared/services/toasts.service';
 import { of, switchMap, tap } from 'rxjs';
 import { ChatsService } from '../../../entities/chat/api/chats.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ProfileService, SubscriptionStatuses } from '../../../entities/profile/api/profile.service';
 
 const ACCEPTED_FORMATS: Map<string, string> = new Map([
   ['application/pdf', 'PDF'],
@@ -24,8 +33,11 @@ const MAX_FILE_SIZE: number = MAX_FILE_SIZE_MB * 1024 * 1024
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UploadFileComponent {
+  viableSubscription: Signal<boolean> = computed(() => this.profileService.subscription()?.status === SubscriptionStatuses.ACTIVE)
+
   constructor(private toastsService: ToastsService,
               private chatsService: ChatsService,
+              private profileService: ProfileService,
               private destroyRef: DestroyRef) {
   }
 

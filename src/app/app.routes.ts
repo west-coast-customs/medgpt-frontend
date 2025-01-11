@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ChatsService } from '../entities/chat/api/chats.service';
 import { chatsResolver } from '../pages/chats/middleware/chats.resolver';
+import { subscriptionResolver } from '../pages/chats/middleware/subscription.resolver';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,7 @@ export const routes: Routes = [
     path: 'chats',
     loadComponent: () => import('../pages/chats/layout/chats.layout'),
     loadChildren: () => import('../pages/chats/middleware/chats.routes'),
-    resolve: { chats: chatsResolver },
+    resolve: { chats: chatsResolver, subscription: subscriptionResolver },
     providers: [ChatsService],
   },
   {

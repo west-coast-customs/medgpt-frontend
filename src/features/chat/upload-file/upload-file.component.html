@@ -2,6 +2,7 @@
 
 <app-button (click)="fileUpload.click(); fileUpload.value = ''"
             [loading]="fileUploading()"
+            [disabled]="!viableSubscription()"
             customClass="button--white">
   <img ngSrc="icons/paperclip.svg" width="20" height="20" alt="paperclip">
   <span i18n="@@upload_file">Upload file</span>

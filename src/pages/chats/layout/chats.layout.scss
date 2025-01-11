@@ -11,7 +11,7 @@
   }
 
   &__aside {
-    @apply absolute flex bg-white flex-col h-full p-[12px] border-r border-r-border-grey z-[1];
+    @apply absolute flex bg-white flex-col h-full p-[12px] border-r border-r-border-grey z-[5];
     @apply desktop:relative desktop:p-[20px];
   }
 
@@ -40,9 +40,17 @@
     @apply absolute cursor-pointer left-[12px] bg-white rounded-[5px];
     transition: left 250ms ease;
 
+    &--shifted {
+      @apply top-[120px];
+    }
+
     &--opened {
       @apply left-[285px];
     }
   }
 
+  &__notification {
+    @apply z-[3] left-1/2 translate-x-[-50%] w-[calc(100%-24px)] absolute top-[20px] flex flex-col gap-[10px] bg-blue bg-opacity-[80%] items-center rounded-[12px] p-[10px] text-white font-bold justify-evenly;
+    @apply desktop:flex-row desktop:w-[700px] desktop:left-1/2 desktop:translate-x-[-204px]
+  }
 }
