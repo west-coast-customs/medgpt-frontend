@@ -36,7 +36,7 @@ const authCatchError: () => OperatorFunction<unknown, ObservedValueOf<Observable
   providedIn: 'root'
 })
 export class AuthService {
-  loggedIn: WritableSignal<boolean> = signal(!!localStorage.getItem('loggedIn'))
+  loggedIn: WritableSignal<boolean> = signal(localStorage.getItem('loggedIn') === 'true')
 
   constructor(private httpService: HttpClient) {}
 
@@ -48,21 +48,23 @@ export class AuthService {
   login(credentials: Credentials): Observable<void | unknown> {
     return this.httpService.post<void>('/api/native-auth/login/', credentials)
       .pipe(
-        tap(() => {
-          localStorage.setItem('loggedIn', String(true))
-          this.loggedIn.set(true)
-        }),
+        tap(() => this.updateIsLoggedIn(true)),
         authCatchError()
       )
   }
 
   logout(): Observable<void> {
     return this.httpService.post<void>('/api/common-auth/logout/', null)
-      .pipe(
-        tap(() => {
-          localStorage.removeItem('loggedIn')
-          this.loggedIn.set(false)
-        })
-      )
+      .pipe(tap(() => this.updateIsLoggedIn(false)))
+  }
+
+  isUserLoggedIn(): Observable<boolean> {
+    return this.httpService.get<boolean>('/api/users/logged-in')
+      .pipe(tap((loggedIn: boolean) => this.updateIsLoggedIn(loggedIn)))
+  }
+
+  updateIsLoggedIn(value: boolean): void {
+    localStorage.setItem('loggedIn', String(value))
+    this.loggedIn.set(value)
   }
 }

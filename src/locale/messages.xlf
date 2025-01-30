@@ -216,7 +216,7 @@
         <source>File upload failed</source>
       </trans-unit>
       <trans-unit id="file_uploaded" datatype="html">
-        <source>File uploaded successfully</source>
+        <source>File uploaded</source>
       </trans-unit>
       <trans-unit id="maximum_file_size_error" datatype="html">
         <source>File size should not exceed</source>
@@ -241,6 +241,12 @@
       </trans-unit>
       <trans-unit id="subscription_trial" datatype="html">
         <source>Trial subscription</source>
+      </trans-unit>
+      <trans-unit id="session_expired_login_required" datatype="html">
+        <source>Session expired. Login required</source>
+      </trans-unit>
+      <trans-unit id="subscription_activated" datatype="html">
+        <source>Subscription activated</source>
       </trans-unit>
     </body>
   </file>

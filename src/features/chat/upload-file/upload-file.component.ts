@@ -70,7 +70,7 @@ export class UploadFileComponent {
         switchMap(() => this.chatsService.uploadFile(file)),
         tap({
           next: () => {
-            this.toastsService.show($localize`:@@file_uploaded:File uploaded successfully`, ToastType.SUCCESS)
+            this.toastsService.show($localize`:@@file_uploaded:File uploaded`, ToastType.SUCCESS)
             this.fileUploading.set(false)
           },
           error: () => {
