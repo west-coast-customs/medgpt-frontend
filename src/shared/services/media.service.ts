@@ -10,8 +10,8 @@ export enum Media {
 export class MediaService {
   private mediaObs: Observable<Media> = fromEvent<UIEvent>(window, 'resize')
     .pipe(
-      map((event: UIEvent) => this.calculateMedia(event.view?.innerWidth ?? window.innerWidth)),
-      startWith(this.calculateMedia(window.innerWidth)),
+      startWith(null),
+      map((event: UIEvent | null) => this.calculateMedia(event?.view?.innerWidth ?? window.innerWidth)),
       distinctUntilChanged()
     );
 

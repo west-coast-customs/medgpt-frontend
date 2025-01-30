@@ -291,8 +291,8 @@
         <target state="new">File size should not exceed</target>
       </trans-unit>
       <trans-unit id="file_uploaded" datatype="html">
-        <source>File uploaded successfully</source>
-        <target state="new">File uploaded successfully</target>
+        <source>File uploaded</source>
+        <target state="new">File uploaded</target>
       </trans-unit>
       <trans-unit id="file_upload_error" datatype="html">
         <source>File upload failed</source>
@@ -321,6 +321,14 @@
       <trans-unit id="activate_subscription" datatype="html">
         <source>Activate subscription</source>
         <target state="new">Activate subscription</target>
+      </trans-unit>
+      <trans-unit id="subscription_activated" datatype="html">
+        <source>Subscription activated</source>
+        <target state="new">Subscription activated</target>
+      </trans-unit>
+      <trans-unit id="session_expired_login_required" datatype="html">
+        <source>Session expired. Login required</source>
+        <target state="new">Session expired. Login required</target>
       </trans-unit>
     </body>
   </file>
