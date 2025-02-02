@@ -53,6 +53,11 @@ export class AuthService {
       )
   }
 
+  changePassword(currentPassword: string, newPassword: string): Observable<void | unknown> {
+    return this.httpService.put<void>('/api/native-auth/password', { current_password: currentPassword, new_password: newPassword })
+      .pipe(authCatchError())
+  }
+
   logout(): Observable<void> {
     return this.httpService.post<void>('/api/common-auth/logout/', null)
       .pipe(tap(() => this.updateIsLoggedIn(false)))

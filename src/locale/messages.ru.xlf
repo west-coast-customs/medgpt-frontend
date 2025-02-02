@@ -154,10 +154,6 @@
         <source>Unknown error</source>
         <target state="new">Unknown error</target>
       </trans-unit>
-      <trans-unit id="chat_error" datatype="html">
-        <source>Some error has occurred during the request, please try again later.</source>
-        <target state="new">Some error has occurred during the request, please try again later.</target>
-      </trans-unit>
       <trans-unit id="new_chat" datatype="html">
         <source>New chat</source>
         <target state="new">New chat</target>
@@ -326,9 +322,49 @@
         <source>Subscription activated</source>
         <target state="new">Subscription activated</target>
       </trans-unit>
-      <trans-unit id="session_expired_login_required" datatype="html">
-        <source>Session expired. Login required</source>
-        <target state="new">Session expired. Login required</target>
+      <trans-unit id="session_expired" datatype="html">
+        <source>Session expired</source>
+        <target state="new">Session expired</target>
+      </trans-unit>
+      <trans-unit id="change_password" datatype="html">
+        <source>Change password</source>
+        <target state="new">Change password</target>
+      </trans-unit>
+      <trans-unit id="current_password" datatype="html">
+        <source>Current password</source>
+        <target state="new">Current password</target>
+      </trans-unit>
+      <trans-unit id="enter_current_password" datatype="html">
+        <source>Enter current password</source>
+        <target state="new">Enter current password</target>
+      </trans-unit>
+      <trans-unit id="new_password" datatype="html">
+        <source>New password</source>
+        <target state="new">New password</target>
+      </trans-unit>
+      <trans-unit id="enter_new_password" datatype="html">
+        <source>Enter new password</source>
+        <target state="new">Enter new password</target>
+      </trans-unit>
+      <trans-unit id="close" datatype="html">
+        <source>Close</source>
+        <target state="new">Close</target>
+      </trans-unit>
+      <trans-unit id="password_was_changed" datatype="html">
+        <source>Password was changed</source>
+        <target state="new">Password was changed</target>
+      </trans-unit>
+      <trans-unit id="request_error" datatype="html">
+        <source>Some error has occurred during the request, please try again later.</source>
+        <target state="new">Some error has occurred during the request, please try again later.</target>
+      </trans-unit>
+      <trans-unit id="chat_error" datatype="html">
+        <source>Some error has occurred during the request, please try again later.</source>
+        <target state="new">Some error has occurred during the request, please try again later.</target>
+      </trans-unit>
+      <trans-unit id="change_password_error" datatype="html">
+        <source> Some error has occurred during the request, please try again later. </source>
+        <target state="new"> Some error has occurred during the request, please try again later. </target>
       </trans-unit>
     </body>
   </file>

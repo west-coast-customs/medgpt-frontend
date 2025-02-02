@@ -1,6 +1,7 @@
 <button [routerLink]="link()" [routerLinkActive]="linkActive()"
         [disabled]="disabled()"
         [ngClass]="customClass()"
+        [type]="buttonType()"
         class="button" >
   <div class="button__content">
     @if (!loading()) {

@@ -1,6 +1,6 @@
 @for (toast of toasts(); track toast.id) {
   <div @bounceInLeftOutRight class="toast toast--{{ toast.type }}">
-    <span class="toast__title">
+    <div class="toast__title">
       @switch (toast.type) {
         @case (ToastType.SUCCESS) {
           <ng-container i18n="@@success">Success</ng-container>
@@ -9,8 +9,9 @@
           <ng-container i18n="@@error">Error</ng-container>
         }
       }
-    </span>
+
+      <div (click)="onRemoveToastClick(toast.id)" class="toast__icon"></div>
+    </div>
     <span class="toast__message" [innerHtml]="toast.message"></span>
-    <div (click)="onRemoveToastClick(toast.id)" class="toast__icon"></div>
   </div>
 }

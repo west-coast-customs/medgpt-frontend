@@ -3,13 +3,11 @@ import {
   Component,
   computed,
   DestroyRef,
-  inject,
   Signal,
   signal,
   WritableSignal
 } from '@angular/core';
 import { Profile, ProfileFullName, ProfileService } from '../../../entities/profile/api/profile.service';
-import { ActivatedRoute } from '@angular/router';
 import { ToastsService, ToastType } from '../../../shared/services/toasts.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { catchError, EMPTY, of, switchMap, tap } from 'rxjs';
@@ -19,6 +17,9 @@ import { FormErrorComponent } from '../../../shared/components/form/error/form-e
 import { FormFieldComponent } from '../../../shared/components/form/field/form-field.component';
 import { FormInputComponent } from '../../../shared/components/form/input/form-input.component';
 import { FormValueChangeDirective } from '../../../shared/directives/form-value-change.directive';
+import {
+  ChangePasswordButtonComponent
+} from '../../../features/change-password-button/change-password-button.component';
 
 interface PersonalSettingsFormValue {
   lastName: string;
@@ -36,7 +37,8 @@ interface PersonalSettingsFormValue {
     FormFieldComponent,
     FormInputComponent,
     FormValueChangeDirective,
-    FormsModule
+    FormsModule,
+    ChangePasswordButtonComponent
   ],
   templateUrl: './personal-data-form.component.html',
   styleUrl: './personal-data-form.component.scss',

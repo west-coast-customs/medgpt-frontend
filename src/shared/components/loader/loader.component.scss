@@ -6,7 +6,7 @@
   @apply block relative box-border w-[20px] h-[20px] border-[4px] border-white rounded-full;
 
   &--chat {
-    @apply inline-block w-[48px] h-[48px] bg-blue bg-opacity-20;
+    @apply inline-block w-[40px] h-[40px] bg-blue bg-opacity-20;
     animation: pulse 1s linear infinite;
 
     &:after {

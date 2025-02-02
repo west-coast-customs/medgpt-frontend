@@ -11,7 +11,7 @@
     <app-form-input required
                     [(ngModel)]="formValue.password"
                     (ngModelChange)="onPasswordModelChange()"
-                    minlength="6"
+                    minlength="6" maxlength="50"
                     name="password" type="password"
                     autocomplete="password"
                     placeholder="Enter your password"
@@ -36,7 +36,7 @@
       <a [routerLink]="['../', 'signup']" class="text-blue" i18n="@@forgot_your_password">Forgot your password?</a>
     </p>
   }
-  <app-button [loading]="authLoading()" [disabled]="!!loginForm.invalid">
+  <app-button buttonType="submit" [loading]="authLoading()" [disabled]="!!loginForm.invalid">
     @if (loginFlow()) {
       <ng-container i18n="@@log_in">Log in</ng-container>
     } @else {
