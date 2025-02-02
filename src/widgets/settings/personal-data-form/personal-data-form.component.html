@@ -31,23 +31,27 @@
                     i18n-label="@@second_name"/>
   </app-form-field>
 
-  <app-button [loading]="changePersonalDataLoading()"
+  <app-button buttonType="submit"
+              [loading]="changePersonalDataLoading()"
               [disabled]="!!personalDataForm.invalid || noChanges() || changePersonalDataLoading()"
               customClass="button--big">
     <span i18n="@@save">Save</span>
   </app-button>
-
-  <app-form-field class="mt-[25px]">
-    <app-form-input [ngModel]="formValue().email"
-                    [disabled]="true"
-                    name="email"
-                    label="Email"
-                    i18n-label="@@email"/>
-  </app-form-field>
 
   @if (changePersonalError()) {
     <app-form-error @fadeInOutHeight>
       <p>{{ changePersonalError() }}</p>
     </app-form-error>
   }
+
+  <div class="form__email">
+    <app-form-field class="mt-[25px]">
+      <app-form-input [ngModel]="formValue().email"
+                      [disabled]="true"
+                      name="email"
+                      label="Email"
+                      i18n-label="@@email"/>
+    </app-form-field>
+    <app-change-password-button class="w-full basis-1/2"/>
+  </div>
 </form>

@@ -1,3 +1,8 @@
 .form {
   @apply flex flex-col gap-[20px];
+
+  &__email {
+    @apply flex flex-col items-baseline gap-[10px];
+    @apply desktop:flex-row;
+  }
 }

@@ -12,7 +12,7 @@
       <p i18n="@@email_invalid">Email is invalid</p>
     }
     @if (inputModel()?.hasError('minlength')) {
-      @if (inputModel()?.name === 'password') {
+      @if (inputComponent().type() === 'password') {
         <p i18n="@@password_minlength">Password must have at least 6 characters</p>
       }
     }
