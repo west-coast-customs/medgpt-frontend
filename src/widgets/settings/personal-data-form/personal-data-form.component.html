@@ -52,6 +52,8 @@
                       label="Email"
                       i18n-label="@@email"/>
     </app-form-field>
-    <app-change-password-button class="w-full basis-1/2"/>
+    @if (passwordChangeAllowed()) {
+      <app-change-password-button class="w-full basis-1/2"/>
+    }
   </div>
 </form>

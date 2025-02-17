@@ -12,6 +12,7 @@ export interface ProfileFullName {
 export interface Profile extends ProfileFullName {
   id: string
   email: string
+  auth_type: string
   created_at: string
   is_verified: boolean
 }
