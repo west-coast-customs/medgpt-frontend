@@ -15,6 +15,7 @@ export class ButtonComponent {
   disabled: InputSignal<boolean> = input<boolean>(false)
   customClass: InputSignal<string> = input<string>('')
   loading: InputSignal<boolean> = input<boolean>(false)
+  buttonType: InputSignal<'button' | 'submit'> = input<'button' | 'submit'>('button')
 
   link: InputSignal<string | null> = input<string | null>(null)
   linkActive: InputSignal<string> = input<string>('')

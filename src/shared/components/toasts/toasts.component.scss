@@ -30,7 +30,7 @@
   }
 
   &__title {
-    @apply text-[14px] font-bold;
+    @apply text-[14px] font-bold flex items-center justify-between w-full;
   }
 
   &__message {
@@ -38,7 +38,7 @@
   }
 
   &__icon {
-    @apply absolute right-[12px] top-1/2 -translate-y-1/2 w-[24px] h-[24px] cursor-pointer;
+    @apply w-[24px] h-[24px] cursor-pointer;
     mask-size: 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;

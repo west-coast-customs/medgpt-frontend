@@ -116,9 +116,6 @@
       <trans-unit id="user_exists" datatype="html">
         <source>User with given email already exists</source>
       </trans-unit>
-      <trans-unit id="chat_error" datatype="html">
-        <source>Some error has occurred during the request, please try again later.</source>
-      </trans-unit>
       <trans-unit id="new_chat" datatype="html">
         <source>New chat</source>
       </trans-unit>
@@ -242,11 +239,41 @@
       <trans-unit id="subscription_trial" datatype="html">
         <source>Trial subscription</source>
       </trans-unit>
-      <trans-unit id="session_expired_login_required" datatype="html">
-        <source>Session expired. Login required</source>
-      </trans-unit>
       <trans-unit id="subscription_activated" datatype="html">
         <source>Subscription activated</source>
+      </trans-unit>
+      <trans-unit id="change_password" datatype="html">
+        <source>Change password</source>
+      </trans-unit>
+      <trans-unit id="close" datatype="html">
+        <source>Close</source>
+      </trans-unit>
+      <trans-unit id="current_password" datatype="html">
+        <source>Current password</source>
+      </trans-unit>
+      <trans-unit id="enter_current_password" datatype="html">
+        <source>Enter current password</source>
+      </trans-unit>
+      <trans-unit id="enter_new_password" datatype="html">
+        <source>Enter new password</source>
+      </trans-unit>
+      <trans-unit id="new_password" datatype="html">
+        <source>New password</source>
+      </trans-unit>
+      <trans-unit id="password_was_changed" datatype="html">
+        <source>Password was changed</source>
+      </trans-unit>
+      <trans-unit id="session_expired" datatype="html">
+        <source>Session expired</source>
+      </trans-unit>
+      <trans-unit id="request_error" datatype="html">
+        <source>Some error has occurred during the request, please try again later.</source>
+      </trans-unit>
+      <trans-unit id="change_password_error" datatype="html">
+        <source> Some error has occurred during the request, please try again later. </source>
+      </trans-unit>
+      <trans-unit id="chat_error" datatype="html">
+        <source>Some error has occurred during the request, please try again later.</source>
       </trans-unit>
     </body>
   </file>
