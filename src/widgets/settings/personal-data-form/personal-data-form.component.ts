@@ -50,13 +50,17 @@ export class PersonalDataFormComponent {
   changePersonalDataLoading: WritableSignal<boolean> = signal(false)
   changePersonalError: WritableSignal<string> = signal('')
 
-  passwordChangeAllowed: WritableSignal<boolean> = signal(this.#profile().auth_type == 'email')
-
   noChanges: Signal<boolean> = computed(() => {
     const { last_name, first_name, second_name } = this.#profile()
     const { lastName, firstName, secondName } = this.formValue()
 
     return last_name === lastName && first_name === firstName && second_name === secondName
+  })
+
+  passwordChangeAllowed: Signal<boolean> = computed(() => {
+    const { auth_type } = this.#profile()
+
+    return auth_type === 'email'
   })
 
   formValue: WritableSignal<Partial<PersonalSettingsFormValue>> = signal({
