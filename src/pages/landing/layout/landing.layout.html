@@ -1,4 +1,15 @@
 <div class="page page--spaced">
+  @if (showCookieBanner()) {
+    <div class="cookie-banner" @fadeOnEnter>
+      <div class="cookie-banner__content">
+        <span class="cookie-banner__text">{{cookieNoticeText}}</span>
+      </div>
+      <div class="cookie-banner__actions">
+        <app-button (click)="acceptCookies()" [customClass]="'cookie-banner__ok'">{{okText}}</app-button>
+        <button class="cookie-banner__close" aria-label="close" (click)="closeCookies()">&times;</button>
+      </div>
+    </div>
+  }
   @if (!mobileView()) {
     <app-header class="header" @fadeOnEnter/>
   }

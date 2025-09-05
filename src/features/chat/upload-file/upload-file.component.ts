@@ -33,7 +33,9 @@ const MAX_FILE_SIZE: number = MAX_FILE_SIZE_MB * 1024 * 1024
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UploadFileComponent {
-  viableSubscription: Signal<boolean> = computed(() => this.profileService.subscription()?.status === SubscriptionStatuses.ACTIVE)
+  // TODO: uncomment to get back to the initial subscription logic
+  // viableSubscription: Signal<boolean> = computed(() => this.profileService.subscription()?.status === SubscriptionStatuses.ACTIVE)
+  viableSubscription: Signal<boolean> = computed(() => true)
 
   constructor(private toastsService: ToastsService,
               private chatsService: ChatsService,

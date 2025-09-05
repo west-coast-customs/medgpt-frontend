@@ -135,10 +135,10 @@
         <source>Full access to all functions, including document uploading</source>
       </trans-unit>
       <trans-unit id="price_per_month" datatype="html">
-        <source>99$ per month</source>
+        <source>19$ per month</source>
       </trans-unit>
       <trans-unit id="price_per_year" datatype="html">
-        <source>990$ per year</source>
+        <source>99$ per year</source>
       </trans-unit>
       <trans-unit id="pricing" datatype="html">
         <source>Pricing</source>
@@ -274,6 +274,12 @@
       </trans-unit>
       <trans-unit id="chat_error" datatype="html">
         <source>Some error has occurred during the request, please try again later.</source>
+      </trans-unit>
+      <trans-unit id="cookies_notice" datatype="html">
+        <source>We use cookies for authorization and for third-party services.</source>
+      </trans-unit>
+      <trans-unit id="ok" datatype="html">
+        <source>OK</source>
       </trans-unit>
     </body>
   </file>

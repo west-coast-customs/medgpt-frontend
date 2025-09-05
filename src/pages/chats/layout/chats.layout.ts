@@ -44,6 +44,8 @@ export default class ChatsLayout {
   inactiveSubscription: Signal<boolean> = computed(() => this.#profileService.subscription()?.status === SubscriptionStatuses.INACTIVE)
   trialSubscription: Signal<boolean> = computed(() => this.#profileService.subscription()?.status === SubscriptionStatuses.TRIAL)
 
-  settingsPage: Signal<boolean> = computed(() => this.navigationEnd()?.url.indexOf('settings') !== -1)
-  showSubscriptionNotification = computed(() => !this.settingsPage() && (this.inactiveSubscription() || this.trialSubscription()))
+  // TODO: uncomment to get back to the initial subscription logic
+  // settingsPage: Signal<boolean> = computed(() => this.navigationEnd()?.url.indexOf('settings') !== -1)
+  // showSubscriptionNotification = computed(() => !this.settingsPage() && (this.inactiveSubscription() || this.trialSubscription()))
+  showSubscriptionNotification = computed(() => false)
 }
